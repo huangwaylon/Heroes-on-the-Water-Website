@@ -1,0 +1,24 @@
+<!doctype html>
+<html ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <title>Example</title>
+    <script src='/lib/angular/angular.min.js'></script>
+    <script src='/lib/angular-route/angular-route.min.js'></script>
+
+    <!-- List all the javascript resources, in order -->
+    <script src='/modules/example/example.config.js'></script>
+    <script src='/modules/example/services/example.service.js'></script>
+    <script src='/modules/example/controllers/example.route.ctrl.js'></script>
+    <script src='/modules/example/controllers/example-list.directive.ctrl.js'>
+    </script>
+    <script src='/modules/example/directives/example-list.directive.js'>
+    </script>
+    <script src='/ng-app.js'></script>
+  </head>
+  <body>
+    <h1>AngularJS Application</h1>
+    <ng-view></ng-view>
+    <p>footer</p>
+  </body>
+</html>
