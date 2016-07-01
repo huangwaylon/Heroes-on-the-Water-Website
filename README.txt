@@ -1,1 +1,2 @@
-Hi, I am a README file
+Project ^_^
+Hi, I am a README file.
