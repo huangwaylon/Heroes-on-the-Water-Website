@@ -1,7 +1,8 @@
 {
   "name": "blackwater",
   "version": "1.0.0",
-  "description": "A quickstart using AngularJS, node.js with Express, and MongoDB with Mongoose",
+  "description": "A quickstart using AngularJS, node.js with Express, Bootstrap, and MongoDB with Mongoose",
+  "repository": "https://github.com/helo478/blackwater.git",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,12 +13,18 @@
     "angular": "^1.5.7",
     "angular-route": "^1.5.7",
     "body-parser": "^1.15.2",
+    "bootstrap": "^3.3.6",
     "express": "^4.14.0",
+    "jquery": "<3.0.0",
     "mongoose": "^4.5.2"
   },
   "devDependencies": {
+    "clean": "^4.0.2",
+    "concat": "0.0.1-security",
     "copy": "^0.2.3",
     "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0"
   }

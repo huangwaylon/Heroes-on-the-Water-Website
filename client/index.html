@@ -2,23 +2,46 @@
 <html ng-app="app">
   <head>
     <meta charset="utf-8">
-    <title>Example</title>
-    <script src='/lib/angular/angular.min.js'></script>
-    <script src='/lib/angular-route/angular-route.min.js'></script>
+    <title>Blackwater</title>
 
-    <!-- List all the javascript resources, in order -->
-    <script src='/modules/example/example.config.js'></script>
-    <script src='/modules/example/services/example.service.js'></script>
-    <script src='/modules/example/controllers/example.route.ctrl.js'></script>
-    <script src='/modules/example/controllers/example-list.directive.ctrl.js'>
-    </script>
-    <script src='/modules/example/directives/example-list.directive.js'>
-    </script>
-    <script src='/ng-app.js'></script>
+    <!-- Javascript resources -->
+    <script src="/lib.js"></script>
+    <script src="/ng-app.js"></script>
+
+    <!-- CSS resources -->
+    <link rel="stylesheet" type="text/css" href="/lib.css">
+    <link rel="stylesheet" type="text/css" href="/application.css">
+
   </head>
   <body>
-    <h1>AngularJS Application</h1>
-    <ng-view></ng-view>
-    <p>footer</p>
+    <nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarCtrl as navbarCtrl">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed"
+              data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+              aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/#/">Blackwater</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li ng-class="{ active: navbarCtrl.isActive('/') }"><a href="/#/">Home</a></li>
+            <li ng-class="{ active: navbarCtrl.isActive('/examples') }"><a href="/#/examples">Examples</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+      <ng-view></ng-view>
+      <p>This is a place to put a footer</p>
+    </div>
   </body>
 </html>

@@ -1,6 +1,6 @@
 # Blackwater
 
-A quickstart using AngularJS, node.js with Express, and MongoDB with Mongoose
+A quickstart using AngularJS, node.js with Express, Bootstrap, and MongoDB with Mongoose
 
 ## Contributors
 
