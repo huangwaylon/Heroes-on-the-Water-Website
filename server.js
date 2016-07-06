@@ -20,7 +20,7 @@
 
   // If no route is found, send a 404 error
   app.use(function(req, res) {
-    res.send(404, "Not Found");
+    res.status(404).send("Not Found");
   });
 
   // Start the server

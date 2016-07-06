@@ -1,0 +1,15 @@
+<div>
+	<hr></hr>
+	<p ng-show="exampleListDirectiveCtrl.examples.length < 1">
+		There are no examples. Try adding a new one.
+	</p>
+	<div class="row">
+		<div class="col-sm-6 col-md-4" ng-repeat="example in exampleListDirectiveCtrl.examples">
+			<div class="thumbnail">
+	      <div class="caption">
+	        <h3 ng-bind="example.name"></h3>
+	      </div>
+	    </div>
+		</div>
+	</div>
+</div>

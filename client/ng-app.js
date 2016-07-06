@@ -1,5 +1,5 @@
 (function() {
-  var appModule = angular.module('app', ['ngRoute', 'app.example']);
+  var appModule = angular.module('app', ['ngRoute', 'app.how']);
 
   appModule.config(function($routeProvider) {
     $routeProvider.when('/', {

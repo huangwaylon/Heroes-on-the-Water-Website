@@ -26,14 +26,27 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/#/">Blackwater</a>
+          <a class="navbar-left" href="/#/"><img class="img-responsive" style="max-width:70px; padding-right: 5px" alt="Heroes on the Water Logo" src="images/logo.png"/></a>
         </div>
+
+        <!--Hide this button after they have successfully logged in-->
+        <button  id="loginbutton" type="button" class="btn btn-info navbar-btn navbar-right" style="margin-left: 10px; margin-right: 15px">Login/Sign Up</button>
+        <p class="navbar-text navbar-right">Signed in as Mark Otto</p>
+
+
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li ng-class="{ active: navbarCtrl.isActive('/') }"><a href="/#/">Home</a></li>
             <li ng-class="{ active: navbarCtrl.isActive('/examples') }"><a href="/#/examples">Examples</a></li>
+            <li ng-class="{ active: navbarCtrl.isActive('/events') }"><a href="/#/events">Events</a></li>
+            <li ng-class="{ active: navbarCtrl.isActive('/profile') }"><a href="/#/profile">Profile</a></li>
+            <li ng-class="{ active: navbarCtrl.isActive('/media') }"><a href="/#/media">Media</a></li>
+            <li ng-class="{ active: navbarCtrl.isActive('/chapters') }"><a href="/#/chapters">Chapters</a></li>
+            <li ng-class="{ active: navbarCtrl.isActive('/heroes') }"><a href="/#/heroes">Heroes</a></li>
+            <!--Inventory tab should only be visible if an admin or someone else who needs to view inventory is logged in-->
+            <li ng-class="{ active: navbarCtrl.isActive('/inventory') }"><a href="/#/inventory">Inventory</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
