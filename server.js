@@ -11,12 +11,16 @@
   var Schema = mongoose.Schema;
 
   var exampleRoute = require('./routes/example.route.js');
+  var galleryImageRoute = require('./routes/gallery-image.route.js');
 
   // Set up a static resources director
   app.use(express.static('public'));
 
   // User the example route to handle requests for example resources
   app.use('/examples', exampleRoute);
+
+  //Handle requests for outing images
+  app.use('/galleryImages', galleryImageRoute);
 
   // If no route is found, send a 404 error
   app.use(function(req, res) {
