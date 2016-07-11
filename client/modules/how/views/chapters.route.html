@@ -2,5 +2,12 @@
   This is the chapters page which will display the current chapters. We can do this via a list format, and include a map view as well
   if we want to get fancy, like in the previous website. Information will be pulled from MongoDB. Clicking on a chapter will either open up
   a modal with the necessary information, or we can contain the information on the page itself, and display it dynamically depending
-  on what they selected. 
+  on what they selected.
+</div>
+
+<div ng-app="mapsApp" ng-controller="MapCtrl">
+    <div id="map"></div>
+    <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+    </div>
 </div>
