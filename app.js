@@ -1,3 +1,5 @@
+(function() {
+
 // dependencies
 var express = require('express');
 var logger = require('morgan');
@@ -69,3 +71,5 @@ app.use(function(req, res) {
 });
 
 module.exports = app;
+
+})();
