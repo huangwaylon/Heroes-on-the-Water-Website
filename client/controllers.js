@@ -44,7 +44,7 @@ angular.module('app').controller('logoutController',
 
 }]);
 
-angular.module('apps').controller('registerController',
+angular.module('app').controller('registerController',
   ['$scope', '$location', 'AuthService',
   function ($scope, $location, AuthService) {
 
