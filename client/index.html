@@ -7,6 +7,8 @@
     <!-- Javascript resources -->
     <script src="/lib.js"></script>
     <script src="/ng-app.js"></script>
+    <script src="/services.js"></script>
+    <script src="/controllers.js"></script>
 
     <!-- CSS resources -->
     <link rel="stylesheet" type="text/css" href="/lib.css">
@@ -26,7 +28,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/#/">Blackwater</a>
+          <a class="navbar-left" href="/#/"><img class="img-responsive" style="max-width:70px; padding-right: 5px" alt="Heroes on the Water Logo" src="images/logo.png"/></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -34,8 +36,19 @@
           <ul class="nav navbar-nav">
             <li ng-class="{ active: navbarCtrl.isActive('/') }"><a href="/#/">Home</a></li>
             <li ng-class="{ active: navbarCtrl.isActive('/examples') }"><a href="/#/examples">Examples</a></li>
+            <li ng-class="{ active: navbarCtrl.isActive('/events') }"><a href="/#/events">Events</a></li>
+            <li ng-class="{ active: navbarCtrl.isActive('/profile') }"><a href="/#/profile">Profile</a></li>
+            <li ng-class="{ active: navbarCtrl.isActive('/media') }"><a href="/#/media">Media</a></li>
+            <li ng-class="{ active: navbarCtrl.isActive('/chapters') }"><a href="/#/chapters">Chapters</a></li>
+            <li ng-class="{ active: navbarCtrl.isActive('/heroes') }"><a href="/#/heroes">Heroes</a></li>
+            <!--Inventory tab should only be visible if an admin or someone else who needs to view inventory is logged in-->
+            <li ng-class="{ active: navbarCtrl.isActive('/inventory') }"><a href="/#/inventory">Inventory</a></li>
           </ul>
+          <!--Hide this button after they have successfully logged in-->
+          <button  id="loginbutton" type="button" class="btn btn-info navbar-btn navbar-right" style="margin-right:0px;">Login/Sign Up</button>
+          <!-- <p class="navbar-text navbar-right" style="margin-right:0px; "> Signed in as : </p> -->
         </div><!-- /.navbar-collapse -->
+
       </div><!-- /.container-fluid -->
     </nav>
 
@@ -44,4 +57,5 @@
       <p>This is a place to put a footer</p>
     </div>
   </body>
+
 </html>

@@ -15,6 +15,26 @@ module.exports = function(grunt) {
           }
         ]
       },
+      // css: {
+      //   files: [
+      //     {
+      //       expand: true,
+      //       cwd: 'client',
+      //       src: 'css/**/*',
+      //       dest: 'public'
+      //     }
+      //   ]
+      // },
+      // js: {
+      //   files: [
+      //     {
+      //       expand: true,
+      //       cwd: 'client',
+      //       src: 'js/**/*',
+      //       dest: 'public'
+      //     }
+      //   ]
+      // },
       images: {
         files: [
           {
@@ -24,23 +44,39 @@ module.exports = function(grunt) {
             dest: 'public'
           }
         ]
+      },
+      svg: {
+        files: [
+          {
+            expand: true,
+            cwd: 'client',
+            src: '**/*.svg',
+            dest: 'public'
+          }
+        ]
       }
     },
     concat: {
       options: {
-        separator: ';'
+        separator: '\n'
       },
       jslib: {
         src: [ // List all of the javascript libraries in node_modules that the client needs
+          'node_modules/jquery/dist/jquery.min.js',
           'node_modules/angular/angular.min.js',
           'node_modules/angular-route/angular-route.min.js',
-          'node_modules/jquery/dist/jquery.min.js',
-          'node_modules/bootstrap/dist/js/bootstrap.min.js'
+          'node_modules/bootstrap/dist/js/bootstrap.min.js',
+          'node_modules/photoswipe/dist/photoswipe.min.js',
+          'node_modules/photoswipe/dist/photoswipe-ui-default.min.js',
+          'node_modules/masonry-layout/dist/masonry.pkgd.min.js'
         ],
         dest: 'public/lib.js' // They will all be concatenated in a single file here
       },
       csslib: {
-        src: ['node_modules/bootstrap/dist/css/bootstrap.min.css'], // Same for CSS libraries
+        src: ['node_modules/bootstrap/dist/css/bootstrap.min.css',
+              'node_modules/photoswipe/dist/photoswipe.css',
+              'node_modules/photoswipe/dist/default-skin/default-skin.css'
+        ], // Same for CSS libraries
         dest: 'public/lib.css'
       },
       ngApp: {
