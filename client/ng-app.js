@@ -31,4 +31,5 @@
       return viewLocation === $location.path();
     };
   });
+  
 })();
