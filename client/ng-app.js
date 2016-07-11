@@ -19,14 +19,6 @@
       controller: 'registerController',
       access: {restricted: false}
     })
-    .when('/one', {
-      template: '<h1>This is page one!</h1>',
-      access: {restricted: true}
-    })
-    .when('/two', {
-      template: '<h1>This is page two!</h1>',
-      access: {restricted: false}
-    })
     .otherwise({
       redirectTo: '/'
     });

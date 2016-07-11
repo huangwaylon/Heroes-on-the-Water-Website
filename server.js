@@ -30,7 +30,7 @@
   app.use('/galleryImages', galleryImageRoute);
 
   // define middleware
-  //app.use(express.static(path.join(__dirname, './client')));
+  app.use(express.static(path.join(__dirname, './client')));
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
