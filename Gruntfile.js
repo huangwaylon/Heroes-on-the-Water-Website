@@ -15,26 +15,6 @@ module.exports = function(grunt) {
           }
         ]
       },
-      // css: {
-      //   files: [
-      //     {
-      //       expand: true,
-      //       cwd: 'client',
-      //       src: 'css/**/*',
-      //       dest: 'public'
-      //     }
-      //   ]
-      // },
-      // js: {
-      //   files: [
-      //     {
-      //       expand: true,
-      //       cwd: 'client',
-      //       src: 'js/**/*',
-      //       dest: 'public'
-      //     }
-      //   ]
-      // },
       images: {
         files: [
           {

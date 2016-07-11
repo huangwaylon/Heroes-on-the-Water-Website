@@ -1,9 +1,40 @@
 (function() {
   angular.module('app.how').controller('mediaRouteCtrl',
-      function($log, galleryImageService) {
+      function($log, galleryImageService, $scope) {
         $log.debug('Initializing mediaRouteCtrl');
 
         var self = this;
+
+        galleryImageService.imagelist = "";
+
+
+        this.initGallery= function(type) {
+          if(galleryImageService.dbimages[0] != null || galleryImageService.dbimages[0] != undefined) {
+            if(type == "press") {
+              console.log("Implementing soon");
+            } else if(type == "outing") {
+              galleryImageService.imagelist = galleryImageService.dbimages[0].outingImages;
+            } else if(type == "boondoggle") {
+              galleryImageService.imagelist = galleryImageService.dbimages[0].boondoggleImages;
+            } else if(type == "families") {
+              galleryImageService.imagelist = galleryImageService.dbimages[0].familiesImages;
+            } else if(type == "dogs") {
+              galleryImageService.imagelist = galleryImageService.dbimages[0].dogsImages;
+            } else if(type == "smiles") {
+              galleryImageService.imagelist = galleryImageService.dbimages[0].smilesImages;
+            } else if(type == "casting") {
+              galleryImageService.imagelist = galleryImageService.dbimages[0].castingImages;
+            } else if(type== "catches") {
+              galleryImageService.imagelist = galleryImageService.dbimages[0].catchesImages;
+            } else {
+
+            }
+          } else {
+            console.log("Error on gallery display");
+          }
+
+      };
+
 
         var initPhotoSwipeFromDOM = function(gallerySelector) {
 
