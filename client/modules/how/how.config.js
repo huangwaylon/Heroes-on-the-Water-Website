@@ -30,11 +30,6 @@
       controller: 'heroesRouteCtrl',
       controllerAs: 'heroesCtrl'
     })
-    .when('/contact', {
-      templateUrl: '/modules/how/views/contact.route.html',
-      controller: 'contactRouteCtrl',
-      controllerAs: 'contactCtrl'
-    })
     .when('/events', {
       templateUrl: '/modules/how/views/events.route.html',
       controller: 'eventsRouteCtrl',
