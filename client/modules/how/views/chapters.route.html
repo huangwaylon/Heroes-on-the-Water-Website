@@ -1,13 +1,68 @@
+<style>
+#map {
+    width: 100%;
+    height: 600px;
+}
+</style>
 <div>
-  This is the chapters page which will display the current chapters. We can do this via a list format, and include a map view as well
-  if we want to get fancy, like in the previous website. Information will be pulled from MongoDB. Clicking on a chapter will either open up
-  a modal with the necessary information, or we can contain the information on the page itself, and display it dynamically depending
-  on what they selected.
-</div>
-
-<div ng-app="mapsApp">
+    This is the chapters page which will display the current chapters. We can do this via a list format, and include a map view as well if we want to get fancy, like in the previous website. Information will be pulled from MongoDB. Clicking on a chapter will either open up a modal with the necessary information, or we can contain the information on the page itself, and display it dynamically depending on what they selected.
+    <br>
+    <br> Currently putting all javascript for Google Maps API in this file for ease of use, will move everything to correct location once it is working. Need to move chapterLocations.json from /public to somewhere else as well. 
+    <br>
+    <br>
     <div id="map"></div>
-    <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
-         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
-    </div>
+    <!-- This is just for help loading the json file until all the code gets moved around into the correct locations. Remove file from /public after-->
+    <script src="d3.v3.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRiUhbvnE8lg6f04JotEjXDMylb807ZkQ&callback=initMap"></script>
+    <script>
+    var map;
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: {
+                lat: 37.09024,
+                lng: -95.712891
+            },
+            zoom: 4
+        });
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                map.setCenter(pos);
+                map.setZoom(6);
+                var userLocation = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    title: 'Your location'
+                });
+            });
+        }
+        loadJSON();
+    }
+
+    function drawChapters(chapters) {
+    	for (var i=0; i<chapters.length; i++){
+    		var chapterLocation = new google.maps.Marker({
+            position: {
+                lat: parseFloat(chapters[i].lat),
+                lng: parseFloat(chapters[i].lng)
+            },
+            map: map,
+            icon: '/images/how-pin.png',
+            title: chapters[i].name
+        });
+    	}
+    }
+
+    function loadJSON(){
+    	d3.json("chapterLocations.json", function(json) {
+    		drawChapters(json["chapters"]);
+		});
+    }
+
+    </script>
+    
 </div>
