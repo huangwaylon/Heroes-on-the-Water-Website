@@ -4,6 +4,7 @@
     var self = this;
 
     this.dbimages = [];
+    this.imagelist = [];
 
     this.getImages = function() {
 
@@ -27,6 +28,6 @@
       return defer.promise;
     };
 
-    //this.getExamples();
+    this.getImages();
   });
 })();
