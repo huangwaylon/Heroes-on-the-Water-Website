@@ -27,7 +27,7 @@ var User = require('./models/user.js');
 // require routes
 var exampleRoute = require('./routes/example.route.js');
 var galleryImageRoute = require('./routes/gallery-image.route.js');
-var routes = require('./routes/api.js');
+var routes = require('./routes/api.route.js');
 
 // Set up a static resources director
 app.use(express.static('public'));

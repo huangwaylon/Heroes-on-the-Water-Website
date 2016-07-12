@@ -22,6 +22,12 @@ body {
   display: none;
 }
 
+.griddle-item {
+  width: 50%;
+  display: inline-block;
+  
+}
+
 
 
 

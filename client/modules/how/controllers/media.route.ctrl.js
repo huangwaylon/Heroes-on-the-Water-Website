@@ -11,7 +11,8 @@
         this.initGallery= function(type) {
           if(galleryImageService.dbimages[0] != null || galleryImageService.dbimages[0] != undefined) {
             if(type == "press") {
-              console.log("Implementing soon");
+              galleryImageService.imagelist = "";
+              $('#pressnote').html('Will be added in soon!');
             } else if(type == "outing") {
               galleryImageService.imagelist = galleryImageService.dbimages[0].outingImages;
             } else if(type == "boondoggle") {
@@ -27,7 +28,9 @@
             } else if(type== "catches") {
               galleryImageService.imagelist = galleryImageService.dbimages[0].catchesImages;
             } else {
-
+            }
+            if(type != 'press') {
+              $('#pressnote').html('');
             }
           } else {
             console.log("Error on gallery display");

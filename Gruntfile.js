@@ -48,7 +48,8 @@ module.exports = function(grunt) {
           'node_modules/bootstrap/dist/js/bootstrap.min.js',
           'node_modules/photoswipe/dist/photoswipe.min.js',
           'node_modules/photoswipe/dist/photoswipe-ui-default.min.js',
-          'node_modules/masonry-layout/dist/masonry.pkgd.min.js'
+          'node_modules/masonry-layout/dist/masonry.pkgd.min.js',
+          'node_modules/imagesloaded/imagesloaded.pkgd.min.js'
         ],
         dest: 'public/lib.js' // They will all be concatenated in a single file here
       },
