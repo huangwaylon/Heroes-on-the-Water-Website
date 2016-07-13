@@ -39,6 +39,20 @@
       templateUrl: '/modules/how/views/events.route.html',
       controller: 'eventsRouteCtrl',
       controllerAs: 'eventsCtrl'
+    })
+    .when('/login', {
+      templateUrl: '/modules/how/views/login.html',
+      controller: 'loginController',
+      access: {restricted: false}
+    })
+    .when('/logout', {
+      controller: 'logoutController',
+      access: {restricted: true}
+    })
+    .when('/register', {
+      templateUrl: '/modules/how/views/register.html',
+      controller: 'registerController',
+      access: {restricted: false}
     });
   });
 })();

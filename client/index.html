@@ -2,7 +2,8 @@
 <html ng-app="app">
   <head>
     <meta charset="utf-8">
-    <title>Blackwater</title>
+    <title>Heroes on the Water</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/images/logo.png" />`
 
     <!--Import Google Icon Font-->
       <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -10,7 +11,8 @@
     <!-- Javascript resources -->
     <script src="/lib.js"></script>
     <script src="/ng-app.js"></script>
-
+    <script src="/modules/how/controllers/login-controllers.js"></script>
+    <script src="/modules/how/services/login.service.js"></script>
     <!-- CSS resources -->
     <link rel="stylesheet" type="text/css" href="/lib.css">
     <link rel="stylesheet" type="text/css" href="/application.css">
@@ -46,7 +48,7 @@
             <li ng-class="{ active: navbarCtrl.isActive('/inventory') }"><a href="/#/inventory">Inventory</a></li>
           </ul>
           <!--Hide this button after they have successfully logged in-->
-          <button  id="loginbutton" type="button" class="btn btn-info navbar-btn navbar-right" style="margin-right:0px;">Login/Sign Up</button>
+          <a href="/#/login" id="loginbutton" type="button" class="btn btn-info navbar-btn navbar-right" style="margin-right:0px;">Login/Sign Up</a>
           <!-- <p class="navbar-text navbar-right" style="margin-right:0px; "> Signed in as : </p> -->
         </div><!-- /.navbar-collapse -->
 
@@ -55,5 +57,4 @@
       <ng-view></ng-view>
       <!-- <p>This is a place to put a footer</p> -->
   </body>
-
 </html>
