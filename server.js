@@ -11,6 +11,7 @@
   var passport = require('passport');
   var localStrategy = require('passport-local').Strategy;
   var express = require("express");
+  
   var app = express();
 
   // Set up parsing of the body as a JSON object
@@ -31,7 +32,7 @@
   app.use('/galleryImages', galleryImageRoute);
 
   // define middleware
-  //app.use(express.static(path.join(__dirname, './client')));
+  //app.use(express.static(path.join(__dirname, '.')));
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
@@ -43,7 +44,7 @@
   }));
   app.use(passport.initialize());
   app.use(passport.session());
-  app.use(express.static(path.join(__dirname, 'public')));
+  //app.use(express.static(path.join(__dirname, 'public')));
 
   // configure passport
   passport.use(new localStrategy(User.authenticate()));
@@ -54,7 +55,7 @@
   app.use('/user/', routes);
 
   app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, './client', 'index.html'));
+    res.sendFile(path.join(__dirname, './', 'index.html'));
   });
 
   // If no route is found, send a 404 error
