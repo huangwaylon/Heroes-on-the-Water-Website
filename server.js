@@ -27,13 +27,8 @@
 
   // Set up a static resources director
   app.use(express.static('public'));
-
-  // User the example route to handle requests for example resources
   app.use('/examples', exampleRoute);
-
-  //Handle requests for outing images
   app.use('/galleryImages', galleryImageRoute);
-
 
   // define middleware
   //app.use(express.static(path.join(__dirname, './client')));
@@ -42,7 +37,7 @@
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());
   app.use(require('express-session')({
-      secret: 'keyboard cat',
+      secret: 'fantabulous narwhal',
       resave: false,
       saveUninitialized: false
   }));
@@ -55,6 +50,9 @@
   passport.serializeUser(User.serializeUser());
   passport.deserializeUser(User.deserializeUser());
 
+  // routes
+  app.use('/user/', routes);
+
   app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, './client', 'index.html'));
   });
@@ -66,6 +64,6 @@
 
   // Start the server
   app.listen(3000, function() {
-    console.log("Example app listening on port 3000");
+    console.log("Heroes on the Water listening on port 3000");
   });
 })();
