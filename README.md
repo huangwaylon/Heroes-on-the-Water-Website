@@ -1,10 +1,10 @@
-# Blackwater
+# Heroes on the Water ~ Bothell Team
 
-A quickstart using AngularJS, node.js with Express, Bootstrap, and MongoDB with Mongoose
+Welcome to the Heroes on the Water website as designed and created by the Bothell team
 
 ## Contributors
 
-* Don Subert <helo478@gmail.com>
+* The Bothell Team <bothellteam@gmail.com>
 
 ## Set Up Steps
 
