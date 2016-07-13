@@ -1,115 +1,94 @@
 
-<ul class="nav nav-pills">
-  <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("press")'>Press</a></li>
-  <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("outing")'>Outings</a></li>
-  <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("smiles")'>Smiles</a></li>
-  <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("families")'>Families</a></li>
-  <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("catches")'>Catches</a></li>
-  <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("dogs")'>Dogs</a></li>
-  <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("casting")'>Casting</a></li>
-  <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("boondoggle")'>Boondoggle</a></li>
+<div class="container">
+  <ul class="nav nav-pills">
+    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("press")'>Press</a></li>
+    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("outing")'>Outings</a></li>
+    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("smiles")'>Smiles</a></li>
+    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("families")'>Families</a></li>
+    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("catches")'>Catches</a></li>
+    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("dogs")'>Dogs</a></li>
+    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("casting")'>Casting</a></li>
+    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("boondoggle")'>Boondoggle</a></li>
 
-</ul>
+  </ul>
 
-<hr>
-<div id="gallery" class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
-  <div id="pressnote"></div>
-  <gallery-image></gallery-image>
-</div>
+  <hr>
+  <div id="gallery" class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
+    <div id="pressnote"></div>
+    <gallery-image></gallery-image>
+  </div>
 
 
-<!-- <div class="griddle">
-  <div class="griddle-item"><img src="/images/press/press_1.jpg" width="395" height="624"/></div>
-  <div class="griddle-item"><img src="/images/press/press_2.jpg" width="583" height="570"/></div>
-  <div class="griddle-item"><img src="/images/press/press_3.jpg" width="595" height="640"/></div>
-</div> -->
+  <!-- <div class="griddle">
+    <div class="griddle-item"><img src="/images/press/press_1.jpg" width="395" height="624"/></div>
+    <div class="griddle-item"><img src="/images/press/press_2.jpg" width="583" height="570"/></div>
+    <div class="griddle-item"><img src="/images/press/press_3.jpg" width="595" height="640"/></div>
+  </div> -->
 
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
-    <!-- Background of PhotoSwipe.
-         It's a separate element, as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
+      <!-- Background of PhotoSwipe.
+           It's a separate element, as animating opacity is faster than rgba(). -->
+      <div class="pswp__bg"></div>
 
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
+      <!-- Slides wrapper with overflow:hidden. -->
+      <div class="pswp__scroll-wrap">
 
-        <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
-        <!-- don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
+          <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+          <!-- don't modify these 3 pswp__item elements, data is added later on. -->
+          <div class="pswp__container">
+              <div class="pswp__item"></div>
+              <div class="pswp__item"></div>
+              <div class="pswp__item"></div>
+          </div>
 
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
+          <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+          <div class="pswp__ui pswp__ui--hidden">
 
-            <div class="pswp__top-bar">
+              <div class="pswp__top-bar">
 
-                <!--  Controls are self-explanatory. Order can be changed. -->
+                  <!--  Controls are self-explanatory. Order can be changed. -->
 
-                <div class="pswp__counter"></div>
+                  <div class="pswp__counter"></div>
 
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                  <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 
-                <button class="pswp__button pswp__button--share" title="Share"></button>
+                  <button class="pswp__button pswp__button--share" title="Share"></button>
 
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                  <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                  <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
+                  <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                  <!-- element will get class pswp__preloader--active when preloader is running -->
+                  <div class="pswp__preloader">
+                      <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                          <div class="pswp__preloader__donut"></div>
+                        </div>
                       </div>
-                    </div>
-                </div>
-            </div>
+                  </div>
+              </div>
 
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
+              <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                  <div class="pswp__share-tooltip"></div>
+              </div>
 
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
+              <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+              </button>
 
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
+              <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+              </button>
 
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
+              <div class="pswp__caption">
+                  <div class="pswp__caption__center"></div>
+              </div>
+
             </div>
 
           </div>
 
-        </div>
+  </div>
 
 </div>
-
-<!-- <script>
-// A $( document ).ready() block.
-$( document ).ready(function() {
-
-  var grid = $('.griddle').imagesLoaded()
-  .done(function(instance) {
-      grid.masonry({
-        // options...
-        itemSelector: '.griddle-item',
-        columnWidth: 200,
-      });
-      grid.masonry('reloadItems');
-  })
-  .fail(function() {
-    console.log("at least one image did not load properly");
-  })
-  .progress( function( instance, image ) {
-    // var result = image.isLoaded ? 'loaded' : 'broken';
-    // console.log( 'image is ' + result + ' for ' + image.img.src );
-  });
-
-});
-</script> -->
