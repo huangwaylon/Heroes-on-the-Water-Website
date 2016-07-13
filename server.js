@@ -9,7 +9,7 @@
   var hash = require('bcrypt-nodejs');
   var path = require('path');
   var passport = require('passport');
-  var localStrategy = require('passport-local' ).Strategy;
+  var localStrategy = require('passport-local').Strategy;
   var express = require("express");
   var app = express();
 
@@ -17,15 +17,13 @@
   var bodyParser = require('body-parser');
   app.use(bodyParser.json());
 
-  var mongoose = require('mongoose');
   mongoose.connect('mongodb://localhost:27017/blackwater');
   var Schema = mongoose.Schema;
   // user schema/model
   var User = require('./models/user.model.js');
-
-
   var exampleRoute = require('./routes/example.route.js');
   var galleryImageRoute = require('./routes/gallery-image.route.js');
+  var routes = require('./routes/api.route.js');
 
   // Set up a static resources director
   app.use(express.static('public'));
