@@ -1,5 +1,5 @@
 (function() {
-  angular.module('app').controller('loginController',
+  angular.module('app.how').controller('loginController',
     ['$scope', '$location', 'AuthService',
     function ($scope, $location, AuthService) {
 
@@ -29,7 +29,7 @@
 
   }]);
 
-  angular.module('app').controller('logoutController',
+  angular.module('app.how').controller('logoutController',
     ['$scope', '$location', 'AuthService',
     function ($scope, $location, AuthService) {
 
@@ -45,7 +45,7 @@
 
   }]);
 
-  angular.module('app').controller('registerController',
+  angular.module('app.how').controller('registerController',
     ['$scope', '$location', 'AuthService',
     function ($scope, $location, AuthService) {
 

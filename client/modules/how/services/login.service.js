@@ -1,5 +1,5 @@
 (function() {
-  angular.module('app').factory('AuthService',
+  angular.module('app.how').factory('AuthService',
     ['$q', '$timeout', '$http',
     function ($q, $timeout, $http) {
 
