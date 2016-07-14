@@ -57,13 +57,12 @@
     }
 
     function loadChapters(){
-    	$(document).ready(function(){
-        var $element = $('div[ng-controller="AdminEventsCtrl"]');
-        var scope = angular.element($element).scope();
-        console.log("about to log scope");
-        console.dir(scope);
-    	});
-    	var chapters = scope.chapters;
+    	var dom_el = document.querySelector('[ng-controller="chaptersRouteCtrl"]');
+    	var ng_el = angular.element(dom_el);
+    	var ng_el_scope = ng_el.scope();
+    	var chapters = ng_el_scope.chapters;
+    	console.log('about to log chapters');
+    	console.log(chapters);
     	drawChapters(chapters);
     }
 
