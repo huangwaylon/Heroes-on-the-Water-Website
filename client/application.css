@@ -31,7 +31,6 @@ body {
 
 }
 
-
 #banner {
     width:100%;
     background: url('/images/banner.jpg') no-repeat;
@@ -186,9 +185,6 @@ a.linkedin {
 a.linkedin:hover {
   background-color: rgb(1, 116, 179) !important;
 }
-
-
-
 
 
 
