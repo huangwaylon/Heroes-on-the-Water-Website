@@ -56,9 +56,17 @@
                 script.type = 'text/javascript';
                 script.src = 'https://maps.google.com/maps/api/js';
                 document.body.appendChild(script);
-                setTimeout(function() {
-                    $scope.initialize();
-                }, 500);
+                defer($scope.initialize);
+            }
+
+            // function waits until google maps script is loaded before trying to initialize
+            function defer(method) {
+                if (typeof google === 'object' && typeof google.maps === 'object') {
+                    method();
+                }
+                else{
+                    setTimeout(function() { defer(method) }, 50);
+                }
             }
 
             $scope.drawChapters = function(chapters) {
