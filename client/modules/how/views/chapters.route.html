@@ -4,7 +4,7 @@
     height: 600px;
 }
 </style>
-<div>
+<div ng-controller="chaptersRouteCtrl">
     This is the chapters page which will display the current chapters. We can do this via a list format, and include a map view as well if we want to get fancy, like in the previous website. Information will be pulled from MongoDB. Clicking on a chapter will either open up a modal with the necessary information, or we can contain the information on the page itself, and display it dynamically depending on what they selected.
     <br>
     <br> Currently putting all javascript for Google Maps API in this file for ease of use, will move everything to correct location once it is working. Need to move chapterLocations.json from /public to somewhere else as well. 
@@ -38,11 +38,12 @@
                 });
             });
         }
-        loadJSON();
+        loadChapters();
     }
 
     function drawChapters(chapters) {
     	for (var i=0; i<chapters.length; i++){
+    		alert(i);
     		var chapterLocation = new google.maps.Marker({
             position: {
                 lat: parseFloat(chapters[i].lat),
@@ -55,10 +56,15 @@
     	}
     }
 
-    function loadJSON(){
-    	d3.json("chapterLocations.json", function(json) {
-    		drawChapters(json["chapters"]);
-		});
+    function loadChapters(){
+    	$(document).ready(function(){
+        var $element = $('div[ng-controller="AdminEventsCtrl"]');
+        var scope = angular.element($element).scope();
+        console.log("about to log scope");
+        console.dir(scope);
+    	});
+    	var chapters = scope.chapters;
+    	drawChapters(chapters);
     }
 
     </script>
