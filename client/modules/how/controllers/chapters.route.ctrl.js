@@ -7,5 +7,7 @@
 
         this.newExample = {};
 
+        var Chapter = require('/app/models/chapter');
+        console.log(Chapter);
       });
 })();
