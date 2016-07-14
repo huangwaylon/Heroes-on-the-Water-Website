@@ -23,12 +23,12 @@
   // require routes
   var exampleRoute = require('./routes/example.route.js');
   var galleryImageRoute = require('./routes/gallery-image.route.js');
+  var chapterRoute = require('./routes/chapter.route.js');
   var routes = require('./routes/api.route.js');
 
   app.use(express.static('public'));
   app.use('/examples', exampleRoute);
   app.use('/galleryImages', galleryImageRoute);
-
   // define middleware
   app.use(express.static(path.join(__dirname, './client')));
   app.use(logger('dev'));
@@ -56,6 +56,8 @@
     res.sendFile(path.join(__dirname, './client', 'index.html'));
   });
 
+  //Handle requests for chapter info (mainly for map, can be for more stuff later)
+  app.use('/chapters', chapterRoute);
 
   // If no route is found, send a 404 error
   app.use(function(req, res) {
