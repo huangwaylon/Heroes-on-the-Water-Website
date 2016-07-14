@@ -10,6 +10,7 @@
     <br> Currently putting all javascript for Google Maps API in this file for ease of use, will move everything to correct location once it is working. Need to move chapterLocations.json from /public to somewhere else as well. 
     <br>
     <br>
+    {{chaptersCtrl.chapters}}
     <div id="map"></div>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRiUhbvnE8lg6f04JotEjXDMylb807ZkQ&callback=initMap"></script>
     <script>
@@ -57,11 +58,7 @@
     }
 
     function loadChapters(){
-    	var dom_el = document.querySelector('[ng-controller="chaptersRouteCtrl"]');
-    	var ng_el = angular.element(dom_el);
-    	var ng_el_scope = ng_el.scope();
-    	var chapters = ng_el_scope.chapters;
-    	console.log('about to log chapters');
+    	var chapters = chaptersCtrl.chapters;
     	console.log(chapters);
     	drawChapters(chapters);
     }
