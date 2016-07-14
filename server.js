@@ -18,12 +18,12 @@
 
   mongoose.connect('mongodb://localhost:27017/blackwater');
   var Schema = mongoose.Schema;
-  var User = require('./models/usermodel.js');
+  var User = require('./models/user.model.js');
 
   // require routes
   var exampleRoute = require('./routes/example.route.js');
   var galleryImageRoute = require('./routes/gallery-image.route.js');
-  var routes = require('./routes/apiroute.js');
+  var routes = require('./routes/api.route.js');
 
   app.use(express.static('public'));
   app.use('/examples', exampleRoute);
@@ -64,6 +64,6 @@
 
   // Start the server
   app.listen(3000, function() {
-    console.log("Example app listening on port 3000");
+    console.log("Heroes on the Water listening on port 3000");
   });
 })();

@@ -1,11 +1,6 @@
 (function() {
   angular.module('app.how', ['ngRoute']).config(function($routeProvider) {
-    $routeProvider.when('/examples', {
-      templateUrl: '/modules/how/views/example.route.html',
-      controller: 'ExampleRouteCtrl',
-      controllerAs: 'exampleRouteCtrl'
-    })
-    .when('/profile', {
+    $routeProvider.when('/profile', {
       templateUrl: '/modules/how/views/profile.route.html',
       controller: 'profileRouteCtrl',
       controllerAs: 'profileCtrl'

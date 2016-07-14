@@ -59,16 +59,14 @@ module.exports = function(grunt) {
           'node_modules/photoswipe/dist/photoswipe.min.js',
           'node_modules/photoswipe/dist/photoswipe-ui-default.min.js',
           'node_modules/masonry-layout/dist/masonry.pkgd.min.js',
-          'node_modules/imagesloaded/imagesloaded.pkgd.min.js',
-          'node_modules/video.js/dist/video.min.js'
+          'node_modules/imagesloaded/imagesloaded.pkgd.min.js'
         ],
         dest: 'public/lib.js' // They will all be concatenated in a single file here
       },
       csslib: {
         src: ['node_modules/bootstrap/dist/css/bootstrap.min.css',
               'node_modules/photoswipe/dist/photoswipe.css',
-              'node_modules/photoswipe/dist/default-skin/default-skin.css',
-              'node_modules/video.js/dist/video-js.min.css'
+              'node_modules/photoswipe/dist/default-skin/default-skin.css'
         ], // Same for CSS libraries
         dest: 'public/lib.css'
       },

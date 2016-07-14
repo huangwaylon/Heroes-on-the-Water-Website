@@ -11,12 +11,11 @@
     <!-- Javascript resources -->
     <script src="/lib.js"></script>
     <script src="/ng-app.js"></script>
-    <script src="/modules/how/controllers/login-controllers.js"></script>
-    <script src="/modules/how/services/services.js"></script>
 
     <!-- CSS resources -->
     <link rel="stylesheet" type="text/css" href="/lib.css">
     <link rel="stylesheet" type="text/css" href="/application.css">
+    <link rel="stylesheet" type="text/css" href="/css/login.css">
 
   </head>
   <body>
@@ -39,7 +38,6 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <li ng-class="{ active: navbarCtrl.isActive('/') }"><a href="/#/">Home</a></li>
-            <li ng-class="{ active: navbarCtrl.isActive('/examples') }"><a href="/#/examples">Examples</a></li>
             <li ng-class="{ active: navbarCtrl.isActive('/events') }"><a href="/#/events">Events</a></li>
             <li ng-class="{ active: navbarCtrl.isActive('/profile') }"><a href="/#/profile">Profile</a></li>
             <li ng-class="{ active: navbarCtrl.isActive('/media') }"><a href="/#/media">Media</a></li>
