@@ -1,13 +1,16 @@
-<div>
-  This is the chapters page which will display the current chapters. We can do this via a list format, and include a map view as well
-  if we want to get fancy, like in the previous website. Information will be pulled from MongoDB. Clicking on a chapter will either open up
-  a modal with the necessary information, or we can contain the information on the page itself, and display it dynamically depending
-  on what they selected.
-</div>
-
-<div ng-app="mapsApp">
+<style>
+#map {
+ height:600px;
+ width:100%;
+}
+</style>
+<div ng-controller="chaptersRouteCtrl" ng-init="loadScript()">
+    This is the chapters page which will display the current chapters. We can do this via a list format, and include a map view as well if we want to get fancy, like in the previous website. Information will be pulled from MongoDB. Clicking on a chapter will either open up a modal with the necessary information, or we can contain the information on the page itself, and display it dynamically depending on what they selected.
+    <br>
+    <br>
+    Todo: Click on markers for more information (modal or gmaps info box?), make alternate list view, search within x miles of zip code and display chapters
+    <br>
     <div id="map"></div>
-    <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
-         <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
-    </div>
+    
+    
 </div>
