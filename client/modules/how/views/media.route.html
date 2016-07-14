@@ -1,112 +1,94 @@
 
-<div>
-  This one will be a page for all the different press and pictures that they have had coverage on.
-  One thing we can do here is find a photo gallery plugin to display all the pictures next to each other, and on hover will display
-  additional information about that press or picture. For the pictures, we can just funnel them through an ng-repeat, or have them
-  go through a directive, and display it that way.
-</div>
+<div class="container">
+  <ul class="nav nav-pills">
+    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("press")'>Press</a></li>
+    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("outing")'>Outings</a></li>
+    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("smiles")'>Smiles</a></li>
+    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("families")'>Families</a></li>
+    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("catches")'>Catches</a></li>
+    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("dogs")'>Dogs</a></li>
+    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("casting")'>Casting</a></li>
+    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("boondoggle")'>Boondoggle</a></li>
 
-<ul class="nav nav-pills">
-  <li role="presentation" class="active"><a data-toggle="tab" href="" >Press</a></li>
-  <li role="presentation"><a data-toggle="tab" href="">Outings</a></li>
-  <li role="presentation"><a data-toggle="tab" href="">Families</a></li>
-</ul>
+  </ul>
 
-<h2>First gallery:</h2>
-
-
-<div class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
-      <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-        <a href="/images/outing/outing_1.jpg" itemprop="contentUrl" data-size="1024x683">
-            <img src="/images/thumbnails/outing/tn_outing_1.jpg" itemprop="thumbnail" alt="Image description" />
-        </a>
-    </figure>
-      <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-        <a href="/images/outing/outing_2.jpg" itemprop="contentUrl" data-size="720x540">
-            <img src="/images/thumbnails/outing/tn_outing_2.jpg" itemprop="thumbnail" alt="Image description" />
-        </a>
-    </figure>
-  <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-      <a href="/images/outing/outing_3.jpg" itemprop="contentUrl" data-size="1024x683">
-          <img src="/images/thumbnails/outing/tn_outing_3.jpg" itemprop="thumbnail" alt="Image description" />
-      </a>
-  </figure>
-  <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-      <a href="/images/outing/outing_4.jpg" itemprop="contentUrl" data-size="499x426">
-          <img src="/images/thumbnails/outing/tn_outing_4.jpg" itemprop="thumbnail" alt="Image description" />
-      </a>
-  </figure>
-  <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-      <a href="/images/outing/outing_5.jpg" itemprop="contentUrl" data-size="1024x768">
-          <img src="/images/thumbnails/outing/tn_outing_5.jpg" itemprop="thumbnail" alt="Image description" />
-      </a>
-  </figure>
-</div>
+  <hr>
+  <div id="gallery" class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
+    <div id="pressnote"></div>
+    <gallery-image></gallery-image>
+  </div>
 
 
+  <!-- <div class="griddle">
+    <div class="griddle-item"><img src="/images/press/press_1.jpg" width="395" height="624"/></div>
+    <div class="griddle-item"><img src="/images/press/press_2.jpg" width="583" height="570"/></div>
+    <div class="griddle-item"><img src="/images/press/press_3.jpg" width="595" height="640"/></div>
+  </div> -->
 
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+  <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
-    <!-- Background of PhotoSwipe.
-         It's a separate element, as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
+      <!-- Background of PhotoSwipe.
+           It's a separate element, as animating opacity is faster than rgba(). -->
+      <div class="pswp__bg"></div>
 
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
+      <!-- Slides wrapper with overflow:hidden. -->
+      <div class="pswp__scroll-wrap">
 
-        <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
-        <!-- don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
+          <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+          <!-- don't modify these 3 pswp__item elements, data is added later on. -->
+          <div class="pswp__container">
+              <div class="pswp__item"></div>
+              <div class="pswp__item"></div>
+              <div class="pswp__item"></div>
+          </div>
 
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
+          <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+          <div class="pswp__ui pswp__ui--hidden">
 
-            <div class="pswp__top-bar">
+              <div class="pswp__top-bar">
 
-                <!--  Controls are self-explanatory. Order can be changed. -->
+                  <!--  Controls are self-explanatory. Order can be changed. -->
 
-                <div class="pswp__counter"></div>
+                  <div class="pswp__counter"></div>
 
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                  <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
 
-                <button class="pswp__button pswp__button--share" title="Share"></button>
+                  <button class="pswp__button pswp__button--share" title="Share"></button>
 
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                  <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
 
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                  <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
 
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
+                  <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                  <!-- element will get class pswp__preloader--active when preloader is running -->
+                  <div class="pswp__preloader">
+                      <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                          <div class="pswp__preloader__donut"></div>
+                        </div>
                       </div>
-                    </div>
-                </div>
-            </div>
+                  </div>
+              </div>
 
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
+              <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                  <div class="pswp__share-tooltip"></div>
+              </div>
 
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
+              <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+              </button>
 
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
+              <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+              </button>
 
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
+              <div class="pswp__caption">
+                  <div class="pswp__caption__center"></div>
+              </div>
+
             </div>
 
           </div>
 
-        </div>
+  </div>
 
 </div>

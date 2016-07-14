@@ -18,12 +18,12 @@
 
   mongoose.connect('mongodb://localhost:27017/blackwater');
   var Schema = mongoose.Schema;
-  var User = require('./models/user.js');
+  var User = require('./models/usermodel.js');
 
   // require routes
   var exampleRoute = require('./routes/example.route.js');
   var galleryImageRoute = require('./routes/gallery-image.route.js');
-  var routes = require('./routes/api.js');
+  var routes = require('./routes/apiroute.js');
 
   app.use(express.static('public'));
   app.use('/examples', exampleRoute);

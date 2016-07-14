@@ -1,6 +1,10 @@
-# Heroes on the Water - Bothell Team
+# Heroes on the Water ~ Bothell Team
 
-Our project!
+Welcome to the Heroes on the Water website as designed and created by the Bothell team
+
+## Contributors
+
+* The Bothell Team <bothellteam@gmail.com>
 
 ## Set Up Steps
 
