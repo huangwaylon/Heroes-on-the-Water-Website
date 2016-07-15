@@ -10,18 +10,20 @@
     <div class="col-md-12">
       <!-- Link Brandon's photo to his story. -->
       <a href="\#heroes#brandon" data-toggle="modal">
-        <img class="thumbnail col-md-4 col-md-4" src="\images\heroes\Brandon_Waldon.jpg"/>
+        <img class="img-thumbnail col-md-4 col-md-4" src="\images\heroes\Brandon_Waldon.jpg"/>
       </a>
 
       <!-- Link Josh's photo to his story. -->
       <a href="\#heroes#josh" data-toggle="modal">
-        <img class="thumbnail col-md-3 col-md-3" src="\images\heroes\Josh_Dreddy.jpg"/>
+        <img class="img-thumbnail col-md-3 col-md-3" src="\images\heroes\Josh_Dreddy.jpg"/>
       </a>
     </div>
   </div>
 
+  <center>
+
   <!-- Information for Brandon. -->
-  <div class="modal fade" id="brandon" role="dialog" style="background-color: white">
+  <div class="modal fade" id="brandon" role="dialog" style="display: table; margin: auto; margin-left: 25%; background-color: white">
     <div class="modal-dialog">
       <div class="modal-header">
         <h3>Brandon</h3>
@@ -32,13 +34,13 @@
         </p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onClick="/#/heroes">Close</button>
       </div>
     </div>
   </div>
 
   <!-- Information for Josh. -->
-  <div class="modal fade" id="josh" role="dialog" style="display: table; background-color: white">
+ <div class="modal fade" id="josh" role="dialog" style="display: table; margin: auto; margin-left: 25%; background-color: white">
     <div class="modal-dialog">
       <div class="modal-header">
         <h3>Josh</h3>
@@ -49,10 +51,9 @@
         </p>
       </div>
       <div class="modal-footer">
-        <a href="#">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </a>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onClick="/#/heroes">Close</button>
       </div>
     </div>
   </div>
+</center>
 </div>
