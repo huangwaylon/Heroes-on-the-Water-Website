@@ -5,22 +5,32 @@
     <h1>Meet Our Heroes</h1>
   </div>
 
+  <!-- Banner with a short description of the page. -->
+  <div>
+    <div id="">
+      <p style="text-align: center">Click on any of the heroes' photos to learn more about their experience with HOW.</p>
+    </div>
+  </div>
+
+  <hr>
+
   <!-- Placing the images -->
-  <div class="row">
+  <div class="row"  style="padding: 10px 10px 10px 10px">
     <div class="col-md-12">
       <!-- Link Brandon's photo to his story. -->
-      <a href="\#heroes#brandon" data-toggle="modal">
-        <img class="img-thumbnail col-md-4 col-md-4" src="\images\heroes\Brandon_Waldon.jpg"/>
+      <a href="#/heroes/#brandon" data-toggle="modal">
+        <img class="img-thumbnail" width="400" height="400" style="margin-right: 10px"src="\images\heroes\Brandon_Waldon.jpg"/>
       </a>
 
       <!-- Link Josh's photo to his story. -->
-      <a href="\#heroes#josh" data-toggle="modal">
-        <img class="img-thumbnail col-md-3 col-md-3" src="\images\heroes\Josh_Dreddy.jpg"/>
+      <a href="#/heroes/#josh" data-toggle="modal">
+        <img class="img-thumbnail" width="260" height="260" src="\images\heroes\Josh_Dreddy.jpg"/>
       </a>
     </div>
   </div>
 
-  <center>
+    <center>
+
 
   <!-- Information for Brandon. -->
   <div class="modal fade" id="brandon" role="dialog" style="display: table; margin: auto; margin-left: 25%; background-color: white">
@@ -35,23 +45,38 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" onClick="/#/heroes">Close</button>
+
+    <!-- Information for Brandon. -->
+    <div class="modal fade" id="brandon" role="dialog" style="display: table; margin: auto; margin-left: 25%; background-color: white; border-radius: 10px">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h3>Brandon</h3>
+        </div>
+        <div class="modal-body">
+          <p>
+            “Heroes On the Water BAMC Program has helped me through every problem and anything I go through, on and off the water. I can turn to the people I fish with for help when I need it. Every week I have something to do, to look forward to….and it’s the stuff I love most! Going out and being on the water where I know that nobody can touch me, a safe zone, with Brothers who understand and have gone through the same stuff I have. HOWBAMC has given me something I thought I lost when I left my unit….Brothers!”
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" onClick="/#/heroes">Close</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Information for Josh. -->
- <div class="modal fade" id="josh" role="dialog" style="display: table; margin: auto; margin-left: 25%; background-color: white">
-    <div class="modal-dialog">
-      <div class="modal-header">
-        <h3>Josh</h3>
-      </div>
-      <div class="modal-body">
-        <p>
-          “I had never been in a kayak and didn’t know anything about them. After only two outings with HOW, I’ve found the camaraderie and knowledge is amazing and second to none. From the basics of how to get in the kayak to the advanced breathing and paddling techniques, everyone has something to share. Heroes on the Water gives Veterans a simple way to get back to nature, regardless of the injury. There’s no pressure to do anything but relax and enjoy nature. HOW gives us happy and positive events to look forward to and plan.”
-        </p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onClick="/#/heroes">Close</button>
+    <!-- Information for Josh. -->
+   <div class="modal fade" id="josh" role="dialog" style="display: table; margin: auto; margin-left: 25%; background-color: white; border-radius: 10px">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h3>Josh</h3>
+        </div>
+        <div class="modal-body">
+          <p>
+            “I had never been in a kayak and didn’t know anything about them. After only two outings with HOW, I’ve found the camaraderie and knowledge is amazing and second to none. From the basics of how to get in the kayak to the advanced breathing and paddling techniques, everyone has something to share. Heroes on the Water gives Veterans a simple way to get back to nature, regardless of the injury. There’s no pressure to do anything but relax and enjoy nature. HOW gives us happy and positive events to look forward to and plan.”
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" onClick="/#/heroes">Close</button>
+        </div>
       </div>
     </div>
   </div>
