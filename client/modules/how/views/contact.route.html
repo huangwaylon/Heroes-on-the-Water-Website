@@ -1,6 +1,6 @@
 <div class="container">
 	<ul class="nav nav-pills">
-		<li role="presentation"><a data-toggle="tab" href="" ng-click='about = true; partnerships = false; board = false; finance = false;'>About HOW</a></li>
+		<li class="active"><a data-toggle="tab" href=""  ng-click='about = true; partnerships = false; board = false; finance = false;'>About HOW</a></li>
 		<li role="presentation"><a data-toggle="tab" href="" ng-click='about = false; partnerships = true; board = false; finance = false;'>Partnerships</a></li>
 		<li role="presentation"><a data-toggle="tab" href="" ng-click='about = false; partnerships = false; board = true; finance = false;'>Board and Staff</a></li>
 		<li role="presentation"><a data-toggle="tab" href="" ng-click='about = false; partnerships = false; board = false; finance = true;'>Financials and Contact Us</a></li>
@@ -9,7 +9,7 @@
 	<hr>
 
 	<!-- General information about HOW along with a video. -->
-	<div class="about_how animated fadeIn" ng-show="about">
+	<div class="about_how animated fadeIn" ng-show="about" ng-hide="partnerships || board || finance">
 		<h1 id="about">About HOW</h1>
 		<iframe width="400" height="300" align="right" src="https://www.youtube.com/embed/RcZuQXn4KSY" frameborder="" allowfullscreen></iframe>
 		<p>
@@ -102,7 +102,7 @@
 		<br>
 		<div class="row">
 		<p>
-			<img align="left" width="220px" height="220px" HSPACE=10 src="\images\board\Jim_Dolan.jpg"/ class="staffimage">
+			<img align="left" width="220px" height="220px" HSPACE=10 src="\images\board\Jim_Dolan.jpg"/>
 			<h4>Jim Dolan - Founder and President of HOW</h4>
 			Jim Dolan is Founder and President of Heroes on the Water. Following graduation from the United States Air Force Academy in 1976, he served in the USAF for 13 years as a pilot flying mainly C-130s with 8 years overseas in the Philippines and Germany. He earned a Master’s Degree in Computer Information Systems (MCIS) from Boston University in 1984. Jim is a retired Captain with American Airlines. He is a born and raise Texas Bass Fisherman, including 7 years as an avid kayak fisherman.
 		</p>
@@ -110,7 +110,7 @@
 
 		<div class="row">
 		<p>
-			<img align="left" width="220px" height="220px" HSPACE=10 src="\images\board\Dave_Winston.jpg"/ class="staffimage">
+			<img align="left" width="220px" height="220px" HSPACE=10 src="\images\board\Dave_Winston.jpg"/>
 			<h4>Dave Winston - Vice Chairman</h4>
 			Dave Winston grew up at the Jersey shore and has been an avid sportsman his entire life. After earning his bachelor’s degree in accounting from Villanova University, Dave spent the next 20 years as a Marine helicopter pilot. Dave has over two years at sea and has been through the Suez Canal eight times. After the Corps, Dave was co-owner of a medical distribution company that provides an outsourced solution for cardiac surgery. Between 2001 and 2005, Dave was a founding partner in a boutique recruiting firm in Boston. Based in Dallas, Dave is now a Managing Partner, Industrial Practice with Caldwell Partners, a premier leadership advisory firm. In his spare time Dave hunts, fishes, and referees youth soccer. Dave enjoys helping veterans transition from the military and sees HOW as a great way to further serve our growing veteran population.
 		</p>
@@ -118,7 +118,7 @@
 
 	<div class="row">
 		<p>
-			<img align="left" width="220px" height="220px" HSPACE=10 src="\images\board\Keith_Tibbits.jpg"/ class="staffimage">
+			<img align="left" width="220px" height="220px" HSPACE=10 src="\images\board\Keith_Tibbits.jpg"/>
 			<h4>Keith Tibbits - Secretary, Board of Directors</h4>
 			Keith Tibbits received his Bachelor of Science degree at United States Naval Academy at Annapolis and a Master of Science in Organizational Development from the Naval Postgraduate School.  He served as an attack helicopter pilot in the United States Marine Corps where he participated in joint military peace-keeping and combat operations throughout the world to include the Persian Gulf and Somalia. Keith taught Leadership and Ethics at Annapolis and served as the defensive line coach for the Navy Football Team. He has also represented the United States internationally as a member of USA’s Rugby Football Team. Keith was raised in the great state of Michigan and began fly fishing and fly tying before he was 10.  A life-long outdoors enthusiast in all regards, Keith views HOW as an exceptional way to connect the human spirit with the great outdoors.
 		</p>
@@ -126,7 +126,7 @@
 
 		<div class="row">
 		<p>
-			<img align="left" width="200px" height="220px" HSPACE=10 src="\images\board\Brian_Farlow.jpg"/ class="staffimage">
+			<img align="left" width="200px" height="220px" HSPACE=10 src="\images\board\Brian_Farlow.jpg"/>
 			<h4>Brian Farlow - Director</h4>
 			Brian Farlow is a civil trial lawyer in Dallas, Texas. His broad civil litigation experience includes products liability class actions, numerous Fair Credit Reporting Act claims, and business breach of contract claims in a wide variety of industries, including insurance and oil and gas. He has also worked extensively with expert witnesses on a variety of issues regarding damages, damage models, statistics and both informational and relational databases.  Brian is also a Major in the U.S. Army Reserves. He recently served in Afghanistan, following a year of service in support of Operation Enduring Freedom. Brian earned a J.D. from Albany Law School of Union University, cum laude and a B.S. from the United States Military Academy at West Point.
 		</p>
