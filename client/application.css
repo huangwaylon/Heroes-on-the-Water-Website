@@ -7,6 +7,12 @@ body {
   cursor: default;
 }
 
+.board img {
+  margin-bottom: 18px;
+  margin-right: 18px;
+  box-shadow: 0px 5px 9px black;
+}
+
 .gallery {
   width: 100%;
   display: inline-block;
@@ -31,16 +37,13 @@ body {
 
 }
 
-.staffimage {
-  box-shadow: -5px 5px 20px black;
-}
 
 #banner {
     width:100%;
     background: url('/images/banner.jpg') no-repeat;
     background-position: 0px, 400px;
     height: 9.7em;
-    box-shadow: 10px 5px 70px black;
+    box-shadow: 10px 5px 70px grey;
     margin-top: -2.9em;
     margin-bottom: 1.2em;
 }
@@ -189,6 +192,9 @@ a.linkedin {
 a.linkedin:hover {
   background-color: rgb(1, 116, 179) !important;
 }
+
+
+
 
 
 
