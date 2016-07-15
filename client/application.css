@@ -37,13 +37,12 @@ body {
 
 }
 
-
 #banner {
     width:100%;
     background: url('/images/banner.jpg') no-repeat;
     background-position: 0px, 400px;
     height: 9.7em;
-    box-shadow: 10px 5px 70px grey;
+    box-shadow: 10px 5px 70px black;
     margin-top: -2.9em;
     margin-bottom: 1.2em;
 }
@@ -192,9 +191,6 @@ a.linkedin {
 a.linkedin:hover {
   background-color: rgb(1, 116, 179) !important;
 }
-
-
-
 
 
 
