@@ -7,6 +7,12 @@ body {
   cursor: default;
 }
 
+.board img {
+  margin-bottom: 18px;
+  margin-right: 18px;
+  box-shadow: 0px 5px 9px black;
+}
+
 .gallery {
   width: 100%;
   display: inline-block;

@@ -36,7 +36,7 @@
       controllerAs: 'eventsCtrl'
     })
     .when('/login', {
-      templateUrl: '/modules/how/views/login.html',
+      templateUrl: '/modules/how/views/login.route.html',
       controller: 'loginController',
       access: {restricted: false}
     })
@@ -45,7 +45,7 @@
       access: {restricted: true}
     })
     .when('/register', {
-      templateUrl: '/modules/how/views/register.html',
+      templateUrl: '/modules/how/views/register.route.html',
       controller: 'registerController',
       access: {restricted: false}
     });

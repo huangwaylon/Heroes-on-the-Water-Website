@@ -1,9 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-6 col-sm-offset-3">
       <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
       <form ng-submit="register()">
         <div class="form-group">
+          <p style="text-align:center;">Please type in a username and password</p>
           <label>Username</label>
           <input type="text" class="form-control" name="username" ng-model="registerForm.username" required>
         </div>
@@ -12,7 +13,7 @@
             <input type="password" class="form-control" name="password" ng-model="registerForm.password" required>
           </div>
           <div>
-            <button type="submit" class="btn btn-primary" ng-disabled="disabled">Register</button>
+            <button style="width: 100%;" type="submit" class="btn btn-primary" ng-disabled="disabled">Register</button>
           </div>
       </form>
     </div>
