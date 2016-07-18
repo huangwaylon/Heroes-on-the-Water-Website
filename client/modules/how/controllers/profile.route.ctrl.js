@@ -1,26 +1,29 @@
 (function() {
   angular.module('app.how').controller('profileRouteCtrl',
-      function($log, exampleService) {
-        $log.debug('Initializing profileRouteCtrl');
+      ['$scope', '$location', 'AuthService',
+      function ($scope, $location, AuthService) {
 
-        var self = this;
+        if (AuthService.isLoggedIn()) {
+            console.log("logged in!");
+        } else {
+          console.log("not logged in!");
+          $location.path('/login');
+        }
 
-        this.newExample = {};
-
-        this.addExample = function() {
-          $log.debug('Entering profileRouteCtrl.addExample for example: ',
-              self.newExample);
-
-          exampleService.postExample(self.newExample).then(
-              function(response) {
-                $log.debug('addExample resolve', response);
-                self.newExample = {};
-              }, function(error, status) {
-                $log.log('addExample reject', error, status);
-                alert(error);
-              }, function(progress) {
-                $log.debug('addExample notify', progress);
-              });
+        $scope.update = function () {
+          // call logout from service
+          AuthService.logout()
+            .then(function () {
+              $location.path('/login');
+            });
         };
-      });
+
+        $scope.logout = function () {
+          // call logout from service
+          AuthService.logout()
+            .then(function () {
+              $location.path('/');
+            });
+        };
+    }]);
 })();

@@ -1,7 +1,43 @@
-<div>
-  <p>
-    What we need for this page is a way to view and edit the information provided. This will be anything from
-    contact information to whether or not they have notifications via our mailing system. It should also have an
-    edit button.
-  </p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+      <button ng-click="logout()" id="loginbutton" type="button" class="btn btn-info navbar-btn navbar-right">Logout</button>
+
+      <form ng-submit="update()">
+        <p style="text-align:center;">Profile</p>
+
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" class="form-control" name="firstname" ng-model="registerForm.firstname" required>
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" class="form-control" name="lastname" ng-model="registerForm.lastname" required>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="text" class="form-control" name="email" ng-model="registerForm.email" required>
+        </div>
+
+        <div class="form-group">
+          <label>Disabilities</label>
+            <input list="disabilities" class="form-control" name="disabilities" ng-model="registerForm.disabilities" required>
+            <datalist id="disabilities">
+              <option value="None">
+              <option value="Blindness">
+              <option value="Mobility restrictions">
+              <option value="Dietary restrictions">
+              <option value="Hearing restrictions">
+              <option value="Other">
+              <option value="I choose not to respond">
+            </datalist>
+        </div>
+
+        <div>
+            <button style="width: 100%;" type="submit" class="btn btn-primary" ng-disabled="disabled">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

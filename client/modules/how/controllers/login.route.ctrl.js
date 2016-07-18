@@ -72,7 +72,7 @@
           // handle error
           .catch(function () {
             $scope.error = true;
-            $scope.errorMessage = "Something went wrong!";
+            $scope.errorMessage = "Something went wrong! Try a different username";
             $scope.disabled = false;
             $scope.registerForm = {};
           });
