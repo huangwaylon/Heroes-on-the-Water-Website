@@ -31,9 +31,9 @@
       controllerAs: 'contactCtrl'
     })
     .when('/events', {
-      templateUrl: '/modules/how/views/events.route.html',
-      controller: 'eventsRouteCtrl',
-      controllerAs: 'eventsCtrl'
+      templateUrl: '/modules/how/views/eventlist.route.html',
+      controller: 'eventlistRouteCtrl',
+      controllerAs: 'eventlistCtrl'
     })
     .when('/login', {
       templateUrl: '/modules/how/views/login.route.html',

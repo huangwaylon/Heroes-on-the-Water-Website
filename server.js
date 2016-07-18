@@ -25,10 +25,12 @@
   var galleryImageRoute = require('./routes/gallery-image.route.js');
   var chapterRoute = require('./routes/chapter.route.js');
   var routes = require('./routes/api.route.js');
+  var eventlistRoute = require('./routes/eventlist.route.js');
 
   app.use(express.static('public'));
   app.use('/examples', exampleRoute);
   app.use('/galleryImages', galleryImageRoute);
+  app.use('/events', eventlistRoute);
   // define middleware
   app.use(express.static(path.join(__dirname, './client')));
   app.use(logger('dev'));

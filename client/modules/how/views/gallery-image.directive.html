@@ -1,5 +1,5 @@
-<figure class="animated fadeIn" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" ng-repeat="images in GalleryImageCtrl.imagelist">
-  <a href="{{images.path}}" itemprop="contentUrl" data-size="{{images.w}}x{{images.h}}">
+<figure class="animated fadeIn " itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject" ng-repeat="images in GalleryImageCtrl.imagelist">
+  <a href="{{images.path}}" itemprop="contentUrl" data-size="{{images.w}}x{{images.h}}" class="thumbnail">
       <img ng-src="{{images.thumbnail}}" itemprop="thumbnail" alt="Image" />
   </a>
 </figure>
