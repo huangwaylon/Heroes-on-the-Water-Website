@@ -1,7 +1,7 @@
 <div class="container">
   <div class"row">
-    <div class="col-sm-12">
-      <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
+    <div class="col-sm-6 col-sm-offset-3">
+      <div ng-show="error" class="alert alert-danger animated fadeIn">{{errorMessage}}</div>
       <form ng-submit="login()">
         <div class="form-group">
           <label>Username</label>
@@ -10,11 +10,11 @@
         <div class="form-group">
           <label>Password</label>
             <input type="password" class="form-control" name="password" ng-model="loginForm.password" required>
-          </div>
-          <div>
-            <button type="submit" class="btn btn-success" ng-disabled="disabled">Login</button>
-            <a href="/#/register" id="regbutton" type="button" class="btn btn-info" style="margin-right:0px;">Sign Up</a>
-          </div>
+        </div>
+        <div>
+            <button style="width: 30%" type="submit" class="btn btn-success" ng-disabled="disabled">Login</button>
+            <a href="/#/register" id="regbutton" type="button" class="btn btn-info" style="margin-right:0px; width: 30%;">Sign Up</a>
+        </div>
       </form>
     </div>
   </div>

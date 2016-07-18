@@ -3,6 +3,11 @@
     ['$scope', '$location', 'AuthService',
     function ($scope, $location, AuthService) {
 
+      if (AuthService.isLoggedIn()) {
+        console.log("logged in!");
+        $location.path('/profile');
+      }
+
       $scope.login = function () {
 
         // initial values
@@ -56,7 +61,13 @@
         $scope.disabled = true;
 
         // call register from service
-        AuthService.register($scope.registerForm.username, $scope.registerForm.password)
+        AuthService.register($scope.registerForm.username,
+                              $scope.registerForm.password,
+                              $scope.registerForm.email,
+                              $scope.registerForm.firstname,
+                              $scope.registerForm.lastname,
+                              $scope.registerForm.disabilities,
+                              $scope.registerForm.account)
           // handle success
           .then(function () {
             $location.path('/login');
@@ -66,7 +77,7 @@
           // handle error
           .catch(function () {
             $scope.error = true;
-            $scope.errorMessage = "Something went wrong!";
+            $scope.errorMessage = "Something went wrong! Try a different username";
             $scope.disabled = false;
             $scope.registerForm = {};
           });

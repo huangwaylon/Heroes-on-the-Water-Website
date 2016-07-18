@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 
 var User = require('../models/user.model.js');
-
+var Q = require('q');
 
 router.post('/register', function(req, res) {
   User.register(new User({ username: req.body.username }),
@@ -62,5 +62,27 @@ router.get('/status', function(req, res) {
   });
 });
 
+router.get('/hello', function(req, res) {
+  res.setHeader("Content-Type", "application/json");
+  res.status(200);
+
+  var u = Q.defer();
+  User.findById(req.user._id, function (err, user) {
+    if (err) {
+      u.reject(err);
+    } else {
+      u.resolve(user);
+    }
+  });
+
+  res.json({
+    hello: "world",
+    username: req.user.username,
+    firstname: u.promise.firstname,
+    lastname: u.promise.lastname,
+    email: u.promise.email,
+    disabilities: u.promise.disabilities
+  });
+});
 
 module.exports = router;

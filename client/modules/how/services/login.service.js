@@ -5,6 +5,7 @@
 
       // create user variable
       var user = null;
+      var mscope = null;
 
       // return available functions for use in the controllers
       return ({
@@ -12,7 +13,8 @@
         getUserStatus: getUserStatus,
         login: login,
         logout: logout,
-        register: register
+        register: register,
+        hello: hello
       });
 
       function isLoggedIn() {
@@ -21,6 +23,24 @@
         } else {
           return false;
         }
+      }
+
+      function hello(userObject) {
+        return $http.get('/user/hello').then(function(response) {
+          console.log(response.data.username);
+          console.log(response.data._id);
+          mscope = userObject;
+
+          userObject.username = response.data.username;
+          userObject.firstname = response.data.firstname;
+          userObject.lastname = response.data.lastname;
+          userObject.email = response.data.email;
+          userObject.disabilities = response.data.disabilities;
+        });
+      }
+
+      function set(rep) {
+        mscope = userObject;
       }
 
       function getUserStatus() {
@@ -91,14 +111,20 @@
 
       }
 
-      function register(username, password) {
+      function register(username, password, email, firstname, lastname, disabilities, account) {
 
         // create a new instance of deferred
         var deferred = $q.defer();
 
         // send a post request to the server
         $http.post('/user/register',
-          {username: username, password: password})
+          {username: username,
+            password: password,
+            email:  email,
+            firstname: firstname,
+            lastname: lastname,
+            disabilities: disabilities,
+            accout: account})
           // handle success
           .success(function (data, status) {
             if(status === 200 && data.status){
