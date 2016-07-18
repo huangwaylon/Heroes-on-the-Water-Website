@@ -1,0 +1,34 @@
+{
+  "events": [
+    {
+    "name": "Fifth Council's Annual Kayaking Trip",
+    "starttime": "Sun Aug 07 2016 10:30",
+    "endtime": "Sun Aug 07 2016 15:00",
+    "location": "Iron Lake, AK",
+    "description": "AK Chapter's annual outing! Come join us at the Numbai River for a day of fishing and kayaking! Lunch is provided, just bring shades, sunscreen, and a change of clothes.",
+    "chapter": "SW Arkansas Chapter",
+    "participants": "Tim, Joe",
+    "volunteers": "Andy, Christy, Luann"
+    },
+    {
+    "name": "South Chapter Fishing Trip",
+    "starttime": "Sat Aug 06 2016 9:30",
+    "endtime": "Sat Aug 06 2016 15:30",
+    "location": "Copperhead Gorge, GA",
+    "description": "You know we're the best around when it comes to kayaking. We'll be trying spearfishing today, so bring your game face and tryhard mode.",
+    "chapter": "NE Georgia Chapter",
+    "participants": "Jamell, Matt, Chris",
+    "volunteers": "Shana, Mora, Liz"
+    },
+    {
+    "name": "Darth Maul's Friendly Boating Adventure",
+    "starttime": "Sat Aug 06 2016 8:30",
+    "endtime": "Sat Aug 06 2016 14:00",
+    "location": "Inner Plasma Lake, DS",
+    "description": "Attendance is mandatory. Soldiers who do not show up shall be executed.",
+    "chapter": "Death Star Chapter",
+    "participants": "FN-281, FN-280, SS-201",
+    "volunteers": "Darth Sidious, Count Dooku"
+    }
+  ]
+}

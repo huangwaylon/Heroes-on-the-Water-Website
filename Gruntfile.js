@@ -60,7 +60,8 @@ module.exports = function(grunt) {
           'node_modules/photoswipe/dist/photoswipe-ui-default.min.js',
           'node_modules/masonry-layout/dist/masonry.pkgd.min.js',
           'node_modules/imagesloaded/imagesloaded.pkgd.min.js',
-          'node_modules/smooth-scrollbar/dist/smooth-scrollbar.js'
+          'node_modules/smooth-scrollbar/dist/smooth-scrollbar.js',
+          'client/js/pikaday.js'
 
 
         ],
@@ -70,7 +71,8 @@ module.exports = function(grunt) {
         src: ['node_modules/bootstrap/dist/css/bootstrap.min.css',
               'node_modules/photoswipe/dist/photoswipe.css',
               'node_modules/photoswipe/dist/default-skin/default-skin.css',
-              'node_modules/smooth-scrollbar/dist/smooth-scrollbar.css'
+              'node_modules/smooth-scrollbar/dist/smooth-scrollbar.css',
+              'client/css/pikaday.css'
         ], // Same for CSS libraries
         dest: 'public/lib.css'
       },
