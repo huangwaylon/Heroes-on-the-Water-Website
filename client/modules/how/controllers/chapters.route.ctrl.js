@@ -10,6 +10,7 @@
                     return chapterService.chapters;
                 }, function() {
                     self.chapters = chapterService.chapters;
+                    self.filteredChapters = self.chapters;
                     if (self.chapters.length > 0) {
                         $scope.loadScript();
                     }
@@ -37,7 +38,7 @@
                         });
                     });
                 }
-                $scope.drawChapters($scope.chaptersCtrl.chapters);
+                $scope.drawChapters(self.chapters);
             }
 
             $scope.loadScript = function() {
@@ -86,7 +87,45 @@
                     })(marker, content);
 
                 }
-                $scope.chaptersCtrl.chapters = [];
             }
+
+            $scope.submitForms = function() {
+                var lat = '';
+                var lng = '';
+                var coordinates = [0, 0];
+                geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ 'address': $scope.formAddress }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        lat = results[0].geometry.location.lat();
+                        lng = results[0].geometry.location.lng();
+                        $scope.filterByDistance(lat, lng);
+                    } else {
+                        alert("Geocode was not successful for the following reason: " + status);
+                    }
+                });
+            }
+
+            $scope.filterByDistance = function(lat1, lng1) {
+                self.filteredChapters = [];
+                for(var i=0; i<self.chapters.length; i++){
+                	var lat2 = self.chapters[i].lat;
+                	var lng2 = self.chapters[i].lng;
+                	if (distance(lat1, lng1, lat2, lng2) < $scope.formDistance){
+                		self.filteredChapters.push(self.chapters[i]);
+                	}
+                }
+                $scope.$apply();
+            }
+
+            function distance(lat1, lng1, lat2, lng2) {
+                var p = 0.017453292519943295; // Math.PI / 180
+                var c = Math.cos;
+                var a = 0.5 - c((lat2 - lat1) * p) / 2 +
+                    c(lat1 * p) * c(lat2 * p) *
+                    (1 - c((lng2 - lng1) * p)) / 2;
+
+                return 7918 * Math.asin(Math.sqrt(a)); // 2 * R; R = 3959 mi
+            }
+
         });
 })();
