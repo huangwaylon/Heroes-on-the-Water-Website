@@ -64,9 +64,9 @@
 
             $scope.drawChapters = function(chapters) {
                 var infoWindow = new google.maps.InfoWindow();
-                
+
                 for (var i = 0; i < chapters.length; i++) {
-                	var content = "<h4>" + chapters[i].name + "</h4>" + chapters[i].description + "<br>" + chapters[i].web_link + "Email: " + chapters[i].email;
+                    var content = "<h4>" + chapters[i].name + "</h4>" + chapters[i].description + "<br>" + chapters[i].web_link + "Email: " + chapters[i].email;
                     var marker = new google.maps.Marker({
                         position: {
                             lat: parseFloat(chapters[i].lat),

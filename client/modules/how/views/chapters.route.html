@@ -8,7 +8,8 @@
     This is the chapters page which will display the current chapters. We can do this via a list format, and include a map view as well if we want to get fancy, like in the previous website. Information will be pulled from MongoDB. Clicking on a chapter will either open up a modal with the necessary information, or we can contain the information on the page itself, and display it dynamically depending on what they selected.
     <br>
     <br>
-    Todo: Click on markers for more information (modal or gmaps info box?), make alternate list view, search within x miles of zip code and display chapters.
+    Todo: Search within x miles of zip code and display chapters, CSS. Link from chapter infowindow/list item to that chapter's events page?
     <br>
     <div id="map"></div>
+    <div ng-repeat="chapter in chaptersCtrl.chapters"><br><b>{{chapter.name}}</b><br>{{chapter.city}}, {{chapter.state}}<br>{{chapter.description}}<br><a href={{chapter.url}}>Chapter Website</a><br> Email: {{chapter.email}}<br></div>
 </div>
