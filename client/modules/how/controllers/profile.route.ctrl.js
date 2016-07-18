@@ -5,6 +5,11 @@
 
         if (AuthService.isLoggedIn()) {
             console.log("logged in!");
+            $scope.user = {};
+            $scope.user.firstname = "John";
+            $scope.user.lastname = "Doe";
+            $scope.user.email = "johndoe2016@gmail.com";
+            $scope.user.disabilities = "None";
         } else {
           console.log("not logged in!");
           $location.path('/login');

@@ -2,27 +2,27 @@
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
       <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
-      <button ng-click="logout()" id="loginbutton" type="button" class="btn btn-info navbar-btn navbar-right">Logout</button>
+      <button ng-click="logout()" id="loginbutton" type="button" class="btn btn-info">Logout</button>
 
       <form ng-submit="update()">
-        <p style="text-align:center;">Profile</p>
+        <h2 style="text-align:center;">Welcome <span ng-bind="user.firstname"/> <span ng-bind="user.lastname"/>!</h2>
 
         <div class="form-group">
           <label>First Name</label>
-          <input type="text" class="form-control" name="firstname" ng-model="registerForm.firstname" required>
+          <input type="text" class="form-control" name="firstname" ng-model="user.firstname" required>
         </div>
         <div class="form-group">
           <label>Last Name</label>
-          <input type="text" class="form-control" name="lastname" ng-model="registerForm.lastname" required>
+          <input type="text" class="form-control" name="lastname" ng-model="user.lastname" required>
         </div>
         <div class="form-group">
           <label>Email</label>
-          <input type="text" class="form-control" name="email" ng-model="registerForm.email" required>
+          <input type="text" class="form-control" name="email" ng-model="user.email" required>
         </div>
 
         <div class="form-group">
           <label>Disabilities</label>
-            <input list="disabilities" class="form-control" name="disabilities" ng-model="registerForm.disabilities" required>
+            <input list="disabilities" class="form-control" name="disabilities" ng-model="user.disabilities" required>
             <datalist id="disabilities">
               <option value="None">
               <option value="Blindness">
