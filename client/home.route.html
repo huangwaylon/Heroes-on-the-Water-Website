@@ -12,7 +12,9 @@
       <p style="font-size: 17px;">To help warriors relax, rehabilitate and reintegrate through kayak fishing and the outdoors.</p>
     </div>
   </div>
-<hr>
+
+  <hr>
+
   <div class="row animated fadeIn" style="text-align:center; font-size: 17px">
     <div class="col-sm-3"> <span class="homenumber">23,832</span> <br> <b>Warriors and Families served</b></div>
     <div class="col-sm-3"> <span class="homenumber">56%</span> <br> <b>Reduction in overall stress</b></div>
@@ -24,52 +26,117 @@
 
   <div class="row animated fadeIn">
     <div class="[ col-sm-12 col-md-4 ]">
-				<div class="[ info-card ] animated fadeIn">
-					<img style="width: 100%; height: auto;" src="images/catches/catches_9.jpg" />
-					<div class="[ info-card-details ] animate-infocard">
-						<div class="[ info-card-header ]">
-							<h1> Progams </h1>
-							<h3> Kayak and Fishing </h3>
-						</div>
-						<div class="[ info-card-detail ]">
-							<!-- Description -->
-							<p>Learn more about the HOW kayak fishing program for warriors and veterans.</p>
-              <p><a href="/#/contact"><button type="button" class="btn btn-default btn-lg">Read More</button></a></p>
-						</div>
+			<div class="[ info-card ] animated fadeIn">
+				<img style="width: 100%; height: auto;" src="images/catches/catches_9.jpg" />
+				<div class="[ info-card-details ] animate-infocard">
+					<div class="[ info-card-header ]">
+						<h1> Programs </h1>
+						<h3> Kayak and Fishing </h3>
+					</div>
+					<div class="[ info-card-detail ]">
+						<!-- Description -->
+						<p>Learn more about the HOW kayak fishing program for warriors and veterans.</p>
+            <p><a href="/#/contact"><button type="button" class="btn btn-default btn-lg">Read More</button></a></p>
 					</div>
 				</div>
 			</div>
-      <div class="[ col-sm-12 col-md-4 ]">
-  				<div class="[ info-card ] animated fadeIn">
-  					<img style="width: 100%; height: auto;" src="/images/outing/outing_13.jpg" />
-  					<div class="[ info-card-details ] animate-infocard">
-  						<div class="[ info-card-header ]">
-  							<h1> Events</h1>
-  							<h3> Chapter Trips </h3>
-  						</div>
-  						<div class="[ info-card-detail ]">
-  							<!-- Description -->
-  							<p>Check out all the fun happenings through our various Chapters!</p>
-                <p><a href="/#/events"><button type="button" class="btn btn-default btn-lg">View Events</button></a></p>
-  						</div>
-  					</div>
-  				</div>
-  			</div>
-        <div class="[ col-sm-12 col-md-4 ]">
-    				<div class="[ info-card ] animated fadeIn">
-    					<img style="width: 100%; height: auto;" src="images/smiles/smiles_1.jpg" />
-    					<div class="[ info-card-details ] animate-infocard">
-    						<div class="[ info-card-header ]">
-    							<h1> Donate</h1>
-    							<h3> Charity Sponsoring</h3>
-    						</div>
-    						<div class="[ info-card-detail ]">
-    							<!-- Description -->
-    							<p>Your gift provides the HOW kayak fishing program to warriors at no charge to them or their families.</p>
-                  <p><a href="/#/donate"><button type="button" class="btn btn-primary btn-lg">Donate</button></a></p>
-    						</div>
-    					</div>
-    				</div>
-  			</div>
+		</div>
+    <div class="[ col-sm-12 col-md-4 ]">
+			<div class="[ info-card ] animated fadeIn">
+				<img style="width: 100%; height: auto;" src="/images/outing/outing_13.jpg" />
+				<div class="[ info-card-details ] animate-infocard">
+					<div class="[ info-card-header ]">
+						<h1> Events</h1>
+						<h3> Chapter Trips </h3>
+					</div>
+					<div class="[ info-card-detail ]">
+						<!-- Description -->
+						<p>Check out all the fun happenings through our various Chapters!</p>
+            <p><a href="/#/events"><button type="button" class="btn btn-default btn-lg">View Events</button></a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+    <div class="[ col-sm-12 col-md-4 ]">
+			<div class="[ info-card ] animated fadeIn">
+				<img style="width: 100%; height: auto;" src="images/smiles/smiles_1.jpg" />
+				<div class="[ info-card-details ] animate-infocard">
+					<div class="[ info-card-header ]">
+						<h1> Donate</h1>
+						<h3> Charity Sponsoring</h3>
+					</div>
+					<div class="[ info-card-detail ]">
+						<!-- Description -->
+						<p>Your gift provides the HOW kayak fishing program to warriors at no charge to them or their families.</p>
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#donate">Donate</button>
+					</div>
+				</div>
+			</div>
+	  </div>
   </div>
+
+  <!-- Donation modal that is triggered -->
+  <div class="modal fade" id="donate" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">Donation Request</h3>
+          <p>Please fill out this form if you are interested in donating and someone will contact you.</p>
+        </div>
+
+        <div class="modal-body">
+          <form role="form">
+            <div class="form-group">
+              <label for="firstname">Firstname: </label><br>
+              <input type="firstname" class="form-control" id="name1">
+              <label for="lastname">Lastname: </label><br>
+              <input type="lastname" class="form-control" id="name2">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email: </label>
+              <input type="email" class="form-control" id="email">
+              <label for="phone">Phone Number: </label>
+              <input type="phone" class="form-control" id="number" data-format="(ddd) ddd-dddd">
+            </div>
+
+            <div class="form-group">
+              <label for="address">Address: </label>
+              <input type="address" class="form-control" id="addr">
+            </div>
+          </form>
+
+          <form class="form-inline">
+            <div class="form-group">
+              <label for="city">  City: </label>
+              <input type="city" class="form-control" id="city">
+              <label for="zip_code"> Zip Code </label>
+              <input type="zip_code" class="form-control" id="addr">
+              <br><br>
+              <label for="state"> State: </label>
+              <input type="state" class="form-control" id="state">
+              <label for="country"> Country: </label>
+              <input type="country" class="form-control" id="country">
+            </div>
+          </form>
+            
+          <br><br>
+
+          <form>
+            <div class="form-group">
+              <label for="comment"> Comments: </label><br>
+              <textarea class="form-control" style="resize: none; min-width: 100%; max-width: 100%" rows="5" id="comment"></textarea>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

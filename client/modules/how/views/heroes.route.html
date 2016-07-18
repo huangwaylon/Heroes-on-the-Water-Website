@@ -1,9 +1,5 @@
 <div class="container">
 
-    <!-- Bootstrap Form Helpers -->
-    <link href="css/bootstrap-form-helpers.min.css" rel="stylesheet" media="screen">
-    <!-- Bootstrap Form Helpers -->
-    <script src="js/bootstrap-formhelpers.min.js"></script>
 <div class="container">
   <!-- Page header -->
   <div class="row" style="text-align: center">
@@ -48,61 +44,5 @@
       </div> 
     </div>
   </div>
-
   <hr>
-
-  <div class="footer">
-    <!-- Button to trigger the donation form -->
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#donate">Donate!</button>
-
-    <!-- Donation modal and content -->
-    <div class="modal fade" id="donate" role="dialog">
-      <div class="modal-dialog">
-        <!-- Modal content -->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Donation Request</h4>
-          </div>
-          <div class="modal-body">
-            <form role="form">
-              <div class="form-group">
-                <label for="firstname">Firstname: </label><br>
-                <input type="firstname" class="form-control" id="name1">
-                <label for="lastname">Lastname: </label><br>
-                <input type="lastname" class="form-control" id="name2">
-              </div>
-
-              <div class="form-group">
-                <label for="email">Email: </label>
-                <input type="email" class="form-control" id="email">
-                <label for="phone">Phone Number: </label>
-                <input type="phone" class="form-control" id="number" data-format="(ddd) ddd-dddd">
-              </div>
-            </form>
-
-            <form class="form-inline">
-              <h3>Address Information</h3>
-              <div class="form-group">
-                <label for="address">Address: </label>
-                <input type="address" class="form-control" id="addr">
-                <label for="city">City: </label>
-                <input type="city" class="form-control" id="city">
-                <br><br>
-                <label for="zip_code"> Zip Code </label>
-                <input type="zip_code" class="form-control" id="zip">
-                <label for="state"> State: </label>
-                <select id="countries_states1" class="form-control bfh-countries" data-country="US"></select>
-                <label for="Country"> Country: </label>
-                <select class="form-control bfh-states" data-country="countries_states1"></select>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-succcess" data-dismiss="modal">Submit</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
