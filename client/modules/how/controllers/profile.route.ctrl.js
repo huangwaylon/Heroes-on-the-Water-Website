@@ -4,12 +4,12 @@
       function ($scope, $location, AuthService) {
 
         if (AuthService.isLoggedIn()) {
-            console.log("logged in!");
             $scope.user = {};
-            $scope.user.firstname = "John";
-            $scope.user.lastname = "Doe";
-            $scope.user.email = "johndoe2016@gmail.com";
-            $scope.user.disabilities = "None";
+            AuthService.hello($scope.user);
+            //$scope.user.firstname = $scope.user.firstname;
+            //$scope.user.lastname = "Doe";
+            //$scope.user.email = "johndoe2016@gmail.com";
+            //$scope.user.disabilities = "None";
         } else {
           console.log("not logged in!");
           $location.path('/login');
