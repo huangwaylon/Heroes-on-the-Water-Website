@@ -91,14 +91,20 @@
 
       }
 
-      function register(username, password) {
+      function register(username, password, email, firstname, lastname, disabilities, account) {
 
         // create a new instance of deferred
         var deferred = $q.defer();
 
         // send a post request to the server
         $http.post('/user/register',
-          {username: username, password: password})
+          {username: username,
+            password: password,
+            email:  email,
+            firstname: firstname,
+            lastname: lastname,
+            disabilities: disabilities,
+            accout: account})
           // handle success
           .success(function (data, status) {
             if(status === 200 && data.status){
