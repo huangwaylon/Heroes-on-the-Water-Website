@@ -3,6 +3,11 @@
     ['$scope', '$location', 'AuthService',
     function ($scope, $location, AuthService) {
 
+      if (AuthService.isLoggedIn()) {
+        console.log("logged in!");
+        $location.path('/profile');
+      }
+
       $scope.login = function () {
 
         // initial values
