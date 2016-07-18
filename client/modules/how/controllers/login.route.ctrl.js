@@ -56,7 +56,13 @@
         $scope.disabled = true;
 
         // call register from service
-        AuthService.register($scope.registerForm.username, $scope.registerForm.password)
+        AuthService.register($scope.registerForm.username,
+                              $scope.registerForm.password,
+                              $scope.registerForm.email,
+                              $scope.registerForm.firstname,
+                              $scope.registerForm.lastname,
+                              $scope.registerForm.disabilities,
+                              $scope.registerForm.account)
           // handle success
           .then(function () {
             $location.path('/login');
