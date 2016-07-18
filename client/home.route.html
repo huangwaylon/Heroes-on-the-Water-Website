@@ -90,35 +90,44 @@
           <form role="form">
             <div class="form-group">
               <label for="firstname">Firstname: </label><br>
-              <input type="firstname" class="form-control" id="name1">
+              <input type="firstname" class="form-control" placeholder="John" id="name1">
               <label for="lastname">Lastname: </label><br>
-              <input type="lastname" class="form-control" id="name2">
-            </div>
+              <input type="lastname" class="form-control" placeholder="Doe" id="name2">
 
-            <div class="form-group">
+              <br>
+
               <label for="email">Email: </label>
-              <input type="email" class="form-control" id="email">
-              <label for="phone">Phone Number: </label>
-              <input type="phone" class="form-control" id="number" data-format="(ddd) ddd-dddd">
-            </div>
+              <input type="email" class="form-control" placeholder="your_email@how.com"id="email">
+          </form>
 
+          <br>
+
+          <form class="form-inline">
+              <label for="phone">Phone: </label>
+              <input type="phone" class="form-control" placeholder="(555) 555-5555" id="number">
+              <label for="donation_amount"> Donation: </label>
+              <input type="donation_amount" class="form-control" placeholder="$100" id="amount">
+
+          </form>
             <div class="form-group">
               <label for="address">Address: </label>
-              <input type="address" class="form-control" id="addr">
+              <input type="address" class="form-control" placeholder="150 Main St."id="addr">
             </div>
           </form>
 
           <form class="form-inline">
             <div class="form-group">
               <label for="city">  City: </label>
-              <input type="city" class="form-control" id="city">
+              <input type="city" class="form-control" placeholder="Bothell"id="city">
               <label for="zip_code"> Zip Code </label>
-              <input type="zip_code" class="form-control" id="addr">
+              <input type="zip_code" class="form-control" placeholder="98011"id="zip">
+
               <br><br>
+
               <label for="state"> State: </label>
-              <input type="state" class="form-control" id="state">
+              <input type="state" class="form-control" placeholder="WA" id="state">
               <label for="country"> Country: </label>
-              <input type="country" class="form-control" id="country">
+              <input type="country" class="form-control" placeholder="USA" id="country">
             </div>
           </form>
             
@@ -127,7 +136,7 @@
           <form>
             <div class="form-group">
               <label for="comment"> Comments: </label><br>
-              <textarea class="form-control" style="resize: none; min-width: 100%; max-width: 100%" rows="5" id="comment"></textarea>
+              <textarea class="form-control" style="resize: none; min-width: 100%; max-width: 100%" rows="5" placeholder="Include any additional information that you wish to share as well as general comments." id="comment"></textarea>
             </div>
           </form>
         </div>
