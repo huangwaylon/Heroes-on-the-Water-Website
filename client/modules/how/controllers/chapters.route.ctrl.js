@@ -10,8 +10,8 @@
                     return chapterService.chapters;
                 }, function() {
                     self.chapters = chapterService.chapters;
-                    if(self.chapters.length > 0){
-                    	$scope.loadScript();
+                    if (self.chapters.length > 0) {
+                        $scope.loadScript();
                     }
                 });
             }
@@ -63,8 +63,11 @@
             }
 
             $scope.drawChapters = function(chapters) {
+                var infoWindow = new google.maps.InfoWindow();
+                
                 for (var i = 0; i < chapters.length; i++) {
-                    var chapterLocation = new google.maps.Marker({
+                	var content = "<h4>" + chapters[i].name + "</h4>" + chapters[i].description + "<br>" + chapters[i].web_link + "Email: " + chapters[i].email;
+                    var marker = new google.maps.Marker({
                         position: {
                             lat: parseFloat(chapters[i].lat),
                             lng: parseFloat(chapters[i].lng)
@@ -73,6 +76,15 @@
                         icon: '/images/how-pin.png',
                         title: chapters[i].name
                     });
+                    //Attach click event to the marker.
+                    (function(marker, content) {
+                        google.maps.event.addListener(marker, "click", function(e) {
+                            //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+                            infoWindow.setContent("<div style = 'width:300px;min-height:100px'>" + content + "</div>");
+                            infoWindow.open($scope.map, marker);
+                        });
+                    })(marker, content);
+
                 }
                 $scope.chaptersCtrl.chapters = [];
             }
