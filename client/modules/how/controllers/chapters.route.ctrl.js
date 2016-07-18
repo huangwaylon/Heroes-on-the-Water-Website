@@ -5,27 +5,16 @@
 
             var self = this;
 
-            $scope.$watch(function() {
-                return chapterService.chapters;
-            }, function() {
-                self.chapters = chapterService.chapters;
-            });
-
-            this.getChapters = function() {
-                chapterService.getChapters().then(
-                    function(response) {
-                        $log.debug('getChapters resolve', response);
-                    },
-                    function(error, status) {
-                        $log.log('getChapters reject', error, status);
-                        alert(error);
-                    },
-                    function(progress) {
-                        $log.debug('getChapters notify', progress);
-                        alert('progress: ' + progress);
-                    });
+            $scope.callService = function() {
+                $scope.$watch(function() {
+                    return chapterService.chapters;
+                }, function() {
+                    self.chapters = chapterService.chapters;
+                    if(self.chapters.length > 0){
+                    	$scope.loadScript();
+                    }
+                });
             }
-
 
             $scope.initialize = function() {
                 $scope.mapOptions = {
@@ -52,19 +41,23 @@
             }
 
             $scope.loadScript = function() {
-                var script = document.createElement('script');
-                script.type = 'text/javascript';
-                script.src = 'https://maps.google.com/maps/api/js';
-                document.body.appendChild(script);
-                defer($scope.initialize);
+                //Already visisted chapters page before, now returning. Don't re-add script
+                if (typeof google === 'object' && typeof google.maps === 'object') {
+                    $scope.initialize();
+                } else {
+                    var script = document.createElement('script');
+                    script.type = 'text/javascript';
+                    script.src = 'https://maps.google.com/maps/api/js';
+                    document.body.appendChild(script);
+                    defer($scope.initialize);
+                }
             }
 
             // function waits until google maps script is loaded before trying to initialize
             function defer(method) {
                 if (typeof google === 'object' && typeof google.maps === 'object') {
                     method();
-                }
-                else{
+                } else {
                     setTimeout(function() { defer(method) }, 50);
                 }
             }
@@ -81,6 +74,7 @@
                         title: chapters[i].name
                     });
                 }
+                $scope.chaptersCtrl.chapters = [];
             }
         });
 })();
