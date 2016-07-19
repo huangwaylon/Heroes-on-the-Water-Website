@@ -5,9 +5,9 @@
   appModule.config(function($routeProvider) {
     $routeProvider.when('/', {
       templateUrl: '/home.route.html'
-    })/*.otherwise({
+    }).otherwise({
       redirectTo: '/'
-    })*/;
+    });
   });
 
   appModule.controller('NavbarCtrl', function($log, $location, galleryImageService) {

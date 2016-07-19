@@ -90,4 +90,27 @@ router.get('/users', function (req, res) {
   });
 });
 
+router.post('/update', function(req, res) {
+  var currUser = req.body;
+  console.log(currUser);
+  User.update({username: currUser.username}, {
+    username: currUser.username,
+    firstname: currUser.firstname,
+    lastname: currUser.lastname,
+    email: currUser.email,
+    disabilities: currUser.disabilities,
+    account: currUser.account
+  }, function(err, numberAffected, rawResponse) {
+    console.log(rawResponse);
+    if (err) {
+      return res.status(500).json({
+        err: err
+      });
+    }
+    return res.status(200).json({
+      status: 'Update successful!'
+    });
+  })
+});
+
 module.exports = router;

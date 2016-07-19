@@ -15,7 +15,8 @@
         logout: logout,
         register: register,
         hello: hello,
-        findUser: findUser
+        findUser: findUser,
+        updateUser: updateUser
       });
 
       function isLoggedIn() {
@@ -24,6 +25,37 @@
         } else {
           return false;
         }
+      }
+
+      function updateUser(userObject) {
+        // create a new instance of deferred
+        var deferred = $q.defer();
+        // send a post request to the server
+        $http.post('/user/update',
+          {username: userObject.username,
+            firstname: userObject.firstname,
+            lastname: userObject.lastname,
+            email: userObject.email,
+            disabilities: userObject.disabilities,
+            account: userObject.account})
+          // handle success
+          .success(function (data, status) {
+            if(status === 200 && data.status){
+              user = true;
+              deferred.resolve();
+            } else {
+              user = false;
+              deferred.reject();
+            }
+          })
+          // handle error
+          .error(function (data) {
+            user = false;
+            deferred.reject();
+          });
+
+        // return promise object
+        return deferred.promise;
       }
 
       function hello(userObject) {
@@ -41,8 +73,6 @@
       function findUser(userId, userObject) {
         return $http.get('/user/users').then(function(response) {
           var repData = response.data;
-          console.log("response data:");
-          console.log(response.data);
           var currUser = {};
 
           for(var i = 0; i < repData.length; i++) {
@@ -50,8 +80,8 @@
               currUser = repData[i];
             }
           }
-
           console.log(currUser);
+          userObject.username = currUser.username;
           userObject.firstname = currUser.firstname;
           userObject.lastname = currUser.lastname;
           userObject.email = currUser.email;

@@ -3,13 +3,9 @@
       ['$scope', '$location', 'AuthService',
       function ($scope, $location, AuthService) {
 
+        $scope.user = {};
         if (AuthService.isLoggedIn()) {
-            $scope.user = {};
             AuthService.hello($scope.user);
-            //$scope.user.firstname = $scope.user.firstname;
-            //$scope.user.lastname = "Doe";
-            //$scope.user.email = "johndoe2016@gmail.com";
-            //$scope.user.disabilities = "None";
         } else {
           console.log("not logged in!");
           $location.path('/login');
@@ -17,9 +13,10 @@
 
         $scope.update = function () {
           // call logout from service
-          AuthService.logout()
+          AuthService.updateUser($scope.user)
             .then(function () {
-              $location.path('/login');
+              console.log("Success!");
+              $location.path('/profile');
             });
         };
 
