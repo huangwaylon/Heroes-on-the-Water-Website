@@ -1,16 +1,40 @@
 <style>
 #map {
- height:600px;
- width:100%;
+    height: 600px;
+    width: 100%;
 }
 </style>
-<div ng-controller="chaptersRouteCtrl" ng-init="loadScript()">
+<div ng-init="callService()">
     This is the chapters page which will display the current chapters. We can do this via a list format, and include a map view as well if we want to get fancy, like in the previous website. Information will be pulled from MongoDB. Clicking on a chapter will either open up a modal with the necessary information, or we can contain the information on the page itself, and display it dynamically depending on what they selected.
     <br>
     <br>
-    Todo: Click on markers for more information (modal or gmaps info box?), make alternate list view, search within x miles of zip code and display chapters
+    <ul><h4>Todo:</h4>
+        <li>CSS</li>
+        <li>Have a button/tabs to select list or map view? </li>
+        <li>Link from chapter infowindow/list item to that chapter's events page?</li>
+    </ul>
     <br>
     <div id="map"></div>
-    
-    
+    <br>
+    <form>
+        <h4>Enter your address or zipcode and select a distance to list chapters near you:</h4>
+        <input type="text" ng-model="formAddress" placeholder="Address or Zip code">
+        <select ng-model="formDistance" ng-init="formDistance=10">
+            <option value="10" ng-selected="true">10 miles</option>
+            <option value="25">25 miles</option>
+            <option value="50">50 miles</option>
+            <option value="100">100 miles</option>
+            <option value="200">200 miles</option>
+            <option value="500">500 miles</option>
+        </select>
+        <button ng-click="submitForms()">Submit</button>
+    </form>
+    <div ng-repeat="chapter in chaptersCtrl.filteredChapters">
+        <br><b>{{chapter.name}}</b>
+        <br>{{chapter.city}}, {{chapter.state}}
+        <br>{{chapter.description}}
+        <br><a href={{chapter.url}}>Chapter Website</a>
+        <br> Email: {{chapter.email}}
+        <br>
+    </div>
 </div>

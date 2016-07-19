@@ -16,7 +16,7 @@
         return;
       }
 
-      //console.log('returning examples: ', examples);
+      //console.log('returning chapters: ', chapters);
       res.send(chapters);
     });
   });

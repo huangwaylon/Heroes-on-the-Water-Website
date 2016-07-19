@@ -5,6 +5,7 @@
 
       // create user variable
       var user = null;
+      var mscope = null;
 
       // return available functions for use in the controllers
       return ({
@@ -12,7 +13,10 @@
         getUserStatus: getUserStatus,
         login: login,
         logout: logout,
-        register: register
+        register: register,
+        hello: hello,
+        findUser: findUser,
+        updateUser: updateUser
       });
 
       function isLoggedIn() {
@@ -21,6 +25,73 @@
         } else {
           return false;
         }
+      }
+
+      function updateUser(userObject) {
+        // create a new instance of deferred
+        var deferred = $q.defer();
+        // send a post request to the server
+        $http.post('/user/update',
+          {username: userObject.username,
+            firstname: userObject.firstname,
+            lastname: userObject.lastname,
+            email: userObject.email,
+            disabilities: userObject.disabilities,
+            account: userObject.account})
+          // handle success
+          .success(function (data, status) {
+            if(status === 200 && data.status){
+              user = true;
+              deferred.resolve();
+            } else {
+              user = false;
+              deferred.reject();
+            }
+          })
+          // handle error
+          .error(function (data) {
+            user = false;
+            deferred.reject();
+          });
+
+        // return promise object
+        return deferred.promise;
+      }
+
+      function hello(userObject) {
+        return $http.get('/user/hello').then(function(response) {
+          console.log(response.data.id);
+          mscope = userObject;
+
+          userObject.lastname = response.data.username;
+          userObject.firstname = response.data.id;
+
+          findUser(response.data.id, userObject);
+        });
+      }
+
+      function findUser(userId, userObject) {
+        return $http.get('/user/users').then(function(response) {
+          var repData = response.data;
+          var currUser = {};
+
+          for(var i = 0; i < repData.length; i++) {
+            if(repData[i]._id == userId) {
+              currUser = repData[i];
+            }
+          }
+          console.log(currUser);
+          userObject.username = currUser.username;
+          userObject.firstname = currUser.firstname;
+          userObject.lastname = currUser.lastname;
+          userObject.email = currUser.email;
+          userObject.disabilities = currUser.disabilities;
+          userObject.account = currUser.account;
+        });
+      }
+
+      function set(rep) {
+        mscope = userObject;
       }
 
       function getUserStatus() {
