@@ -46,8 +46,10 @@
             <li ng-class="{ active: navbarCtrl.isActive('/about_us') }"><a href="/#/contact">About Us</a></li>
             <!--Inventory tab should only be visible if an admin or someone else who needs to view inventory is logged in-->
             <li ng-class="{ active: navbarCtrl.isActive('/inventory') }"><a href="/#/inventory">Inventory</a></li>
+            <!-- Mailbox tab should only be visible when a user is logged in -->
+            <li ng-class="{ active: navbarCtrl.isActive('/mailbox') }"><a href="/#/mailbox">Mailbox</a></li>
           </ul>
-          <!--Hide this button after they have successfully logged in-->
+          <!--Hide this button after they have successfully logged in.-->
           <a href="/#/login" id="loginbutton" type="button" class="btn btn-info navbar-btn navbar-right" style="margin-right:0px;">Login/Sign Up</a>
           <!-- <p class="navbar-text navbar-right" style="margin-right:0px; "> Signed in as : </p> -->
         </div><!-- /.navbar-collapse -->
