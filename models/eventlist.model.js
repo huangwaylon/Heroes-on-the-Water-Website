@@ -8,7 +8,7 @@
       location: {type: String, required: true, unique: false },
       description: {type: String, required: false, unique: false },
       chapter: { type: String, required: false, unique: false },
-      participants: {type: String, required: true, unique: false },
+      participants: [{type: mongoose.Schema.Types.ObjectId, ref: 'users'}],
       volunteers: {type: String, required: true, unique: false }
   });
 
