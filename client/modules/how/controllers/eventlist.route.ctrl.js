@@ -5,20 +5,26 @@
 
         var self = this;
         $scope.errormessage = false;
+        eventlistService.eventlist = "";
 
         this.searchEvents = function() {
           var time = $('#datepicker').val();
-          if(eventlistService.fulllist[0] != null || eventlistService.fulllist[0] != undefined) {
+          if(eventlistService.fulllist != null || eventlistService.fulllist != undefined) {
             $scope.errormessage = false;
             if(time != "") {
               var results = [];
-              for(var i = 0; i < eventlistService.fulllist[0].events.length; i++) {
-                if(eventlistService.fulllist[0].events[i].starttime.includes(time)) {
-                  results.push(eventlistService.fulllist[0].events[i]);
+              for(var i = 0; i < eventlistService.fulllist.length; i++) {
+                if(eventlistService.fulllist[i].starttime.includes(time)) {
+                  results.push(eventlistService.fulllist[i]);
                 }
               }
+              if(results.length < 1) {
+                $('#eventheader').text("No events scheduled for " + time);
+              }  else {
+                $('#eventheader').text("Events for " + time);
+              }
               eventlistService.eventlist = results;
-              $('#eventheader').text("Events for " + time);
+
             } else {
               $scope.errormessage = true;
               $('#eventheader').text("Error!");

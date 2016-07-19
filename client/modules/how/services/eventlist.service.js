@@ -6,6 +6,31 @@
 
     this.eventlist = [];
     this.fulllist = '';
+    this.eventdetails = [];
+
+
+    this.getEvent = function(id) {
+      var defer = $q.defer();
+
+      $http.get('/events/' + id).then(
+          function(response) {
+            //$log.debug('events resolve', response);
+            self.eventdetails = response.data;
+            console.log(response);
+            defer.resolve(response.data);
+          },
+          function(error, status) {
+            //$log.$log('getExamples reject', error, status);
+            defer.reject(error, status);
+          },
+          function(progress) {
+            //$log.debug('postExample notify', progress);
+            defer.notify(progress);
+          });
+
+      return defer.promise;
+    };
+
 
 
     this.getEvents = function() {

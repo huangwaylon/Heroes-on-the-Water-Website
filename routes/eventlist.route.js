@@ -19,5 +19,21 @@
     });
   });
 
+
+  router.get('/:id', function(req, res, next) {
+    EventList.find({"_id": req.params.id}, function(err, examples) {
+      if (err) {
+        next(err);
+        return;
+      }
+      if(examples.length != 1) {
+        console.log("More than one element found for id. Erroring.");
+      } else {
+        res.send(examples[0]);
+      }
+    });
+
+  });
+
   module.exports = router;
 })();

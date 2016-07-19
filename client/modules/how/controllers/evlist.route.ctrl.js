@@ -14,4 +14,5 @@
         this.evlist = eventlistService.eventlist;
 
       });
+
 })();

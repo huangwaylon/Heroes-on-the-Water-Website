@@ -35,6 +35,11 @@
       controller: 'eventlistRouteCtrl',
       controllerAs: 'eventlistCtrl'
     })
+    .when('/events/:id', {
+      templateUrl: '/modules/how/views/eventdetails.route.html',
+      controller: 'eventDetailsRouteCtrl',
+      controllerAs: 'eventDetailsCtrl'
+    })
     .when('/login', {
       templateUrl: '/modules/how/views/login.route.html',
       controller: 'loginController',

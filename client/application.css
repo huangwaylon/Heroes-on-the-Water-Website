@@ -9,6 +9,10 @@ body {
   cursor: default;
 }
 
+.show {
+  visiblity: visible;
+}
+
 .board img {
   margin-bottom: 18px;
   margin-right: 18px;
