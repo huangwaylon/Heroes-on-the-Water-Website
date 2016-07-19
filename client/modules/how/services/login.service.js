@@ -14,7 +14,8 @@
         login: login,
         logout: logout,
         register: register,
-        hello: hello
+        hello: hello,
+        findUser: findUser
       });
 
       function isLoggedIn() {
@@ -27,15 +28,35 @@
 
       function hello(userObject) {
         return $http.get('/user/hello').then(function(response) {
-          console.log(response.data.username);
-          console.log(response.data._id);
+          console.log(response.data.id);
           mscope = userObject;
 
-          userObject.username = response.data.username;
-          userObject.firstname = response.data.firstname;
-          userObject.lastname = response.data.lastname;
-          userObject.email = response.data.email;
-          userObject.disabilities = response.data.disabilities;
+          userObject.lastname = response.data.username;
+          userObject.firstname = response.data.id;
+
+          findUser(response.data.id, userObject);
+        });
+      }
+
+      function findUser(userId, userObject) {
+        return $http.get('/user/users').then(function(response) {
+          var repData = response.data;
+          console.log("response data:");
+          console.log(response.data);
+          var currUser = {};
+
+          for(var i = 0; i < repData.length; i++) {
+            if(repData[i]._id == userId) {
+              currUser = repData[i];
+            }
+          }
+
+          console.log(currUser);
+          userObject.firstname = currUser.firstname;
+          userObject.lastname = currUser.lastname;
+          userObject.email = currUser.email;
+          userObject.disabilities = currUser.disabilities;
+          userObject.account = currUser.account;
         });
       }
 

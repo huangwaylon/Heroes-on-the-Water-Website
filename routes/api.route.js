@@ -6,7 +6,13 @@ var User = require('../models/user.model.js');
 var Q = require('q');
 
 router.post('/register', function(req, res) {
-  User.register(new User({ username: req.body.username }),
+  User.register(new User({
+    username: req.body.username,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    email: req.body.email,
+    disabilities: req.body.disabilities,
+    account: req.body.account}),
     req.body.password, function(err, account) {
     if (err) {
       return res.status(500).json({
@@ -63,25 +69,24 @@ router.get('/status', function(req, res) {
 });
 
 router.get('/hello', function(req, res) {
-  res.setHeader("Content-Type", "application/json");
-  res.status(200);
-
-  var u = Q.defer();
-  User.findById(req.user._id, function (err, user) {
-    if (err) {
-      u.reject(err);
-    } else {
-      u.resolve(user);
-    }
-  });
-
-  res.json({
-    hello: "world",
+  if (!req.isAuthenticated()) {
+    return res.status(200).json({
+      status: false
+    });
+  }
+  res.status(200).json({
+    status: true,
     username: req.user.username,
-    firstname: u.promise.firstname,
-    lastname: u.promise.lastname,
-    email: u.promise.email,
-    disabilities: u.promise.disabilities
+    id: req.user._id
+  });
+});
+
+router.get('/users', function (req, res) {
+  User.find(function (err, components) {
+    if (err)
+      res.send(err);
+
+    res.json(components);
   });
 });
 
