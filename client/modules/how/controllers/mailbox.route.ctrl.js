@@ -9,7 +9,13 @@
         $scope.submitLookup = function() {
 
         	AuthService.findUserByUsername($scope.userToLookup, $scope.userResult);
-            }
+        }
+
+        $scope.submitMail = function() {
+        	
+        }
+
+
       });
 
 

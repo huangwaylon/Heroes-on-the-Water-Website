@@ -12,7 +12,7 @@ var User = new Schema({
   lastname: String,
   disabilities: String,
   account: String,
-  mail: [Number]
+  mail: [String]
 });
 
 User.plugin(passportLocalMongoose);

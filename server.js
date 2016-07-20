@@ -60,6 +60,8 @@
   //Handle requests for chapter info (mainly for map, can be for more stuff later)
   app.use('/chapters', chapterRoute);
 
+  app.use('/mail', mailRoute)
+
   // If no route is found, send a 404 error
   app.use(function(req, res) {
     res.status(404).send("Not Found");
