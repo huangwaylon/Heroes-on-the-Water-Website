@@ -2,7 +2,6 @@
     var mongoose = require('mongoose');
 
     var mailSchema = new mongoose.Schema({
-        id: String,
         sender: String,
         recipient: String,
         subject: String,

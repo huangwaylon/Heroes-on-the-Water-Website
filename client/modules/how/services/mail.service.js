@@ -17,10 +17,31 @@
             defer.resolve(response);
           },
           function(error, status) {
-            $log.$log('getMail reject', error, status);
+            $log.log('getMail reject', error, status);
             defer.reject(error, status);
           },
           function(progress) {
+            $log.debug('postMail notify', progress);
+            defer.notify(progress);
+          });
+
+      return defer.promise;
+    };
+
+    this.postMail = function(mail) {
+      $log.debug('Entering mailService.postMail', mail);
+
+      var defer = $q.defer();
+
+      $http.post('/mail', mail).then(
+          function(response) {
+            $log.debug('postMail resolve: ', response);
+            defer.resolve(response);
+            self.getMail();
+          }, function(error, status) {
+            $log.log('postMail reject', error, status);
+            defer.reject(error, status);
+          }, function(progress) {
             $log.debug('postMail notify', progress);
             defer.notify(progress);
           });
