@@ -67,7 +67,8 @@
                               $scope.registerForm.firstname,
                               $scope.registerForm.lastname,
                               $scope.registerForm.disabilities,
-                              $scope.registerForm.account)
+                              $scope.registerForm.account,
+                              [])
           // handle success
           .then(function () {
             $location.path('/login');

@@ -1,1 +1,20 @@
-test content
+<form>
+        <h4>Enter username to load their data from mongo:</h4>
+        <input type="text" ng-model="userToLookup" placeholder="username">
+        <button ng-click="submitLookup()">Submit</button>
+</form>
+
+        <br><b>{{userResult.username}}</b>
+        <br>{{userResult.firstname}} {{userResult.lastname}}
+        <br>{{userResult.email}}
+        <br>{{userResult.disabilities}}
+        <br>
+
+<form>
+	<h4>Recipient Information: </h4>
+	<input type="text" ng-model="sender" placeholder="sender">
+	<input type="text" ng-model="recipient" placeholder="recipient">
+	<input type="text" ng-model="subject" placeholder="subject">
+	<input type="text" ng-model="body" placeholder="body">
+	<button ng-click="submitMail()">Submit</button>
+</form>

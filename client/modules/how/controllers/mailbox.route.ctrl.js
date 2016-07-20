@@ -1,10 +1,16 @@
 (function() {
   angular.module('app.how').controller('mailboxRouteCtrl',
-      function($log) {
+      function($log, $scope, AuthService) {
         $log.debug('Initializing mailboxRouteCtrl');
 
         var self = this;
+        $scope.userResult = {};
 
-        this.newExample = {};
+        $scope.submitLookup = function() {
+
+        	AuthService.findUserByUsername($scope.userToLookup, $scope.userResult);
+            }
       });
+
+
 })();
