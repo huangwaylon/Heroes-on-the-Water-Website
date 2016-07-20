@@ -88,7 +88,7 @@
           userObject.lastname = currUser.lastname;
           userObject.email = currUser.email;
           userObject.disabilities = currUser.disabilities;
-          userObject.account = currUser.account,
+          userObject.account = currUser.account;
           userObject.mail = currUser.mail;
         });
       }
@@ -109,7 +109,7 @@
           userObject.lastname = currUser.lastname;
           userObject.email = currUser.email;
           userObject.disabilities = currUser.disabilities;
-          userObject.account = currUser.account,
+          userObject.account = currUser.account;
           userObject.mail = currUser.mail;
         });
       }

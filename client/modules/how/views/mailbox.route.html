@@ -4,11 +4,13 @@
         <button ng-click="submitLookup()">Submit</button>
 </form>
 
-        <br><b>{{userResult.username}}</b>
-        <br>{{userResult.firstname}} {{userResult.lastname}}
-        <br>{{userResult.email}}
-        <br>{{userResult.disabilities}}
-        <br>
+        <br><b>Username: </b>{{userResult.username}}
+        <br><b>First name: </b>{{userResult.firstname}}
+        <br><b>Last name: </b>{{userResult.lastname}}
+        <br><b>Email: </b>{{userResult.email}}
+        <br><b>Disabilities: </b>{{userResult.disabilities}}
+        <br><b>Account: </b>{{userResult.account}}
+        <br><b>Mail: </b>{{userResult.mail}}
 
 <form>
 	<h4>Recipient Information: </h4>
@@ -18,3 +20,4 @@
 	<input type="text" ng-model="body" placeholder="body">
 	<button ng-click="submitMail()">Submit</button>
 </form>
+
