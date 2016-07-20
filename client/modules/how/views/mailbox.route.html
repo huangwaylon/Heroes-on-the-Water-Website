@@ -11,11 +11,12 @@
         <br><b>Disabilities: </b>{{userResult.disabilities}}
         <br><b>Account: </b>{{userResult.account}}
         <br><b>Mail: </b>{{userResult.mail}}
-
+        <br>
+        
 <form>
 	<h4>Recipient Information: </h4>
-	<input type="text" ng-model="sender" placeholder="sender">
-	<input type="text" ng-model="recipient" placeholder="recipient">
+	<input type="text" ng-model="sender" placeholder="sender username">
+	<input type="text" ng-model="recipient" placeholder="recipient username">
 	<input type="text" ng-model="subject" placeholder="subject">
 	<input type="text" ng-model="body" placeholder="body">
 	<button ng-click="submitMail()">Submit</button>
