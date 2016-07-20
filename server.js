@@ -24,6 +24,7 @@
   var exampleRoute = require('./routes/example.route.js');
   var galleryImageRoute = require('./routes/gallery-image.route.js');
   var chapterRoute = require('./routes/chapter.route.js');
+  var mailRoute = require('./routes/mail.route.js');
   var routes = require('./routes/api.route.js');
 
   app.use(express.static('public'));
