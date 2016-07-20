@@ -8,6 +8,10 @@
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!--load font awesome-->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+
     <!-- Javascript resources -->
     <script src="/lib.js"></script>
     <script src="/ng-app.js"></script>
@@ -55,16 +59,14 @@
       </div><!-- /.container-fluid -->
     </nav>
       <ng-view></ng-view>
-      <!-- <p>This is a place to put a footer</p> -->
   </body>
 
-  <hr>
-
-  <footer>
+<footer style="background-color: #d9d9d9; height: 235px; margin-bottom: 235px; position: relative">
+  <div class="container-fluid" style="background: #b3b3b3; height: 235px; margin-bottom: 235px">
   <div class="row-fluid" style="padding-top: 10px">
-    <div class="footer-section" style="float: left; width: 33%; backgroud-color: gray; height: 170px; padding-bottom: -170px">
+    <div class="footer-section" style="float: left; width: 33%">
       <h2 style="text-align: center">Heroes on the Water</h2>
-      <img style="padding-left: 35%; width: 60%; height: 60%" src="\images\logo.png"/>
+      <img style="padding-left: 37%" src="\images\logo.png"/>
       <br>
       <h4 style="padding-left: 5px; text-align: center">
         <a style="color: black" href="/#/">Home</a> ·  
@@ -78,15 +80,112 @@
       </h4>
     </div>
 
-    <div class="footer-section" style="float: left; width: 33%">
+    <div class="footer-section" style="float: left; width: 33%; text-align: center">
       <h3>Contact Us</h3>
-      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+
+      <h4>
+        101-C N. Greenville Ave. #55<br>
+        Allen, TX 75002
+        <br>
+        <br>
+        Phone: 214-295-4541<br>
+        Email: info@heroesonthewater.org
+      </h4> 
+      <br>
+      <div class="social_media">
+        <a href="http://www.facebook.com/HeroesontheWater" target="_blank"><i style="margin-right: 0.5em; border-radius: 10%" class="fa fa-lg fa-facebook fa-2x"></i></a>
+        <a href="https://twitter.com/heroesonthewate" target="_blank"><i style="margin-right: 0.5em" class="fa fa-lg fa-twitter fa-2x"></i></a>
+        <a href="https://www.linkedin.com/company/heroes-on-the-water?trk=company_name" target="_blank"><i style="margin-right: 0.5em" class="fa fa-lg fa-linkedin fa-2x"></i></a>
+        <a href="https://www.youtube.com/user/PaddleFishHeal/" target="_blank"><i style="margin-right: 0.5em" class="fa fa-lg fa-youtube fa-2x"></i></a>
+      </div>
+
     </div>
 
-    <div class="footer-section" style="float: left; width: 33%">
-      Section 3
+    <div class="footer-section" style="float: left; width: 33%; text-align: center">
+      <h3>About HOW</h3>
+      <h4>HOW helps wounded warriors cast a more positive outlook on life.</h4>
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#donate">Donate</button><br>
+      <img style="padding-right: 10px" src="\images\awards\CFC.jpg"/>
+      <img src="\images\awards\Guidestar_Gold.png"/>
+      <img style="padding-left: 10px; padding-top: 10px" src="\images\awards\2014TopNonprofitBadge.png"/>
+      <img style="padding-left: 10px; padding-top: 10px; width: 170px; height: 85px" src="\images\awards\2015TopNonprofitBadge.png"/>
     </div>
+  </div>
   </div>
 </footer>
 
+  <!-- Donation modal that is triggered -->
+  <div class="modal fade" id="donate" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h3 class="modal-title">Donation Request</h3>
+          <p>Please fill out this form if you are interested in donating and someone will contact you.</p>
+        </div>
+
+        <div class="modal-body">
+          <form role="form">
+            <div class="form-group">
+              <label for="firstname">Firstname: </label><br>
+              <input type="firstname" class="form-control" placeholder="John" id="name1">
+              <label for="lastname">Lastname: </label><br>
+              <input type="lastname" class="form-control" placeholder="Doe" id="name2">
+
+              <label for="email">Email: </label>
+              <input type="email" class="form-control" placeholder="your_email@how.com"id="email">
+            </div>
+          </form>
+
+          <form class="form-inline">
+            <div class="form-group">
+              <label for="phone">Phone: </label>
+              <input type="phone" class="form-control" placeholder="(555) 555-5555" id="number">
+              <label for="donation_amount"> Donation: </label>
+              <input type="donation_amount" class="form-control" placeholder="$100" id="amount">
+            </div>
+          </form>
+
+          <br>
+
+          <form>
+            <div class="form-group">
+              <label for="address">Address: </label>
+              <input type="address" class="form-control" placeholder="150 Main St."id="addr">
+            </div>
+          </form>
+
+          <form class="form-inline">
+            <div class="form-group">
+              <label for="city">  City: </label>
+              <input type="city" class="form-control" placeholder="Bothell"id="city">
+              <label for="zip_code"> Zip Code </label>
+              <input type="zip_code" class="form-control" placeholder="98011"id="zip">
+
+              <br><br>
+
+              <label for="state"> State: </label>
+              <input type="state" class="form-control" placeholder="WA" id="state">
+              <label for="country"> Country: </label>
+              <input type="country" class="form-control" placeholder="USA" id="country">
+            </div>
+          </form>
+            
+          <br>
+
+          <form>
+            <div class="form-group">
+              <label for="comment"> Comments: </label><br>
+              <textarea class="form-control" style="resize: none; min-width: 100%; max-width: 100%" rows="5" placeholder="Include any additional information that you wish to share as well as general comments." id="comment"></textarea>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </html>
