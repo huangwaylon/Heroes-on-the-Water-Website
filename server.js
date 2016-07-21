@@ -24,6 +24,7 @@
   var exampleRoute = require('./routes/example.route.js');
   var galleryImageRoute = require('./routes/gallery-image.route.js');
   var chapterRoute = require('./routes/chapter.route.js');
+  var mailRoute = require('./routes/mail.route.js');
   var routes = require('./routes/api.route.js');
   var inventoryRoute = require('./routes/inv.route.js');
 
@@ -60,6 +61,8 @@
 
   //Handle requests for chapter info (mainly for map, can be for more stuff later)
   app.use('/chapters', chapterRoute);
+
+  app.use('/mail', mailRoute)
 
   // If no route is found, send a 404 error
   app.use(function(req, res) {

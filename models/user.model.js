@@ -11,7 +11,8 @@ var User = new Schema({
   firstname: String,
   lastname: String,
   disabilities: String,
-  account: String
+  account: String,
+  mail: [String]
 });
 
 User.plugin(passportLocalMongoose);

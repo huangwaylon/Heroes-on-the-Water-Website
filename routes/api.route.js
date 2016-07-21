@@ -6,13 +6,14 @@ var User = require('../models/user.model.js');
 var Q = require('q');
 
 router.post('/register', function(req, res) {
-  var newUser = new User({username: req.body.username,
-                          firstname: req.body.firstname,
-                          lastname: req.body.lastname,
-                          email: req.body.email,
-                          disabilities: req.body.disabilities,
-                          account: req.body.userAccout});
-  User.register(newUser,
+  User.register(new User({
+    username: req.body.username,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
+    email: req.body.email,
+    disabilities: req.body.disabilities,
+    account: req.body.account,
+    mail: []}),
     req.body.password, function(err, account) {
     if (err) {
       return res.status(500).json({
@@ -99,7 +100,8 @@ router.post('/update', function(req, res) {
     lastname: currUser.lastname,
     email: currUser.email,
     disabilities: currUser.disabilities,
-    account: currUser.account
+    account: currUser.account,
+    mail: currUser.mail
   }, function(err, numberAffected, rawResponse) {
     console.log(rawResponse);
     if (err) {
