@@ -80,6 +80,7 @@
           for(var i = 0; i < repData.length; i++) {
             if(repData[i]._id == userId) {
               currUser = repData[i];
+              break;
             }
           }
           console.log(currUser);
@@ -101,6 +102,7 @@
           for(var i = 0; i < repData.length; i++) {
             if(repData[i].username == username) {
               currUser = repData[i];
+              break;
             }
           }
           console.log(currUser);

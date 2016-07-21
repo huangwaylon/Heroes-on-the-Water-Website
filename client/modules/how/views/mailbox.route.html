@@ -1,3 +1,12 @@
+To do:
+<ul>
+<li>Have submitLookup() find/display all mails associated with user</li>
+<li>Send mail to multiple people, comma/space in between usernames</li>
+<li>Automatically display mail of logged in user</li>
+<li>Auto populate sender field from logged in user</li>
+<li>Tons of other stuff</li>
+</ul>
+
 <form>
         <h4>Enter username to load their data from mongo:</h4>
         <input type="text" ng-model="userToLookup" placeholder="username">
@@ -12,9 +21,9 @@
         <br><b>Account: </b>{{userResult.account}}
         <br><b>Mail: </b>{{userResult.mail}}
         <br>
-        
+
 <form>
-	<h4>Recipient Information: </h4>
+	<h4>Send test mail: </h4>
 	<input type="text" ng-model="sender" placeholder="sender username">
 	<input type="text" ng-model="recipient" placeholder="recipient username">
 	<input type="text" ng-model="subject" placeholder="subject">

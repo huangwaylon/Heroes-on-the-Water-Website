@@ -34,7 +34,7 @@
       }
 
       //console.log('Mail saved successfully: ', mail);
-      res.send('success');
+      res.send(mail);
     });
   });
 
