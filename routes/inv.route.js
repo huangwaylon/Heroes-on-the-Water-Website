@@ -16,6 +16,10 @@ inventory_router.post('/add', function(req, res) {
     if (err) {
       console.log(err);
       return res.status(500).json({ err: err });
+    } else {
+      return res.status(200).json({
+        status: 'Add item successful!'
+      });
     }
   });
 });

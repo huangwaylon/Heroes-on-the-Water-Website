@@ -12,6 +12,7 @@
                     $scope.itemUsed)
         .then(function () {
           console.log("Success!");
+          $scope.refresh();
         });
     };
 
