@@ -6,18 +6,16 @@
 
     this.eventlist = [];
     this.fulllist = '';
-    this.eventdetails = [];
+    this.users = '';
 
-
-    this.getEvent = function(id) {
+    this.getUsers = function() {
       var defer = $q.defer();
 
-      $http.get('/events/' + id).then(
+      $http.get('/user/users').then(
           function(response) {
             //$log.debug('events resolve', response);
-            self.eventdetails = response.data;
-            console.log(response);
-            defer.resolve(response.data);
+            self.users = response.data;
+            defer.resolve(response);
           },
           function(error, status) {
             //$log.$log('getExamples reject', error, status);
@@ -31,7 +29,25 @@
       return defer.promise;
     };
 
+    this.getEventById = function(id) {
+      var defer = $q.defer();
 
+      $http.get('/events/' + id).then(
+          function(response) {
+            //$log.debug('events resolve', response);
+            defer.resolve(response);
+          },
+          function(error, status) {
+            //$log.$log('getExamples reject', error, status);
+            defer.reject(error, status);
+          },
+          function(progress) {
+            //$log.debug('postExample notify', progress);
+            defer.notify(progress);
+          });
+
+      return defer.promise;
+    };
 
     this.getEvents = function() {
 
@@ -55,7 +71,7 @@
       return defer.promise;
     };
 
-    this.postExample = function(eve) {
+    this.postEvent = function(eve) {
 
       var defer = $q.defer();
 
@@ -63,7 +79,7 @@
           function(response) {
             //$log.debug('eventlist resolve: ', response);
             defer.resolve(response);
-            self.getExamples();
+            self.getEvents();
           }, function(error, status) {
             //$log.log('eventlist reject', error, status);
             defer.reject(error, status);
@@ -76,5 +92,6 @@
     };
 
     this.getEvents();
+    this.getUsers();
   });
 })();

@@ -3,6 +3,10 @@
     ['$q', '$timeout', '$http',
     function ($q, $timeout, $http) {
 
+      var self = this;
+
+      this.users = [];
+
       // create user variable
       var user = null;
       var mscope = null;
@@ -69,6 +73,7 @@
           findUser(response.data.id, userObject);
         });
       }
+
 
       function findUser(userId, userObject) {
         return $http.get('/user/users').then(function(response) {
@@ -193,6 +198,5 @@
         return deferred.promise;
 
       }
-
   }]);
 })();

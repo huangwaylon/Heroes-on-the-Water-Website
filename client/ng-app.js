@@ -10,7 +10,7 @@
     });
   });
 
-  appModule.controller('NavbarCtrl', function($log, $location, galleryImageService) {
+  appModule.controller('NavbarCtrl', function($log, $location) {
     $log.debug('Initializing NavbarCtrl');
     this.isActive = function(viewLocation) {
       return viewLocation === $location.path();

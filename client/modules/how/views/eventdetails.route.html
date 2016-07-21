@@ -14,24 +14,19 @@
           <!--content for each tab -->
           <div class="tab-content">
           <div id="details" class="tab-pane fade in active">
-            <h3>Details</h3>
-            <p>Some content.</p>
+            <br>
+            <p><b>Name:</b> {{eventDetailsCtrl.event.name}}</p>
+            <p><b>Location:</b> {{eventDetailsCtrl.event.location}}</p>
+            <p><b>Description: </b>{{eventDetailsCtrl.event.description}}</p>
           </div>
           <div id="participants" class="tab-pane fade">
-            <h3>Participants</h3>
-            <table class="table">
-              <tr>
-                <td>hi</td>
-                <td> Another hi </td>
-              </tr>
-            </table>
+            <p>{{eventsDetailsCtrl.event.participants}}</p>
           </div>
           <div id="volunteers" class="tab-pane fade">
-            <h3>Volunteers</h3>
-            <p>Some content in menu 2.</p>
+            <p>{{eventDetailsCtrl.event.volunteers}}</p>
           </div>
         </div>
-          {{eventDetailsCtrl.id}}
+          ID: {{eventDetailsCtrl.id}}
 
         </div>
       </div>

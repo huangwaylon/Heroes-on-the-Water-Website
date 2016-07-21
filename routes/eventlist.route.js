@@ -35,5 +35,21 @@
 
   });
 
+  // Handle post requests for example resources
+  router.post('/', function(req, res, next) {
+    //console.log('handling post /examples', req.body)
+    var newEvent = new EventList(req.body);
+
+    newEvent.save(function(err, event) {
+      if (err) {
+        next(err);
+        return;
+      }
+
+      //console.log('Example saved successfully: ', example);
+      res.send('success');
+    });
+  });
+
   module.exports = router;
 })();

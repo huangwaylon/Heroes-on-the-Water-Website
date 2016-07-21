@@ -8,9 +8,9 @@
         this.id = $routeParams.id;
         this.event = {};
 
-        this.event = eventlistService.getEvent(this.id).then(
+        this.event = eventlistService.getEventById(this.id).then(
           function(event) {
-            self.event = event;
+            self.event = event.data;
           });
 
         $('#tabbies a').click(function (e) {

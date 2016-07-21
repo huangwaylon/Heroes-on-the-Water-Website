@@ -61,7 +61,8 @@ module.exports = function(grunt) {
           'node_modules/masonry-layout/dist/masonry.pkgd.min.js',
           'node_modules/imagesloaded/imagesloaded.pkgd.min.js',
           'node_modules/smooth-scrollbar/dist/smooth-scrollbar.js',
-          'client/js/pikaday.js'
+          'client/js/pikaday.js',
+          'node_modules/jquery-timepicker/jquery.timepicker.js'
 
 
         ],
@@ -72,7 +73,8 @@ module.exports = function(grunt) {
               'node_modules/photoswipe/dist/photoswipe.css',
               'node_modules/photoswipe/dist/default-skin/default-skin.css',
               'node_modules/smooth-scrollbar/dist/smooth-scrollbar.css',
-              'client/css/pikaday.css'
+              'client/css/pikaday.css',
+              'node_modules/jquery-timepicker/jquery.timepicker.css'
         ], // Same for CSS libraries
         dest: 'public/lib.css'
       },
