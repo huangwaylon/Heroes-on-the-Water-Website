@@ -153,7 +153,6 @@
       }
 
       function register(username, password, email, firstname, lastname, disabilities, account) {
-
         // create a new instance of deferred
         var deferred = $q.defer();
 
@@ -165,7 +164,7 @@
             firstname: firstname,
             lastname: lastname,
             disabilities: disabilities,
-            accout: account})
+            userAccout: account})
           // handle success
           .success(function (data, status) {
             if(status === 200 && data.status){

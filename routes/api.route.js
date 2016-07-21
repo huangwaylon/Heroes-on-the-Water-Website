@@ -6,13 +6,13 @@ var User = require('../models/user.model.js');
 var Q = require('q');
 
 router.post('/register', function(req, res) {
-  User.register(new User({
-    username: req.body.username,
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    email: req.body.email,
-    disabilities: req.body.disabilities,
-    account: req.body.account}),
+  var newUser = new User({username: req.body.username,
+                          firstname: req.body.firstname,
+                          lastname: req.body.lastname,
+                          email: req.body.email,
+                          disabilities: req.body.disabilities,
+                          account: req.body.userAccout});
+  User.register(newUser,
     req.body.password, function(err, account) {
     if (err) {
       return res.status(500).json({
