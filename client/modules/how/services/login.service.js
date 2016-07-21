@@ -5,7 +5,6 @@
 
       // create user variable
       var user = null;
-      var mscope = null;
 
       // return available functions for use in the controllers
       return ({
@@ -61,11 +60,6 @@
       function hello(userObject) {
         return $http.get('/user/hello').then(function(response) {
           console.log(response.data.id);
-          mscope = userObject;
-
-          userObject.lastname = response.data.username;
-          userObject.firstname = response.data.id;
-
           findUser(response.data.id, userObject);
         });
       }
@@ -88,10 +82,6 @@
           userObject.disabilities = currUser.disabilities;
           userObject.account = currUser.account;
         });
-      }
-
-      function set(rep) {
-        mscope = userObject;
       }
 
       function getUserStatus() {

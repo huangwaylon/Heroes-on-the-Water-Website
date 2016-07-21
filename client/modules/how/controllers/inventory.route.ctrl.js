@@ -3,25 +3,29 @@
   ['$scope', '$location', 'InvService',
   function ($scope, $location, InvService) {
 
-    $scope.allItems = InvService.all();
+    // Initialize the allItems variable which stores all the inventory items
+    $scope.allItems = [];
+    InvService.all($scope);
 
+    // Add function
     $scope.add = function () {
       console.log("Add");
       InvService.add($scope.itemName,
                     $scope.itemDescription,
                     $scope.itemUsed)
         .then(function () {
-          console.log("Success!");
           $scope.refresh();
         });
     };
 
+    // Remove item function
     $scope.remove = function () {
     };
 
+    // Refresh inventory list function
     $scope.refresh = function () {
-      $scope.allItems = InvService.all();
+      InvService.all($scope);
+      console.log($scope.allItems);
     };
-
   }]);
 })();

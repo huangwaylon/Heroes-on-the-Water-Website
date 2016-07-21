@@ -58,9 +58,9 @@
         return deferred.promise;
       }
 
-      function all() {
+      function all(scope) {
         return $http.get('/inventory/all').then(function(response) {
-          console.log(response.data);
+          scope.allItems = response.data;
         });
       }
 

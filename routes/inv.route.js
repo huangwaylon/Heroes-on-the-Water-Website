@@ -10,7 +10,6 @@ inventory_router.post('/add', function(req, res) {
                   description: req.body.i_description,
                   isUsed: req.body.i_isUsed
                 });
-  console.log(newItem);
   Inventory.create(newItem,
   function(err) {
     if (err) {
