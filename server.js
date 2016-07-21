@@ -25,7 +25,9 @@
   var galleryImageRoute = require('./routes/gallery-image.route.js');
   var chapterRoute = require('./routes/chapter.route.js');
   var donationRoute = require('./routes/donation.route.js');
+  var mailRoute = require('./routes/mail.route.js');
   var routes = require('./routes/api.route.js');
+  var inventoryRoute = require('./routes/inv.route.js');
 
   app.use(express.static('public'));
   app.use('/examples', exampleRoute);
@@ -50,8 +52,9 @@
   passport.serializeUser(User.serializeUser());
   passport.deserializeUser(User.deserializeUser());
 
-  // routes
+  // data routes
   app.use('/user/', routes);
+  app.use('/inventory/', inventoryRoute);
 
   app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, './client', 'index.html'));
@@ -59,6 +62,8 @@
 
   //Handle requests for chapter info (mainly for map, can be for more stuff later)
   app.use('/chapters', chapterRoute);
+
+  app.use('/mail', mailRoute)
 
   // If no route is found, send a 404 error
   app.use(function(req, res) {

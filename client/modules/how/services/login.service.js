@@ -5,7 +5,6 @@
 
       // create user variable
       var user = null;
-      var mscope = null;
 
       // return available functions for use in the controllers
       return ({
@@ -16,6 +15,7 @@
         register: register,
         hello: hello,
         findUser: findUser,
+        findUserByUsername:  findUserByUsername,
         updateUser: updateUser
       });
 
@@ -37,7 +37,8 @@
             lastname: userObject.lastname,
             email: userObject.email,
             disabilities: userObject.disabilities,
-            account: userObject.account})
+            account: userObject.account,
+            mail: userObject.mail})
           // handle success
           .success(function (data, status) {
             if(status === 200 && data.status){
@@ -61,11 +62,6 @@
       function hello(userObject) {
         return $http.get('/user/hello').then(function(response) {
           console.log(response.data.id);
-          mscope = userObject;
-
-          userObject.lastname = response.data.username;
-          userObject.firstname = response.data.id;
-
           findUser(response.data.id, userObject);
         });
       }
@@ -78,6 +74,7 @@
           for(var i = 0; i < repData.length; i++) {
             if(repData[i]._id == userId) {
               currUser = repData[i];
+              break;
             }
           }
           console.log(currUser);
@@ -87,11 +84,30 @@
           userObject.email = currUser.email;
           userObject.disabilities = currUser.disabilities;
           userObject.account = currUser.account;
+          userObject.mail = currUser.mail;
         });
       }
 
-      function set(rep) {
-        mscope = userObject;
+      function findUserByUsername(username, userObject) {
+        return $http.get('/user/users').then(function(response) {
+          var repData = response.data;
+          var currUser = {};
+
+          for(var i = 0; i < repData.length; i++) {
+            if(repData[i].username == username) {
+              currUser = repData[i];
+              break;
+            }
+          }
+          console.log(currUser);
+          userObject.username = currUser.username;
+          userObject.firstname = currUser.firstname;
+          userObject.lastname = currUser.lastname;
+          userObject.email = currUser.email;
+          userObject.disabilities = currUser.disabilities;
+          userObject.account = currUser.account;
+          userObject.mail = currUser.mail;
+        });
       }
 
       function getUserStatus() {
@@ -162,8 +178,8 @@
 
       }
 
-      function register(username, password, email, firstname, lastname, disabilities, account) {
 
+      function register(username, password, email, firstname, lastname, disabilities, account, mail) {
         // create a new instance of deferred
         var deferred = $q.defer();
 
@@ -175,7 +191,8 @@
             firstname: firstname,
             lastname: lastname,
             disabilities: disabilities,
-            accout: account})
+            account: account,
+            mail: mail})
           // handle success
           .success(function (data, status) {
             if(status === 200 && data.status){

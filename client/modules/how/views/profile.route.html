@@ -1,12 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
-      <div ng-show="error" class="alert alert-danger">{{errorMessage}}</div>
-      <button ng-click="logout()" id="loginbutton" type="button" class="btn btn-info">Logout</button>
+      <div ng-show="error" class="alert alert-danger animated fadeIn">{{errorMessage}}</div>
+      <div ng-show="success" class="alert alert-success animated fadeIn">{{successMessage}}</div>
 
       <form ng-submit="update()">
         <h2 style="text-align:center;">Welcome <span ng-bind="user.firstname"/> <span ng-bind="user.lastname"/>!</h2>
-
+        <h4 style="text-align:left;">Username: <span ng-bind="user.username"/></h4>
+        <h4 style="text-align:left;">Account: <span ng-bind="user.account"/></h4>
         <div class="form-group">
           <label>First Name</label>
           <input type="text" class="form-control" name="firstname" ng-model="user.firstname" required>
@@ -35,7 +36,9 @@
         </div>
 
         <div>
-            <button style="width: 100%;" type="submit" class="btn btn-primary" ng-disabled="disabled">Update</button>
+            <button style="width: 50%;" type="submit" class="btn btn-primary" ng-disabled="disabled">Update</button>
+            <br/>
+            <button style="width: 50%;" type="button" class="btn btn-info" ng-click="logout()">Logout</button>
         </div>
       </form>
     </div>

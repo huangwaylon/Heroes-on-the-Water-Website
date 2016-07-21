@@ -1,7 +1,27 @@
-<div>
-  This is the inventory page. What needs to be done here is for the inventory stored within the
-  database to be displayed in a readable format. A simple table or list can be a good idea here.
-  One thing that needs to be considered is that only admins or managers should have access to this tab. It should
-  be displayed only when the person logged in is part of that group.
-  ABCD
+<div class="container">
+  <div ng-show="removeSuccess" class="alert alert-danger animated fadeIn">{{removeMessage}}</div>
+  <div ng-show="addSuccess" class="alert alert-success animated fadeIn">{{addMessage}}</div>
+
+  <p>Inventory: <span ng-bind="allItems.length"/> Items</p>
+  <ul>
+    <li ng-repeat="x in allItems"><input type="checkbox" checked="{{x.isUsed}}"/>{{x.name}}, {{x.description}}, (id #: {{x._id}})<span ng-click="remove($index)">×</span></li>
+  </ul>
+
+  <form ng-submit="add()">
+    <div class="form-group">
+      <label>Item Name (*required)</label>
+      <input type="text" class="form-control" ng-model="itemName" required>
+    </div>
+    <div class="form-group">
+      <label>Item Description</label>
+      <input type="text" class="form-control" ng-model="itemDescription">
+    </div>
+    <div class="form-group">
+      <label>Item Is Used</label>
+      <input type="checkbox" class="form-control" ng-model="itemUsed" checked="false"/><br/>
+    </div>
+    <div>
+        <button style="width: 50%;" type="submit" class="btn btn-primary" ng-disabled="disabled">Add</button>
+    </div>
+  </form>
 </div>
