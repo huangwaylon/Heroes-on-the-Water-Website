@@ -4,18 +4,21 @@
   var router = express.Router();
 
   var mongoose = require('mongoose');
+  var mongo = require('mongodb');
 
   var Mail = require('../models/mail.model.js');
 
   // Handle get request to get all mail resources
   router.get('/', function(req, res, next) {
+    var o_id = new mongo.ObjectID(req.query.mailId);
     console.log('handling get /mail in mail.route.js');
-    Mail.find({}, function(err, mail) {
+    Mail.findOne({'_id': o_id}, function(err, mail) {
+      console.log(mail);
       if (err) {
         next(err);
         return;
       }
-
+      
       //console.log('returning mail: ', mail);
       res.send(mail);
     });

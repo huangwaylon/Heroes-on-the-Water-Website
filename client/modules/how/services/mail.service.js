@@ -3,17 +3,21 @@
 
         var self = this;
 
-        this.mail = {};
+        this.mail = [];
 
-        this.getMail = function() {
+        this.getMailById = function(mailId) {
             $log.debug('Entering mailService.getMail');
-
+            $log.log('mailId: ', mailId);
             var defer = $q.defer();
 
-            $http.get('/mail').then(
+            $http({
+              url: '/mail',
+              method: "GET",
+              params: {mailId: mailId}
+            }).then(
                 function(response) {
                     $log.debug('getMail resolve', response);
-                    self.mail = response.data;
+                    self.mail.push(response.data);
                     defer.resolve(response);
                 },
                 function(error, status) {
