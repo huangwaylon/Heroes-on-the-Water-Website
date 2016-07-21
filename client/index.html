@@ -69,7 +69,7 @@
 
     <div class="footer-section" style="float: left; width: 33%">
       <h2 style="text-align: center">Heroes on the Water</h2>
-      <img style="display: block; margin: 0 auto; width: 40%" src="\images\logo.png"/>
+      <img style="display: block; margin: 0 auto; width: 30%" src="\images\logo.png"/>
       <h4 style="padding-left: 5px; text-align: center">
         <a style="color: black; " href="/#/">Home</a> ·  
         <a style="color: black" href="/#/events">Events</a> · 
@@ -125,26 +125,27 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h3 class="modal-title">Donation Request</h3>
           <p>Please fill out this form if you are interested in donating and someone will contact you.</p>
+          <p style="float: right; color: red"> *required </p>
         </div>
 
         <div class="modal-body">
           <form role="form">
             <div class="form-group">
-              <label for="firstname">Firstname: </label><br>
+              <label style="color: red" for="firstname">*Firstname: </label><br>
               <input type="firstname" class="form-control" placeholder="John" id="name1">
-              <label for="lastname">Lastname: </label><br>
+              <label style="color: red" for="lastname">*Lastname: </label><br>
               <input type="lastname" class="form-control" placeholder="Doe" id="name2">
 
-              <label for="email">Email: </label>
+              <label style="color: red" for="email">*Email: </label>
               <input type="email" class="form-control" placeholder="your_email@how.com" id="email">
             </div>
           </form>
 
           <form class="form-inline">
             <div class="form-group">
-              <label for="phone">Phone: </label>
+              <label style="color: red" for="phone">*Phone: </label>
               <input type="phone" class="form-control" placeholder="(555) 555-5555" id="number">
-              <label for="donation_amount"> Donation: </label>
+              <label style="color: red" for="donation_amount"> *Donation: </label>
               <input type="donation_amount" class="form-control" placeholder="$100" id="amount">
             </div>
           </form>
