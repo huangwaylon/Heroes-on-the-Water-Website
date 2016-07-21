@@ -1,11 +1,26 @@
 (function() {
   angular.module('app.how').controller('inventoryRouteCtrl',
-      function($log, exampleService) {
-        $log.debug('Initializing inventoryRouteCtrl');
+  ['$scope', '$location', 'InvService',
+  function ($scope, $location, InvService) {
 
-        var self = this;
+    $scope.allItems = InvService.all();
 
-        this.newExample = {};
+    $scope.add = function () {
+      console.log("Add");
+      InvService.add($scope.itemName,
+                    $scope.itemDescription,
+                    $scope.itemUsed)
+        .then(function () {
+          console.log("Success!");
+        });
+    };
 
-      });
+    $scope.remove = function () {
+    };
+
+    $scope.refresh = function () {
+      $scope.allItems = InvService.all();
+    };
+
+  }]);
 })();

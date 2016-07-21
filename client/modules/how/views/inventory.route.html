@@ -1,7 +1,15 @@
-<div>
-  This is the inventory page. What needs to be done here is for the inventory stored within the
-  database to be displayed in a readable format. A simple table or list can be a good idea here.
-  One thing that needs to be considered is that only admins or managers should have access to this tab. It should
-  be displayed only when the person logged in is part of that group.
-  ABCD
+<p>Inventory</p>
+<div class="container">
+  <ul>
+    <li ng-repeat="x in allItems">{{x}}<span ng-click="removeItem($index)">×</span></li>
+  </ul>
+  <p>Item Name (*required)</p>
+  <input ng-model="itemName">
+  <p>Item Description</p>
+  <input ng-model="itemDescription">
+  <p>Item Is Used</p>
+  <input type="checkbox" ng-model="itemUsed" checked="false"/>
+
+  <button ng-click="add()">Add</button>
+  <p>{{errortext}}</p>
 </div>
