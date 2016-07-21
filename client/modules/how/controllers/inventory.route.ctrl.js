@@ -19,7 +19,12 @@
     };
 
     // Remove item function
-    $scope.remove = function () {
+    $scope.remove = function (index) {
+      var itemToRemove = $scope.allItems[index];
+      InvService.remove(itemToRemove._id)
+        .then(function () {
+          $scope.refresh();
+        });
     };
 
     // Refresh inventory list function

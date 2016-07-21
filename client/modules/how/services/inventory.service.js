@@ -33,15 +33,13 @@
         // return promise object
         return deferred.promise;
       }
-      function remove(name, description, isUsed) {
+      function remove(_id) {
         // create a new instance of deferred
         var deferred = $q.defer();
 
         // send a post request to the server
         $http.post('/inventory/remove',
-          {name: name,
-            description: description,
-            isUsed: isUsed})
+          {_id: _id})
           // handle success
           .success(function (data, status) {
             if(status === 200 && data.status){
