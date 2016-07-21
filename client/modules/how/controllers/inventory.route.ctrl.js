@@ -1,7 +1,12 @@
 (function() {
   angular.module('app.how').controller('inventoryRouteCtrl',
-  ['$scope', '$location', 'InvService',
-  function ($scope, $location, InvService) {
+  ['$scope', '$location', 'InvService', 'AuthService',
+  function ($scope, $location, InvService, AuthService) {
+
+    // Check that the user is logged in
+    if (!AuthService.isLoggedIn()) {
+      $location.path('/login');
+    }
 
     // Initialize the allItems variable which stores all the inventory items
     $scope.allItems = [];
