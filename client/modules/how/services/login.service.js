@@ -64,7 +64,7 @@
 
       function hello(userObject) {
         return $http.get('/user/hello').then(function(response) {
-          console.log(response.data.id);
+          //console.log(response.data.id);
           mscope = userObject;
 
           userObject.lastname = response.data.username;
@@ -85,7 +85,7 @@
               currUser = repData[i];
             }
           }
-          console.log(currUser);
+          //console.log(currUser);
           userObject.username = currUser.username;
           userObject.firstname = currUser.firstname;
           userObject.lastname = currUser.lastname;

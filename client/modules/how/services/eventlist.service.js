@@ -29,6 +29,25 @@
       return defer.promise;
     };
 
+    this.updateEvent = function(events, id) {
+      var defer = $q.defer();
+
+      $http.put('/events/', events).then(
+          function(response) {
+            //$log.debug('eventlist resolve: ', response);
+            defer.resolve(response);
+            self.getEvents();
+          }, function(error, status) {
+            //$log.log('eventlist reject', error, status);
+            defer.reject(error, status);
+          }, function(progress) {
+            //$log.debug('eventlist notify', progress);
+            defer.notify(progress);
+          });
+
+      return defer.promise;
+    };
+
     this.getEventById = function(id) {
       var defer = $q.defer();
 
