@@ -27,11 +27,8 @@
   var donationRoute = require('./routes/donation.route.js');
   var mailRoute = require('./routes/mail.route.js');
   var routes = require('./routes/api.route.js');
-<<<<<<< HEAD
   var eventlistRoute = require('./routes/eventlist.route.js');
-=======
   var inventoryRoute = require('./routes/inv.route.js');
->>>>>>> master
 
   app.use(express.static('public'));
   app.use('/examples', exampleRoute);
