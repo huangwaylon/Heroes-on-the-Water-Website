@@ -10,12 +10,14 @@
         $scope.user = {};
         $scope.loggedIn = false;
         if (AuthService.isLoggedIn()) {
-            AuthService.hello($scope.user).then(function() {
-              console.log($scope.user);
-            });
+            AuthService.hello($scope.user);
         } else {
-          console.log("Person is not logged in");
+          console.log("User is not logged in");
         }
+
+        $scope.signup = function() {
+
+        };
 
         this.id = $routeParams.id;
         this.event = {};

@@ -66,10 +66,11 @@
       function hello(userObject) {
         return $http.get('/user/hello').then(function(response) {
           //console.log(response.data.id);
-          mscope = userObject;
 
-          userObject.lastname = response.data.username;
-          userObject.firstname = response.data.id;
+
+          // userObject.lastname = response.data.username;
+          // userObject.firstname = response.data.id;
+
 
           findUser(response.data.id, userObject);
         });
@@ -87,7 +88,6 @@
               break;
             }
           }
-          //console.log(currUser);
           userObject.username = currUser.username;
           userObject.firstname = currUser.firstname;
           userObject.lastname = currUser.lastname;

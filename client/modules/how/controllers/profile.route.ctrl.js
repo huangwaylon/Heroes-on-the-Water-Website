@@ -16,6 +16,7 @@
           $location.path('/login');
         }
 
+
         $scope.update = function () {
           // call logout from service
           AuthService.updateUser($scope.user)
