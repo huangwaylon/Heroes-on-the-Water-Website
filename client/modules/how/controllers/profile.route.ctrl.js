@@ -3,11 +3,16 @@
       ['$scope', '$location', 'AuthService',
       function ($scope, $location, AuthService) {
 
+        // Initialize values
+        $scope.error = false;
+        $scope.success = false;
+        $scope.disabled = false;
         $scope.user = {};
+
+        // Check that the user is logged in
         if (AuthService.isLoggedIn()) {
             AuthService.hello($scope.user);
         } else {
-          console.log("not logged in!");
           $location.path('/login');
         }
 
@@ -15,7 +20,9 @@
           // call logout from service
           AuthService.updateUser($scope.user)
             .then(function () {
-              console.log("Success!");
+              $scope.success = true;
+              $scope.successMessage = "Successfully updated profile!";
+              $scope.disabled = false;
               $location.path('/profile');
             });
         };

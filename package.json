@@ -20,6 +20,7 @@
     "express": "^4.14.0",
     "express-session": "^1.13.0",
     "jquery": "<3.0.0",
+    "mongodb": "^2.2.4",
     "mongoose": "^4.5.2",
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
@@ -29,6 +30,7 @@
     "q":"*",
     "smooth-scrollbar": "^6.4.0",
     "angular-xeditable": "<0.2.0"
+
   },
   "devDependencies": {
     "clean": "^4.0.2",

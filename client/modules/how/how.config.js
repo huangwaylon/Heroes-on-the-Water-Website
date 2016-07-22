@@ -53,6 +53,12 @@
       templateUrl: '/modules/how/views/register.route.html',
       controller: 'registerController',
       access: {restricted: false}
+    })
+    .when('/mailbox', {
+      templateUrl: '/modules/how/views/mailbox.route.html',
+      controller: 'mailboxRouteCtrl',
+      controllerAs: 'mailboxCtrl',
+      access: {restricted: true}
     });
   });
 })();

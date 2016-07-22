@@ -5,12 +5,13 @@
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
   });
 
+
   appModule.config(function($routeProvider) {
     $routeProvider.when('/', {
       templateUrl: '/home.route.html'
-    }).otherwise({
+    })/*.otherwise({
       redirectTo: '/'
-    });
+    })*/;
   });
 
   appModule.controller('NavbarCtrl', function($log, $location, $scope, AuthService) {
