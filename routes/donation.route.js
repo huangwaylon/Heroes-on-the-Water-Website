@@ -5,11 +5,11 @@
 
 	var mongoose = require('mongoose');
 
-	var Donor = require('../models/donor.model.js');
+	var Donor = require('../models/donation.model.js');
 
 	// Handle get request to get all example resources
 	router.get('/', function(req, res, next) {
-		console.log('handling get /donors');
+		console.log('handling get /donors in donation.route.js');
 		Donor.find({}, function(err, donors) {
 			if (err) {
 				next(err);
@@ -22,4 +22,4 @@
 	});
 
 	module.exports = router;
-});
+})();
