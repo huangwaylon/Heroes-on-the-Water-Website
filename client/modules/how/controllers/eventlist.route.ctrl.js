@@ -48,10 +48,24 @@
         //Get user information to populate participants.
         if(eventlistService.users != null || eventlistService.users != undefined) {
           //This is coming back as an array.
-
-
         }
 
+        // Sorting Functions ******************************************************
+        function sortByDate(a, b) {
+          return new Date(a.date).getTime() - new Date(b.date).getTime();
+        }
+        function sortBy(prop) {
+          return function(a, b) {
+            if (a[prop] > b[prop]) {
+                return 1;
+            } else if (a[prop] < b[prop]) {
+                return -1;
+            }
+            return 0;
+          }
+        }
+
+<<<<<<< HEAD
         $scope.resetTab = function() {
           $scope.errorbanner = false;
           $scope.errormessage = false;
@@ -80,6 +94,36 @@
               //  $log.debug('addEvent notify', progress);
               });
 
+=======
+        $scope.sortEventsByName = function() {
+          self.allEvents.sort(sortBy("name"));
+          console.log("name");
+        }
+        $scope.sortEventsByDate = function() {
+          self.allEvents.sort(sortByDate);
+          console.log("date");
+        }
+        $scope.sortEventsByLocation = function() {
+          self.allEvents.sort(sortBy("location"));
+          console.log("location");
+        }
+
+        this.addEvent = function() {
+            eventlistService.postEvent(self.newEvent).then(
+                function(response) {
+                  $log.debug('addEvent resolve', response);
+                  $scope.errorbanner = false;
+                  $scope.success = true;
+                  $timeout(function(){ $scope.success = false; }, 5000);
+                  self.newEvent = {};
+                  eventlistService.getEvents();
+                }, function(error, status) {
+                  $log.log('addEvent reject', error, status);
+                  $scope.errorbanner = true;
+                }, function(progress) {
+                  $log.debug('addEvent notify', progress);
+                });
+>>>>>>> 7acf34518aeae92016b74064b34651486e8c147d
         };
 
         this.searchEvents = function() {
