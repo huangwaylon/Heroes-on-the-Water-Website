@@ -31,19 +31,42 @@
       </div>
       <div id="view" class="tab-pane fade">
         <div class="col-sm-6 col-md-6">
-        <h3>View All Events</h3>
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">All Events</h3>
           </div>
             <table class="table table-hover table-striped">
               <tr>
-                <th><button ng-click="sortEventsByName()">Name</button></th>
-                <th><button ng-click="sortEventsByDate()">Start Time</button></th>
-                <th><button ng-click="sortEventsByDate()">End Time</button></th>
-                <th><button ng-click="sortEventsByLocation()">Location</button></th>
+                <th>
+                  <a href="" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                    Name
+                    <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </th>
+                <th>
+                  <a href="" ng-click="sortType = 'date'; sortReverse = !sortReverse">
+                    Start Time
+                    <span ng-show="sortType == 'date' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'date' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </th>
+                <th>
+                  <a href="" ng-click="sortType = 'date'; sortReverse = !sortReverse">
+                    End Time
+                    <span ng-show="sortType == 'date' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'date' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </th>
+                <th>
+                  <a href="" ng-click="sortType = 'location'; sortReverse = !sortReverse">
+                    Location
+                    <span ng-show="sortType == 'location' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'location' && sortReverse" class="fa fa-caret-up"></span>
+                  </a>
+                </th>
               </tr>
-              <tr ng-repeat="events in eventlistCtrl.allEvents">
+              <tr ng-repeat="events in eventlistCtrl.allEvents | orderBy: sortType:sortReverse">
 
                 <td><a href="/#/events/{{events._id}}">{{events.name}}</a></td>
                 <td>{{events.date}} {{events.starttime}}</td>
