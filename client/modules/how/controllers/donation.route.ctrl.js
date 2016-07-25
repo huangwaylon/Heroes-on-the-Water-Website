@@ -5,10 +5,25 @@
 
         var self = this;
 
-        this.newExample = {};
+        this.newDonor = {};
 
-/*	$http.post('/donor', function(req, res, next) {
-		var donor = {
+ /*   this.get('/donors/', function(req, res, next) {
+		var donorArr =[];
+		mongo.connect(url, function(err, db) {
+			assert.equal(null, err);
+			var current = db.collection('donorInfos').find();
+			current.forEach(function(doc, err) {
+				assert.equal(null, err);
+				donorArr.push(doc);
+			}, function() {
+				db.close();
+				res.render('index', {items: donorInfos});
+			});
+		});
+	});
+
+ this.addDonor = function() {
+	var donor = {
   		firstname: req.body.firstname,
   		lastname: req.body.lastname,
   		email: req.body.email,
@@ -20,32 +35,65 @@
   		state: req.body.state,
   		country: req.body.country,
   		comment: req.body.comment
+	};
+
+	db.donorinfos.insertOne(donor, function (err, result) {
+		assert.equal(null, err);
+		console.log("Donor inserted");
+		db.close();
+	});
+  }; */
+
+  newDonor.insert('/donors/', function (req, res) {
+  	var donor = new Donor({
+  		firstname: req.body.firstname,
+  		lastname: req.body.lastname,
+  		email: req.body.email,
+  		phone: req.body.phone,
+  		donation: req.body.donation,
+  		address: req.body.address,
+  		city: req.body.city,
+  		zip: req.body.zip,
+  		state: req.body.state,
+  		country: req.body.country,
+  		comment: req.body.comment
+  	});
+
+  	donorInfos.insertOne(donor, function(err) {
+  		if (err) {
+  			throw err;
+  		} else {
+  			console.log('saved donor successfully..')
   		}
+  	});
+  });
+
+  res.redirect('/');
+
+/*	donorInfo.insert('/donors/', function(req, res, next) {
+		var donor = {
+	  		firstname: req.body.firstname,
+	  		lastname: req.body.lastname,
+	  		email: req.body.email,
+	  		phone: req.body.phone,
+	  		donation: req.body.donation,
+	  		address: req.body.address,
+	  		city: req.body.city,
+	  		zip: req.body.zip,
+	  		state: req.body.state,
+	  		country: req.body.country,
+	  		comment: req.body.comment
+  		};
   	});
 	
 	mongo.connect(url, function(err, db){
 		assert.equal(null, err);
-		db.collection('listOfDonors').insertOne(donor, function(err, result) {
+		db.collection('donorInfos').insertOne(donor, function(err, result) {
 			assert.equal(null, error);
 			console.log("Donor inserted");
 			db.close();
 		});
 	});
-	  	res.redirect('/');
-	});
-
-	$http.get('/donors', function(req, res, next) {
-		var donorArr =[];
-		mongo.connect(url, function(err, db) {
-			assert.equal(null, err);
-			var current = db.collection('listOfDonors').find();
-			current.forEach(function(doc, err) {
-				assert.equal(null, err);
-				donorArr.push(doc);
-			}, function() {
-				db.close();
-				res.render('index', {items: listOfDonors});
-			});
-		});*/
+	  	res.redirect('/');*/
 	}); 
 })();

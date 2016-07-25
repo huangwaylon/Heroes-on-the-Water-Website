@@ -2,7 +2,7 @@
 	var mongoose = require('mongoose');
 
 	var donationSchema =  new mongoose.Schema({
-		donor: {
+		donorInfo: {
 			firstname: { type: String, required: true, unique: false },
 			lastname: { type: String, required: true, unique: false },
 			email: { type: String, required: true, unique: true },
@@ -17,7 +17,7 @@
 		}
 	});
 
-	var donorInfo = mongoose.model('donorInfo', donationSchema);
+	var donor = mongoose.model('donor', donationSchema);
 
-	module.exports = donorInfo;
+	module.exports = donor;
 })();

@@ -131,7 +131,7 @@
         </div>
 
         <div class="modal-body">
-          <form role="form" action="/donors" method="post">
+          <form role="form" class="inputs" action="/donors/" method="post">
             <div class="form-group">
               <label style="color: red" for="firstname">*Firstname: </label><br>
               <input type="text" class="form-control" placeholder="John" id="name1">
@@ -140,47 +140,39 @@
 
               <label style="color: red" for="email">*Email: </label>
               <input type="email" class="form-control" placeholder="your_email@how.com" id="email">
-            </div>
-          </form>
 
-          <form class="form-inline">
-            <div class="form-group">
-              <label style="color: red" for="phone">*Phone: </label>
-              <input type="number" class="form-control" placeholder="(555) 555-5555" id="number">
-              <label style="color: red" for="donation_amount"> *Donation:</label>
-              <input type="number" class="form-control" placeholder="100" id="amount">
-            </div>
-          </form>
+              <br>
 
-          <br>
+              <div class="form-inline">
+                <label style="color: red" for="phone">*Phone: </label>
+                <input type="number" class="form-control" placeholder="(555) 555-5555" id="number">
+                <label style="color: red" for="donation_amount"> *Donation:</label>
+                <input type="number" class="form-control" placeholder="100" id="amount">
+              </div>
 
-          <form>
-            <div class="form-group">
+              <br>
+
               <label for="address">Address: </label>
               <input type="text" class="form-control" placeholder="150 Main St." id="addr">
-            </div>
-          </form>
 
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="city">  City: </label>
-              <input type="text" class="form-control" placeholder="Bothell" id="city">
-              <label for="zip_code"> Zip Code </label>
-              <input type="text" class="form-control" placeholder="98011" id="zip">
+              <br>
 
-              <br><br>
+              <div class="form-inline">
+                <label for="city">  City: </label>
+                <input type="text" class="form-control" placeholder="Bothell" id="city">
+                <label for="zip_code"> Zip Code </label>
+                <input type="number" class="form-control" placeholder="98011" id="zip">
 
-              <label for="state"> State: </label>
-              <input type="text" class="form-control" placeholder="WA" id="state">
-              <label for="country"> Country: </label>
-              <input type="text" class="form-control" placeholder="USA" id="country">
-            </div>
-          </form>
-            
-          <br>
+                <br><br>
 
-          <form>
-            <div class="form-group">
+                <label for="state"> State: </label>
+                <input type="text" class="form-control" placeholder="WA" id="state">
+                <label for="country"> Country: </label>
+                <input type="text" class="form-control" placeholder="USA" id="country">
+              </div>
+
+              <br>
+
               <label for="comment"> Comments: </label><br>
               <textarea class="form-control" style="resize: none; min-width: 100%; max-width: 100%" rows="5" placeholder="Include any additional information that you wish to share as well as general comments." id="comment"></textarea>
             </div>
@@ -188,7 +180,7 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+          <button type="button" onclick="send(this.form)" class="btn btn-success" data-dismiss="modal">Submit</button>
         </div>
       </div>
     </div>

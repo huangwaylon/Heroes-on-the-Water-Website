@@ -57,7 +57,7 @@
   // data routes
   app.use('/user/', routes);
   app.use('/inventory/', inventoryRoute);
-  app.use('/donors', routes);
+  app.use('/donors/', routes);
 
   app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, './client', 'index.html'));
