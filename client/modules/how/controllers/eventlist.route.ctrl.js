@@ -66,6 +66,20 @@
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        $scope.resetTab = function() {
+          $scope.errorbanner = false;
+          $scope.errormessage = false;
+
+        }
+
+        this.removeEvent = function(id) {
+          eventlistService.removeEvent(id);
+        }
+
+
+>>>>>>> 2156162ccca3bddba644c3dca94358f012c37cd3
         $scope.sortEventsByName = function() {
           self.allEvents.sort(sortBy("name"));
           console.log("name");
@@ -94,6 +108,7 @@
                 }, function(progress) {
                   $log.debug('addEvent notify', progress);
                 });
+<<<<<<< HEAD
 =======
         $scope.resetTab = function() {
           $scope.errorbanner = false;
@@ -124,6 +139,8 @@
               });
 
 >>>>>>> jz5822
+=======
+>>>>>>> 2156162ccca3bddba644c3dca94358f012c37cd3
         };
 
         this.searchEvents = function() {
