@@ -1,12 +1,9 @@
 To do:
 <ul>
 <li>Send mail to multiple people, comma/space in between usernames</li>
-<li>Automatically display mail of logged in user</li>
 <li>Auto populate sender field from logged in user</li>
-<li>Tons of other stuff</li>
+<li>More stuff</li>
 </ul>
-
-<b>Currently logged in user:</b> <div ng-bind="user.username"></div>
 
 <form>
 	<h4>Send test mail: </h4>
@@ -17,11 +14,7 @@ To do:
 	<button ng-click="submitMail()">Submit</button>
 </form>
 
-<form>
-        <h3>Load info and mail for currently logged in user:</h3>
-        <button ng-click="submitLookup()">Submit</button>
-</form>
-	<h4>User's information:</h4>
+	<h4>Current user's information:</h4>
         <b>Username: </b>{{userResult.username}}
         <br><b>First name: </b>{{userResult.firstname}}
         <br><b>Last name: </b>{{userResult.lastname}}
