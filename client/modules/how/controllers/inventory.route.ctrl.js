@@ -6,6 +6,8 @@
     // Initialize values
     $scope.removeSuccess = false;
     $scope.addSuccess = false;
+    $scope.success = false;
+    $scope.error = false;
     $scope.disabled = false;
     $scope.user = {};
 
@@ -21,7 +23,12 @@
     function checkUserPermissions() {
       if ($scope.user.account && $scope.user.account != "Administrator") {
         console.log("Not an Administrator!");
-        $location.path('/login');
+        $scope.success = false;
+        $scope.error = true;
+        $scope.errorMessage = "Not an Administrator!"
+      } else {
+        $scope.success = true;
+        $scope.error = false;
       }
     }
 
