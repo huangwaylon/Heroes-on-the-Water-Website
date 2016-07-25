@@ -5,9 +5,18 @@
 
             var self = this;
             $scope.userResult = {};
+            $scope.user = {};
+
+        if (AuthService.isLoggedIn()) {
+            var helloResponse = AuthService.getLoggedInUsername($scope.user);
+            helloResponse.then(function(response){
+                $scope.user = response.username;
+                $scope.submitLookup();            
+            });
+        } 
 
             $scope.submitLookup = function() {
-                AuthService.findUserByUsername($scope.userToLookup, $scope.userResult).then(function(result) {
+                AuthService.findUserByUsername($scope.user, $scope.userResult).then(function(result) {
                 	mailService.mail = [];
                 	for (var i=0; i<$scope.userResult.mail.length; i++){
                 		var id=$scope.userResult.mail[i]

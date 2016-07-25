@@ -38,10 +38,10 @@
           </div>
             <table class="table table-hover table-striped">
               <tr>
-                <th>Name</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>Location</th>
+                <th><button ng-click="sortEventsByName()">Name</button></th>
+                <th><button ng-click="sortEventsByDate()">Start Time</button></th>
+                <th><button ng-click="sortEventsByDate()">End Time</button></th>
+                <th><button ng-click="sortEventsByLocation()">Location</button></th>
               </tr>
               <tr ng-repeat="events in eventlistCtrl.allEvents">
 

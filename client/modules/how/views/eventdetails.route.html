@@ -4,12 +4,24 @@
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       <strong>Success!</strong> Event successfully changed.
     </div>
+    <div class="alert alert-success alert-dismissible animated fadeIn" role="alert" ng-show="participantbanner" style="text-align:center">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>Success!</strong> Participant successfully added.
+    </div>
+    <div class="alert alert-success alert-dismissible animated fadeIn" role="alert" ng-show="volunteerbanner" style="text-align:center">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>Success!</strong> Volunteer successfully added.
+    </div>
+    <div class="alert alert-success alert-dismissible animated fadeIn" role="alert" ng-show="removedbanner" style="text-align:center">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>Success!</strong> Event successfully deleted. Returning to events page...
+    </div>
   </div>
   <div class="row animated fadeIn">
     <div class="col-sm-8 col-md-8 col-md-offset-2">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">{{eventDetailsCtrl.event.name}}</h3>
+          <h3 class="panel-title">{{eventDetailsCtrl.event.name}} <a href="" ng-show="isAdmin"><span class="glyphicon glyphicon-remove-sign" ng-click="eventDetailsCtrl.removeEvent(eventDetailsCtrl.id)" aria-hidden="true"></span></a></h3>
         </div>
         <div class="panel-body">
           <ul class="nav nav-tabs" id="tabbies">
@@ -35,10 +47,45 @@
           </div>
           </div>
           <div id="participants" class="tab-pane fade">
-            <p><a href="" id="eventParticipants" editable-text="eventDetails.participants">{{eventDetails.participants}}</a></p>
+
+            <table class="table table-hover table-striped">
+              <tr>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Disabilities</th>
+                <th>Contact Email</th>
+              </tr>
+              <tr ng-repeat="events in eventDetails.participants">
+
+                <td>{{events.username}}</td>
+                <td>{{events.firstname}} {{events.lastname}}</td>
+                <td>{{events.disabilities}}</td>
+                <td>{{events.email}}</td>
+              </tr>
+            </table>
+            <!-- <div><a href="" id="eventParticipants" editable-text="eventDetails.participants" ng-show="isAdmin">{{eventDetails.participants}}</a><span ng-show="!isAdmin">{{eventDetails.participants}}</span></div> -->
+            <br>
+            <button class="btn-lg btn-success btn-block" ng-show="isAdmin" data-toggle="modal" data-target="#participantModal">Add participant</button>
           </div>
           <div id="volunteers" class="tab-pane fade">
-            <p><a href="" id="eventVolunteers" editable-text="eventDetails.volunteers">{{eventDetails.volunteers}}</a></p>
+            <table class="table table-hover table-striped">
+              <tr>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Disabilities</th>
+                <th>Contact Email</th>
+              </tr>
+              <tr ng-repeat="events in eventDetails.volunteers">
+
+                <td>{{events.username}}</td>
+                <td>{{events.firstname}} {{events.lastname}}</td>
+                <td>{{events.disabilities}}</td>
+                <td>{{events.email}}</td>
+              </tr>
+            </table>
+            <!-- <div><a href="" id="eventVolunteers" editable-text="eventDetails.volunteers" ng-show="isAdmin">{{eventDetails.volunteers}}</a><span ng-show="!isAdmin">{{eventDetails.volunteers}}</span></div> -->
+            <br>
+            <button class="btn-lg btn-success btn-block" ng-show="isAdmin" data-toggle="modal" data-target="#volunteerModal">Add participant</button>
           </div>
         </div>
         </div>
@@ -85,6 +132,86 @@
                   <input type="text" class="form-control" id="inputEmail" placeholder="Disabilities" ng-model="user.disabilities">
                 </div>
                 <button type="submit" class="btn btn-primary">Sign up for Event</button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Modal for inserting participants -->
+      <div class="modal fade" id="participantModal" tabindex="-1" role="dialog" aria-labelledby="psignupLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="psignupLabel">{{eventDetails.name}}</h4>
+            </div>
+            <div class="modal-body">
+              <form ng-submit="addParticipant()">
+                <div class="form-group">
+                  <label for="pinputFirstame">First Name</label>
+                  <input type="text" class="form-control" id="pinputFirstname" placeholder="First Name" ng-model="newParticipant.firstname">
+                </div>
+                <div class="form-group">
+                  <label for="pinputLastname">Last Name</label>
+                  <input type="text" class="form-control" id="pinputLastname" placeholder="Last Name" ng-model="newParticipant.lastname">
+                </div>
+                <div class="form-group">
+                  <label for="pinputDisplayname">Display Name <small>Account or awesome nickname!</small></label>
+                  <input type="text" class="form-control" id="pinputDisplayname" placeholder="ex. NeonAnimal" ng-model="newParticipant.username">
+                </div>
+                <div class="form-group">
+                  <label for="pinputEmail">Contact Email</label>
+                  <input type="email" class="form-control" id="pinputEmail" placeholder="Email" ng-model="newParticipant.email">
+                </div>
+                <div class="form-group">
+                  <label for="pinputDisabilities">Disabilities <small>Please list any disabilities you may have</small></label>
+                  <input type="text" class="form-control" id="pinputEmail" placeholder="Disabilities" ng-model="newParticipant.disabilities">
+                </div>
+                <button type="submit" class="btn btn-primary">Add participant</button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Modal for inserting volunteers -->
+      <div class="modal fade" id="volunteerModal" tabindex="-1" role="dialog" aria-labelledby="vsignupLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="vsignupLabel">{{eventDetails.name}}</h4>
+            </div>
+            <div class="modal-body">
+              <form ng-submit="addVolunteer()">
+                <div class="form-group">
+                  <label for="vinputFirstame">First Name</label>
+                  <input type="text" class="form-control" id="vinputFirstname" placeholder="First Name" ng-model="newVolunteer.firstname">
+                </div>
+                <div class="form-group">
+                  <label for="vinputLastname">Last Name</label>
+                  <input type="text" class="form-control" id="vinputLastname" placeholder="Last Name" ng-model="newVolunteer.lastname">
+                </div>
+                <div class="form-group">
+                  <label for="vinputDisplayname">Display Name <small>Account or awesome nickname!</small></label>
+                  <input type="text" class="form-control" id="vinputDisplayname" placeholder="ex. NeonAnimal" ng-model="newVolunteer.username">
+                </div>
+                <div class="form-group">
+                  <label for="vinputEmail">Contact Email</label>
+                  <input type="email" class="form-control" id="vinputEmail" placeholder="Email" ng-model="newVolunteer.email">
+                </div>
+                <div class="form-group">
+                  <label for="vinputDisabilities">Disabilities <small>Please list any disabilities you may have</small></label>
+                  <input type="text" class="form-control" id="vinputEmail" placeholder="Disabilities" ng-model="newVolunteer.disabilities">
+                </div>
+                <button type="submit" class="btn btn-primary">Add volunteer</button>
               </form>
             </div>
             <div class="modal-footer">

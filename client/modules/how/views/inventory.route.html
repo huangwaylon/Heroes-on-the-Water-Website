@@ -2,12 +2,14 @@
   <div ng-show="removeSuccess" class="alert alert-danger animated fadeIn">{{removeMessage}}</div>
   <div ng-show="addSuccess" class="alert alert-success animated fadeIn">{{addMessage}}</div>
 
+  <div ng-show="error" class="alert alert-danger animated fadeIn">{{errorMessage}}</div>
+
   <p>Inventory: <span ng-bind="allItems.length"/> Items</p>
-  <ul>
+  <ul ng-show="success">
     <li ng-repeat="x in allItems"><input type="checkbox" checked="{{x.isUsed}}"/>{{x.name}}, {{x.description}}, (id #: {{x._id}})<span ng-click="remove($index)">×</span></li>
   </ul>
 
-  <form ng-submit="add()">
+  <form ng-show="success" ng-submit="add()">
     <div class="form-group">
       <label>Item Name (*required)</label>
       <input type="text" class="form-control" ng-model="itemName" required>

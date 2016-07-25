@@ -6,8 +6,8 @@
         this.mail = [];
 
         this.getMailById = function(mailId) {
-            $log.debug('Entering mailService.getMail');
-            $log.log('mailId: ', mailId);
+            $log.debug('Entering mailService.getMailById');
+            $log.log('Getting mail with Id: ', mailId);
             var defer = $q.defer();
 
             $http({
