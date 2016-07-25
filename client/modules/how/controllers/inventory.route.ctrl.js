@@ -1,7 +1,7 @@
 (function() {
   angular.module('app.how').controller('inventoryRouteCtrl',
-  ['$scope', '$location', 'InvService', 'AuthService',
-  function ($scope, $location, InvService, AuthService) {
+  ['$scope', '$location', 'InvService', 'AuthService', '$timeout',
+  function ($scope, $location, InvService, AuthService, $timeout) {
 
     // Initialize values
     $scope.removeSuccess = false;
@@ -20,7 +20,6 @@
 
     // Add function
     $scope.add = function () {
-      console.log("Add");
       InvService.add($scope.itemName,
                     $scope.itemDescription,
                     $scope.itemUsed)
@@ -30,6 +29,9 @@
           $scope.addMessage = "Added item!";
           $scope.disabled = false;
           $scope.removeSuccess = false;
+          $timeout(function () {
+            $scope.addSuccess = false;
+          }, 2000);
         });
     };
 
@@ -43,6 +45,9 @@
           $scope.removeMessage = "Removed item!";
           $scope.disabled = false;
           $scope.addSuccess = false;
+          $timeout(function () {
+            $scope.removeSuccess = false;
+          }, 2000);
         });
     };
 
