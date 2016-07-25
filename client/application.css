@@ -4,6 +4,13 @@
 
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 
+.alerts {
+  position: absolute;
+  top: -30px;
+  left: 20px;
+  right: 20px;
+}
+
 body {
   padding-top: 70px;
   cursor: default;

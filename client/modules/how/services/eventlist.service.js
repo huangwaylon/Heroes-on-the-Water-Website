@@ -1,6 +1,6 @@
 (function() {
   angular.module('app.how').service('eventlistService', function($log, $http, $q) {
-    $log.debug('Initializing eventlistService');
+    //$log.debug('Initializing eventlistService');
 
     var self = this;
 
@@ -123,6 +123,24 @@
 
       return defer.promise;
     };
+
+    this.removeEvent = function(id) {
+      var defer = $q.defer();
+      $http.post('/events/delete', {_id : id}).then(
+          function(response) {
+            //$log.debug('eventlist resolve: ', response);
+            defer.resolve(response);
+            self.getEvents();
+          }, function(error, status) {
+            //$log.log('eventlist reject', error, status);
+            defer.reject(error, status);
+          }, function(progress) {
+            //$log.debug('eventlist notify', progress);
+            defer.notify(progress);
+          });
+
+      return defer.promise;
+    }
 
     this.getEvents();
     this.getUsers();
