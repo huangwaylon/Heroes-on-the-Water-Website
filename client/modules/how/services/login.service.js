@@ -1,7 +1,7 @@
 (function() {
   angular.module('app.how').factory('AuthService',
-    ['$q', '$timeout', '$http',
-    function ($q, $timeout, $http) {
+    ['$q', '$timeout', '$http', '$rootScope',
+    function ($q, $timeout, $http, $rootScope) {
 
       var self = this;
 
@@ -9,6 +9,7 @@
 
       // create user variable
       var user = null;
+      var currUserObject = {};
 
       // return available functions for use in the controllers
       return ({
@@ -64,18 +65,12 @@
       }
 
       function hello(userObject) {
-        return $http.get('/user/hello').then(function(response) {
-          //console.log(response.data.id);
-
-
-          // userObject.lastname = response.data.username;
-          // userObject.firstname = response.data.id;
-
-
-          findUser(response.data.id, userObject);
+        return $http.get('/user/getuser').then(function(response) {
+          findUser(response.data.id, userObject).then(function(response){
+            $rootScope.$broadcast("user_loaded");
+          });
         });
       }
-
 
       function findUser(userId, userObject) {
         return $http.get('/user/users').then(function(response) {
