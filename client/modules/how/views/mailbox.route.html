@@ -6,6 +6,8 @@ To do:
 <li>Tons of other stuff</li>
 </ul>
 
+<b>Currently logged in user:</b> <div ng-bind="user.username"></div>
+
 <form>
 	<h4>Send test mail: </h4>
 	<input type="text" ng-model="sender" placeholder="sender username">
@@ -16,8 +18,7 @@ To do:
 </form>
 
 <form>
-        <h3>Enter username to load their data from mongo:</h3>
-        <input type="text" ng-model="userToLookup" placeholder="username">
+        <h3>Load info and mail for currently logged in user:</h3>
         <button ng-click="submitLookup()">Submit</button>
 </form>
 	<h4>User's information:</h4>
@@ -28,7 +29,7 @@ To do:
         <br><b>Disabilities: </b>{{userResult.disabilities}}
         <br><b>Account: </b>{{userResult.account}}
         <br><b>Mail IDs: </b>{{userResult.mail}}
-        <br>
+        <br><br>
     <h4>User's mailbox: </h4>
     <div ng-repeat="message in mailResults">
         <br><b>ID: </b>{{message._id}}

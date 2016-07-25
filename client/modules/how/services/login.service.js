@@ -14,6 +14,7 @@
         logout: logout,
         register: register,
         hello: hello,
+        getLoggedInUsername: getLoggedInUsername,
         findUser: findUser,
         findUserByUsername:  findUserByUsername,
         updateUser: updateUser
@@ -61,8 +62,15 @@
 
       function hello(userObject) {
         return $http.get('/user/hello').then(function(response) {
+          console.log(response.data.username);
           console.log(response.data.id);
           findUser(response.data.id, userObject);
+        });
+      }
+
+      function getLoggedInUsername(userObject) {
+        return $http.get('/user/hello').then(function(response) {
+          return response.data;
         });
       }
 
