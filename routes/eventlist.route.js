@@ -1,13 +1,10 @@
 (function() {
-
   var express = require('express');
   var router = express.Router();
-
   var mongoose = require('mongoose');
-
   var EventList = require('../models/eventlist.model.js');
 
-  // Handl get request to get all example resources
+  // Handle get request to get all example resources
   router.get('/', function(req, res, next) {
     EventList.find({}, function(err, examples) {
       if (err) {
@@ -18,7 +15,6 @@
       res.send(examples);
     });
   });
-
 
   router.get('/:id', function(req, res, next) {
     EventList.find({"_id": req.params.id}, function(err, examples) {

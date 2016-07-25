@@ -8,6 +8,22 @@
     this.fulllist = '';
     this.users = '';
 
+    // Sorting Functions
+    function sortByDate(a, b) {
+      return new Date(a.date).getTime() - new Date(b.date).getTime();
+    }
+
+    function sortBy(prop) {
+      return function(a, b) {
+        if (a[prop] > b[prop]) {
+            return 1;
+        } else if (a[prop] < b[prop]) {
+            return -1;
+        }
+        return 0;
+      }
+    }
+
     this.getUsers = function() {
       var defer = $q.defer();
 
@@ -69,13 +85,13 @@
     };
 
     this.getEvents = function() {
-
       var defer = $q.defer();
 
       $http.get('/events').then(
           function(response) {
             //$log.debug('events resolve', response);
             self.fulllist = response.data;
+            self.fulllist.sort(sortByDate);
             defer.resolve(response);
           },
           function(error, status) {
@@ -91,9 +107,7 @@
     };
 
     this.postEvent = function(eve) {
-
       var defer = $q.defer();
-
       $http.post('/events', eve).then(
           function(response) {
             //$log.debug('eventlist resolve: ', response);
