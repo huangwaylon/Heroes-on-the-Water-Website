@@ -30,17 +30,10 @@
       </ul> -->
 
   <div ng-show="error" class="alert alert-danger animated fadeIn">{{errorMessage}}</div>
-  <form ng-show="success" ng-submit="add()">
-    <div class="form-group">
-      <label>Item Name (*required)</label>
-      <input type="text" class="form-control" ng-model="itemName" required>
-
-    </div>
-</div>
-
+  
   <div class="row">
     <div class="col-sm-6 col-md-6 col-md-offset-2">
-      <form ng-submit="add()">
+      <form  ng-show="success" ng-submit="add()">
         <div class="form-group">
           <label>Item Name (*required)</label>
           <input type="text" class="form-control" ng-model="itemName" required>
