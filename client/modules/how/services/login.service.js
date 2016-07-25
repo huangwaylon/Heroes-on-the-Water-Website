@@ -19,6 +19,7 @@
         logout: logout,
         register: register,
         hello: hello,
+        getLoggedInUsername: getLoggedInUsername,
         findUser: findUser,
         findUserByUsername:  findUserByUsername,
         updateUser: updateUser
@@ -69,6 +70,12 @@
           findUser(response.data.id, userObject).then(function(response){
             $rootScope.$broadcast("user_loaded");
           });
+        });
+      }
+
+      function getLoggedInUsername(userObject) {
+        return $http.get('/user/getuser').then(function(response) {
+          return response.data;
         });
       }
 
