@@ -65,7 +65,6 @@
           }
         }
 
-<<<<<<< HEAD
         $scope.resetTab = function() {
           $scope.errorbanner = false;
           $scope.errormessage = false;
@@ -77,24 +76,6 @@
         }
 
 
-        this.addEvent = function() {
-          eventlistService.postEvent(self.newEvent).then(
-              function(response) {
-                //$log.debug('addEvent resolve', response);
-                $scope.errorbanner = false;
-                $scope.success = true;
-                $timeout(function(){ $scope.success = false; }, 5000);
-                self.newEvent = {};
-                eventlistService.getEvents();
-              }, function(error, status) {
-                $scope.errorbanner = true;
-                //$log.log('addEvent reject', error, status);
-
-              }, function(progress) {
-              //  $log.debug('addEvent notify', progress);
-              });
-
-=======
         $scope.sortEventsByName = function() {
           self.allEvents.sort(sortBy("name"));
           console.log("name");
@@ -123,7 +104,6 @@
                 }, function(progress) {
                   $log.debug('addEvent notify', progress);
                 });
->>>>>>> 7acf34518aeae92016b74064b34651486e8c147d
         };
 
         this.searchEvents = function() {
