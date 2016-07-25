@@ -33,6 +33,7 @@
           $scope.newParticipant = {};
         };
 
+        //Method adds volunteers, taking newVolunteer object and submitting to service.
         $scope.addVolunteer = function() {
           $scope.eventDetails.volunteers.push($scope.newVolunteer);
           eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
