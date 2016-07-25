@@ -4,6 +4,7 @@
     <div ng-show="addSuccess" class="alert alert-success animated fadeIn">{{addMessage}}</div>
   </div>
 
+
   <div class="row">
     <div class="col-sm-10 col-md-10 col-md-offset-1">
       <p>Inventory: <span ng-bind="allItems.length"/> Items</p>
@@ -27,6 +28,13 @@
       <!-- <ul>
         <li ng-repeat="x in allItems"><input type="checkbox" checked="{{x.isUsed}}"/>{{x.name}}, {{x.description}}, (id #: {{x._id}})<span ng-click="remove($index)">×</span></li>
       </ul> -->
+
+  <div ng-show="error" class="alert alert-danger animated fadeIn">{{errorMessage}}</div>
+  <form ng-show="success" ng-submit="add()">
+    <div class="form-group">
+      <label>Item Name (*required)</label>
+      <input type="text" class="form-control" ng-model="itemName" required>
+
     </div>
 </div>
 

@@ -1,9 +1,8 @@
 To do:
 <ul>
 <li>Send mail to multiple people, comma/space in between usernames</li>
-<li>Automatically display mail of logged in user</li>
 <li>Auto populate sender field from logged in user</li>
-<li>Tons of other stuff</li>
+<li>More stuff</li>
 </ul>
 
 <form>
@@ -15,12 +14,7 @@ To do:
 	<button ng-click="submitMail()">Submit</button>
 </form>
 
-<form>
-        <h3>Enter username to load their data from mongo:</h3>
-        <input type="text" ng-model="userToLookup" placeholder="username">
-        <button ng-click="submitLookup()">Submit</button>
-</form>
-	<h4>User's information:</h4>
+	<h4>Current user's information:</h4>
         <b>Username: </b>{{userResult.username}}
         <br><b>First name: </b>{{userResult.firstname}}
         <br><b>Last name: </b>{{userResult.lastname}}
@@ -28,7 +22,7 @@ To do:
         <br><b>Disabilities: </b>{{userResult.disabilities}}
         <br><b>Account: </b>{{userResult.account}}
         <br><b>Mail IDs: </b>{{userResult.mail}}
-        <br>
+        <br><br>
     <h4>User's mailbox: </h4>
     <div ng-repeat="message in mailResults">
         <br><b>ID: </b>{{message._id}}

@@ -6,11 +6,30 @@
     // Initialize values
     $scope.removeSuccess = false;
     $scope.addSuccess = false;
+    $scope.success = false;
+    $scope.error = false;
     $scope.disabled = false;
+    $scope.user = {};
 
     // Check that the user is logged in
     if (!AuthService.isLoggedIn()) {
       $location.path('/login');
+    } else {
+      AuthService.hello($scope.user);
+    }
+
+    $scope.$on("user_loaded", checkUserPermissions);
+
+    function checkUserPermissions() {
+      if ($scope.user.account && $scope.user.account != "Administrator") {
+        console.log("Not an Administrator!");
+        $scope.success = false;
+        $scope.error = true;
+        $scope.errorMessage = "Not an Administrator!"
+      } else {
+        $scope.success = true;
+        $scope.error = false;
+      }
     }
 
     // Initialize the allItems variable which stores all the inventory items
