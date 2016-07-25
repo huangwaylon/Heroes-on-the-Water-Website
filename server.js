@@ -27,11 +27,13 @@
   var donationRoute = require('./routes/donation.route.js');
   var mailRoute = require('./routes/mail.route.js');
   var routes = require('./routes/api.route.js');
+  var eventlistRoute = require('./routes/eventlist.route.js');
   var inventoryRoute = require('./routes/inv.route.js');
 
   app.use(express.static('public'));
   app.use('/examples', exampleRoute);
   app.use('/galleryImages', galleryImageRoute);
+  app.use('/events', eventlistRoute);
   // define middleware
   app.use(express.static(path.join(__dirname, './client')));
   app.use(logger('dev'));

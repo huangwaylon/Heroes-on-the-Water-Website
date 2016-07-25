@@ -1,0 +1,132 @@
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-sm-12, col-md-12">
+      <ul class="nav nav-tabs" id="tabbles">
+        <li class="active"><a data-toggle="tab" href="#search">Search for Event</a></li>
+        <li><a data-toggle="tab" href="#view" >View All Events</a></li>
+        <li><a data-toggle="tab" href="#create">Create Event</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="row">
+      <!--content for each tab -->
+      <div class="tab-content">
+      <div id="search" class="tab-pane fade in active">
+        <br>
+        <div class="col-sm-4 col-md-2">
+          <div class="alert alert-danger" role="alert" ng-show="errormessage"><b>Invalid time:</b> Please use the datepicker to select a time.</div>
+          <div class="input-group animated fadeIn">
+            <input class="form-control" type="text" id="datepicker" placeholder="Search by event date...">
+            <span class="input-group-btn"><button class="btn btn-primary" type="button" id="searchevents_button" ng-click='eventlistCtrl.searchEvents()'>Search</button></span>
+          </div>
+          <br>
+        </div>
+        <div class="col-sm-4 col-md-3">
+          <div class="list-group">
+            <ev-list></ev-list>
+          </div>
+      </div>
+      </div>
+      <div id="view" class="tab-pane fade">
+        <div class="col-sm-6 col-md-6">
+        <h3>View All Events</h3>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title">All Events</h3>
+          </div>
+            <table class="table table-hover table-striped">
+              <tr>
+                <th>Name</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Location</th>
+              </tr>
+              <tr ng-repeat="events in eventlistCtrl.allEvents">
+
+                <td><a href="/#/events/{{events._id}}">{{events.name}}</a></td>
+                <td>{{events.date}} {{events.starttime}}</td>
+                <td>{{events.date}} {{events.endtime}}</td>
+                <td>{{events.location}}</td>
+              </tr>
+            </table>
+        </div>
+
+      </div>
+      </div>
+      <div id="create" class="tab-pane fade">
+        <div class="col-sm-6 col-md-6 col-md-offset-4">
+          <br>
+          <div class="row">
+          <div class="col-sm-6 col-md-6">
+            <div class="alert alert-success animated fadeIn" ng-show="success">
+              <!--This needs to show up when event has been successfully made.-->
+              <strong>Successfully created Event!</strong> Your event has been created!
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-md-6">
+            <div class="alert alert-danger animated fadeIn" ng-show="errorbanner">
+              <!--This shows up if not all of the fields are filled in. -->
+              <strong>Error</strong> One or more fields have not been filled out.
+            </div>
+          </div>
+      </div>
+        <h3>Create an Event</h3>
+        <!--This is where the form goes. Don't forget ng-model to add to the variable. -->
+        <form class="form-horizontal" ng-submit="eventlistCtrl.addEvent()" novalidate>
+          <div class="form-group">
+            <div class="col-sm-6 col-md-6">
+              <label for="eventName">Event Name</label>
+              <input type="text" class="form-control" ng-model="eventlistCtrl.newEvent.name" id="eventName" placeholder="Event Name">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-6 col-md-6">
+              <label for="eventLocation">Location</label>
+              <input type="text" class="form-control" ng-model="eventlistCtrl.newEvent.location" id="eventLocation" placeholder="Event Location">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-6 col-md-6">
+              <label for="eventDate">Date</label>
+              <input type="text" class="form-control" ng-model="eventlistCtrl.newEvent.date" id="datepickerz" placeholder="Event Date">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3 col-md-3">
+                <label>Start Time <small>Format: 8:00 AM</small></label>
+                <input type="text" class="form-control timepicker"  ng-model="eventlistCtrl.newEvent.starttime" id="startTime" placeholder="Start Time">
+              </div>
+            <div class="col-sm-3 col-md-3">
+                <label>End Time  <small>Format: 8:00 PM</small></label>
+                <input type="text" class="form-control timepicker"  ng-model="eventlistCtrl.newEvent.endtime" id="endTime" placeholder="End Time">
+              </div>
+            </div>
+          <div class="form-group">
+            <div class="col-sm-3 col-md-3">
+              <label>Max Number of Participants</label>
+              <input type="number" class="form-control"  ng-model="eventlistCtrl.newEvent.maxParticipants" id="maxParticipants" placeholder="Max # of Volunteers">
+            </div>
+            <div class="col-sm-3 col-md-3">
+              <label>Max Number of Volunteers</label>
+              <input type="number" class="form-control"  ng-model="eventlistCtrl.newEvent.maxVolunteers" id="maxVolunteers" placeholder="Max # of Participants">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-6 col-md-6">
+              <label>Description <small>Include Chapter information here as well</small></label>
+              <textarea class="form-control" rows="3" ng-model="eventlistCtrl.newEvent.description" id="eventDescription"></textarea>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-6">
+            <button type="submit" style="width: 95%" class="btn-lg btn-info btn-block">Submit</button>
+          </div>
+        </form>
+
+      </div>
+      </div>
+    </div>
+</div>

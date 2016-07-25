@@ -3,6 +3,10 @@
     ['$q', '$timeout', '$http',
     function ($q, $timeout, $http) {
 
+      var self = this;
+
+      this.users = [];
+
       // create user variable
       var user = null;
 
@@ -61,10 +65,17 @@
 
       function hello(userObject) {
         return $http.get('/user/hello').then(function(response) {
-          console.log(response.data.id);
+          //console.log(response.data.id);
+
+
+          // userObject.lastname = response.data.username;
+          // userObject.firstname = response.data.id;
+
+
           findUser(response.data.id, userObject);
         });
       }
+
 
       function findUser(userId, userObject) {
         return $http.get('/user/users').then(function(response) {
@@ -77,7 +88,6 @@
               break;
             }
           }
-          console.log(currUser);
           userObject.username = currUser.username;
           userObject.firstname = currUser.firstname;
           userObject.lastname = currUser.lastname;
@@ -210,6 +220,5 @@
         return deferred.promise;
 
       }
-
   }]);
 })();

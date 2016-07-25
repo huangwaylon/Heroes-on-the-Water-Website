@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="row">
+    <div class="alert alert-success alert-dismissible animated fadeIn" role="alert" ng-show="changebanner" style="text-align:center">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>Success!</strong> Event successfully changed.
+    </div>
+  </div>
+  <div class="row animated fadeIn">
+    <div class="col-sm-8 col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{eventDetailsCtrl.event.name}}</h3>
+        </div>
+        <div class="panel-body">
+          <ul class="nav nav-tabs" id="tabbies">
+            <li class="active"><a data-toggle="tab" href="#details">Details</a></li>
+            <li><a data-toggle="tab" href="#participants">Participants</a></li>
+            <li><a data-toggle="tab" href="#volunteers">Volunteers</a></li>
+          </ul>
+          <!--content for each tab -->
+          <div class="tab-content">
+          <div id="details" class="tab-pane fade in active">
+            <br>
+            <div class="col-sm-6 col-md-6">
+            <div><b>Name:</b> <a href="" id="eventName" editable-text="eventDetails.name" ng-show="isAdmin">{{eventDetails.name}}</a><span ng-show="!isAdmin">{{eventDetails.name}}</span></div>
+            <div><b>Date:</b> <input style="width: 20%; min-width: 140px;" class="form-control" type="text" value="{{eventDetails.date}}" id="datepicker" ng-show="isAdmin"><span ng-show="!isAdmin">{{eventDetails.date}}</span></div>
+            <div><b>Start Time:<small ng-show="isAdmin">Format: 8:00 AM</small> </b><a href="" id="eventStarttime" editable-text="eventDetails.starttime" ng-show="isAdmin">{{eventDetails.starttime}}</a><span ng-show="!isAdmin">{{eventDetails.starttime}}</span></div>
+            <div><b>End Time:<small ng-show="isAdmin">Format: 8:00 PM</small> </b><a href="" id="eventEndtime" editable-text="eventDetails.endtime" ng-show="isAdmin">{{eventDetails.endtime}}</a><span ng-show="!isAdmin">{{eventDetails.endtime}}</span></div>
+            <div><b>Max Participants: </b><a href="" id="eventMaxParticipants" editable-text="eventDetails.maxParticipants" ng-show="isAdmin">{{eventDetails.maxParticipants}}</a><span ng-show="!isAdmin">{{eventDetails.maxParticipants}}</span></div>
+            <div><b>Max Volunteers: </b><a href="" id="eventMaxVolunteers" editable-text="eventDetails.maxVolunteers" ng-show="isAdmin">{{eventDetails.maxVolunteers}}</a><span ng-show="!isAdmin">{{eventDetails.maxVolunteers}}</span></div>
+          </div>
+            <div class="col-sm-6 col-md-6">
+            <div><b>Location:</b> <a href="" id="eventLocation" editable-text="eventDetails.location" ng-show="isAdmin">{{eventDetails.location}}</a><span ng-show="!isAdmin">{{eventDetails.location}}</span></div>
+            <div><b>Description: </b><a href="" id="eventDescription" editable-text="eventDetails.description" ng-show="isAdmin">{{eventDetails.description}}</a><span ng-show="!isAdmin">{{eventDetails.description}}</span></div>
+          </div>
+          </div>
+          <div id="participants" class="tab-pane fade">
+            <p><a href="" id="eventParticipants" editable-text="eventDetails.participants">{{eventDetails.participants}}</a></p>
+          </div>
+          <div id="volunteers" class="tab-pane fade">
+            <p><a href="" id="eventVolunteers" editable-text="eventDetails.volunteers">{{eventDetails.volunteers}}</a></p>
+          </div>
+        </div>
+        </div>
+      </div>
+      <button class="btn-lg btn-info btn-block" ng-show="!isAdmin" data-toggle="modal" data-target="#myModal">SIGN UP FOR THIS EVENT</button>
+        <!--This button needs to hidden and disabled unless they are admin-->
+        <button type="button" ng-click="eventDetailsCtrl.updateEvent()" ng-show="isAdmin" class="btn btn-primary">Submit Changes</button>
+
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8 col-md-8 col-md-offset-2">
+      <!-- Button trigger modal -->
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="signupLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="signupLabel">{{eventDetails.name}}</h4>
+            </div>
+            <div class="modal-body">
+              <form ng-submit="signup()">
+                <div class="form-group">
+                  <label for="inputFirstame">First Name</label>
+                  <input type="text" class="form-control" id="inputFirstname" placeholder="First Name" ng-model="user.firstname">
+                </div>
+                <div class="form-group">
+                  <label for="inputLastname">Last Name</label>
+                  <input type="text" class="form-control" id="inputLastname" placeholder="Last Name" ng-model="user.lastname">
+                </div>
+                <div class="form-group">
+                  <label for="inputDisplayname">Display Name <small>Account or awesome nickname!</small></label>
+                  <input type="text" class="form-control" id="inputDisplayname" placeholder="ex. NeonAnimal" ng-model="user.username">
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail">Contact Email</label>
+                  <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="user.email">
+                </div>
+                <div class="form-group">
+                  <label for="inputDisabilities">Disabilities <small>Please list any disabilities you may have</small></label>
+                  <input type="text" class="form-control" id="inputEmail" placeholder="Disabilities" ng-model="user.disabilities">
+                </div>
+                <button type="submit" class="btn btn-primary">Sign up for Event</button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
