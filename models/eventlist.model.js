@@ -10,8 +10,8 @@
       description: {type: String, required: false, unique: false },
       maxParticipants: { type: String, required: false, unique: false },
       maxVolunteers: { type:  String, required: false, unique: false },
-      participants: [{firstname: String, lastname: String, displayname: String, phone: String, disabilites: String, email: String }],
-      volunteers: [{firstname: String, lastname: String, displayname: String, phone: String, disabilites: String, email: String }]
+      participants: [{firstname: String, lastname: String, username: String, disabilites: String, email: String }],
+      volunteers: [{firstname: String, lastname: String, username: String, disabilites: String, email: String }]
       // participants: [{type: mongoose.Schema.Types.ObjectId, ref: 'users'}],
       // volunteers: [{type: mongoose.Schema.Types.ObjectId, ref: 'users'}]
   });

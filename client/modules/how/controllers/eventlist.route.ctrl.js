@@ -1,7 +1,7 @@
 (function() {
   angular.module('app.how').controller('eventlistRouteCtrl',
-      function($log, $scope, $http, $timeout, eventlistService) {
-        $log.debug('Initializing eventlistRouteCtrl');
+      function($log, $scope, $http, $timeout, eventlistService, AuthService) {
+        //$log.debug('Initializing eventlistRouteCtrl');
 
         var self = this;
         $scope.errormessage = false;
@@ -12,8 +12,29 @@
           self.allEvents = eventlistService.fulllist;
         });
         this.newEvent = {};
-        this.newEvent.participants = "";
-        this.newEvent.volunteers = "";
+        this.newEvent.participants = [];
+        this.newEvent.volunteers = [];
+        $scope.isAdmin = false;
+        $scope.user = {};
+        $scope.loggedIn = false;
+        if (AuthService.isLoggedIn()) {
+            AuthService.hello($scope.user);
+        } else {
+          //console.log("User is not logged in");
+        }
+        $scope.$watch(function() {
+          return $scope.user;
+        }, function() {
+          $timeout(function () {
+            if($scope.user.account != undefined || $scope.user.account != null) {
+              if($scope.user.account == "Administrator") {
+                $scope.isAdmin = true;
+              }
+            } else {
+              $scope.isAdmin = false;
+            }
+          }, 1500);
+        });
         $scope.success = false;
         $scope.errorbanner = false;
         var picker = new Pikaday({ field: $('#datepicker')[0] });
@@ -31,23 +52,34 @@
 
         }
 
+        $scope.resetTab = function() {
+          $scope.errorbanner = false;
+          $scope.errormessage = false;
+
+        }
+
+        this.removeEvent = function(id) {
+          eventlistService.removeEvent(id);
+        }
+
 
         this.addEvent = function() {
+          eventlistService.postEvent(self.newEvent).then(
+              function(response) {
+                //$log.debug('addEvent resolve', response);
+                $scope.errorbanner = false;
+                $scope.success = true;
+                $timeout(function(){ $scope.success = false; }, 5000);
+                self.newEvent = {};
+                eventlistService.getEvents();
+              }, function(error, status) {
+                $scope.errorbanner = true;
+                //$log.log('addEvent reject', error, status);
 
-            eventlistService.postEvent(self.newEvent).then(
-                function(response) {
-                  $log.debug('addEvent resolve', response);
-                  $scope.errorbanner = false;
-                  $scope.success = true;
-                  $timeout(function(){ $scope.success = false; }, 5000);
-                  self.newEvent = {};
-                  eventlistService.getEvents();
-                }, function(error, status) {
-                  $log.log('addEvent reject', error, status);
-                  $scope.errorbanner = true;
-                }, function(progress) {
-                  $log.debug('addEvent notify', progress);
-                });
+              }, function(progress) {
+              //  $log.debug('addEvent notify', progress);
+              });
+
         };
 
         this.searchEvents = function() {

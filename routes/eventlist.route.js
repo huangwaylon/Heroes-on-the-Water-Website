@@ -52,11 +52,17 @@
   });
 
   router.put('/', function(req, res, next) {
-    console.log('handling post /events', req.body);
-    var newEvent = new EventList(req.body);
+    console.log('handling put /events', req.body);
     EventList.findOneAndUpdate({_id: req.body._id}, req.body, {upsert:true}, function(err, doc){
     if (err) return res.status(500).send(err);
     return res.send("succesfully saved");
+    });
+  });
+
+  router.post('/delete', function(req, res, next) {
+    EventList.find({_id: req.body._id}).remove(function(err) {
+      if (err) return res.status(500).send(err);
+      return res.send("Successfully removed event");
     });
   });
 
