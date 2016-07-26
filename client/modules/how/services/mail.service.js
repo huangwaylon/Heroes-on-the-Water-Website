@@ -61,5 +61,24 @@
 
             return defer.promise;
         };
+
+
+        //Send the same mail to a list of users, either comma or space separated usernames
+        this.mailToMultiple = function(mail, users){
+            var users = users.split(",");
+            var mailArray = new Array();
+            for(var i=0; i<users.length; i++){
+                users[i] = users[i].trim();
+                mailArray[i] = {
+                    sender: mail.sender,
+                    recipient: users[i],
+                    subject: mail.subject,
+                    body: mail.body,
+                    read: false
+                };
+                this.postMail(mailArray[i]);
+            }
+        }
+
     });
 })();
