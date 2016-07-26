@@ -7,7 +7,6 @@
 
         galleryImageService.imagelist = "";
 
-
         this.initGallery= function(type) {
           if(galleryImageService.dbimages[0] != null || galleryImageService.dbimages[0] != undefined) {
             if(type == "press") {
@@ -37,7 +36,6 @@
           }
 
       };
-
 
         var initPhotoSwipeFromDOM = function(gallerySelector) {
 

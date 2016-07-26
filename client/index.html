@@ -47,77 +47,84 @@
             <li ng-class="{ active: navbarCtrl.isActive('/chapters') }"><a href="/#/chapters">Chapters</a></li>
             <li ng-class="{ active: navbarCtrl.isActive('/heroes') }"><a href="/#/heroes">Heroes</a></li>
             <li ng-class="{ active: navbarCtrl.isActive('/contact') }"><a href="/#/contact">About Us</a></li>
-            <!--Inventory tab should only be visible if an admin or someone else who needs to view inventory is logged in-->
-            <li ng-class="{ active: navbarCtrl.isActive('/inventory') }" ng-show="!notLoggedIn"><a href="/#/inventory">Inventory</a></li>
-            <!-- Mailbox tab should only be visible when a user is logged in -->
-            <li ng-class="{ active: navbarCtrl.isActive('/mailbox') }" ng-show="!notLoggedIn"><a href="/#/mailbox">Mailbox</a></li>
+          </ul>
+
+          <!-- <p class="navbar-text navbar-right" style="margin-right:0px; "> Signed in as : </p> -->
+          <ul class="nav navbar-nav navbar-right" ng-show="!notLoggedIn" >
+            <li class="dropdown">
+              <a href="http://getbootstrap.com/examples/sticky-footer-navbar/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.name}}<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/#/mailbox">Mail</a></li>
+                <li><a href="/#/profile">Profile</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header">Links</li>
+                <li><a href="/#/events">Events</a></li>
+                <li ng-show="isAdmin"><a href="/#/inventory">Inventory</a></li>
+                <li><a href="/#/logout">Logout</a></li>
+              </ul>
+            </li>
           </ul>
           <!--Hide this button after they have successfully logged in.-->
           <a href="/#/login" ng-show="notLoggedIn" type="button" class="btn btn-info navbar-btn navbar-right" style="margin-right:0px;">Login</a>
-          <!-- <p class="navbar-text navbar-right" style="margin-right:0px; "> Signed in as : </p> -->
-          <a href="/#/profile" ng-show="!notLoggedIn" type="button" class="btn btn-info navbar-btn navbar-right" style="margin-right:0px;">Profile</a>
         </div><!-- /.navbar-collapse -->
-
       </div><!-- /.container-fluid -->
     </nav>
       <ng-view></ng-view>
   </body>
 
-  <hr>
+  <!--style="position: relative; right: 0; bottom: 0; left: 0; width: 100%; height: 255px; font-size: 1em"-->
+  <footer class="footer" >
+    <div class="container-fluid">
+    <div class="row-fluid" style="padding-top: 10px">
 
-<!--style="position: relative; right: 0; bottom: 0; left: 0; width: 100%; height: 255px; font-size: 1em"-->
-<footer class="footer" >
-  <div class="container-fluid">
-  <div class="row-fluid" style="padding-top: 10px">
-
-    <div class="footer-section" style="float: left; width: 33%">
-      <h2 style="text-align: center">Heroes on the Water</h2>
-      <img style="display: block; margin: 0 auto; width: 30%" src="\images\logo.png"/>
-      <h4 style="padding-left: 5px; text-align: center">
-        <a style="color: black; " href="/#/">Home</a> ·
-        <a style="color: black" href="/#/events">Events</a> ·
-        <a style="color: black" href="/#/media">Media</a>
-        <br>
-        <a style="color: black" href="/#/chapters">Chapters</a> ·
-        <a style="color: black" href="/#/heroes">Heroes</a> ·
-        <a style="color: black" href="/#/contact">About Us</a> ·
-        <a style="color: black" href="/#/">Profile</a>
-      </h4>
-    </div>
-
-    <div class="footer-section" style="float: left; width: 33%; text-align: center">
-      <h3>Contact Us</h3>
-
-      <h4>
-        101-C N. Greenville Ave. #55<br>
-        Allen, TX 75002
-        <br>
-        <br>
-        Phone: 214-295-4541<br>
-        Email: info@heroesonthewater.org
-      </h4>
-      <br>
-      <div class="social_media">
-        <a href="http://www.facebook.com/HeroesontheWater" target="_blank"><i style="margin-right: 0.5em" class="fa fa-lg fa-facebook fa-2x"></i></a>
-        <a href="https://twitter.com/heroesonthewate" target="_blank"><i style="margin-right: 0.5em" class="fa fa-lg fa-twitter fa-2x"></i></a>
-        <a href="https://www.linkedin.com/company/heroes-on-the-water?trk=company_name" target="_blank"><i style="margin-right: 0.5em" class="fa fa-lg fa-linkedin fa-2x"></i></a>
-        <a href="https://www.youtube.com/user/PaddleFishHeal/" target="_blank"><i style="margin-right: 0.5em" class="fa fa-lg fa-youtube fa-2x"></i></a>
+      <div class="footer-section" style="float: left; width: 33%">
+        <h2 style="text-align: center">Heroes on the Water</h2>
+        <img style="display: block; margin: 0 auto; width: 30%" src="\images\logo.png"/>
+        <h4 style="padding-left: 5px; text-align: center">
+          <a style="color: black; " href="/#/">Home</a> ·
+          <a style="color: black" href="/#/events">Events</a> ·
+          <a style="color: black" href="/#/media">Media</a>
+          <br>
+          <a style="color: black" href="/#/chapters">Chapters</a> ·
+          <a style="color: black" href="/#/heroes">Heroes</a> ·
+          <a style="color: black" href="/#/contact">About Us</a> ·
+          <a style="color: black" href="/#/">Profile</a>
+        </h4>
       </div>
 
-    </div>
+      <div class="footer-section" style="float: left; width: 33%; text-align: center">
+        <h3>Contact Us</h3>
 
-    <div class="footer-section" style="float: left; width: 33%; text-align: center">
-      <h3>About HOW</h3>
-      <h4>HOW helps wounded warriors cast a more positive outlook on life.</h4>
-      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#donate">Donate</button><br>
-      <img class="fixed-ratio-resize" style="padding-right: 0.5em; padding-top: 0.5em; width: 20%" src="\images\awards\CFC.jpg"/>
-      <img class="fixed-ratio-resize" style="padding-right: 0.5em; padding-top: 0.5em; width: 20%" src="\images\awards\Guidestar_Gold.png"/>
-      <img class="fixed-ratio-resize" style="padding-right: 0.5em; padding-top: 0.5em; width: 25%" src="\images\awards\2014TopNonprofitBadge.png"/>
-      <img class="fixed-ratio-resize" style="padding-left: 10px; padding-top: 10px; width: 25%" src="\images\awards\2015TopNonprofitBadge.png"/>
+        <h4>
+          101-C N. Greenville Ave. #55<br>
+          Allen, TX 75002
+          <br>
+          <br>
+          Phone: 214-295-4541<br>
+          Email: info@heroesonthewater.org
+        </h4>
+        <br>
+        <div class="social_media">
+          <a href="http://www.facebook.com/HeroesontheWater" target="_blank"><i style="margin-right: 0.5em" class="fa fa-lg fa-facebook fa-2x"></i></a>
+          <a href="https://twitter.com/heroesonthewate" target="_blank"><i style="margin-right: 0.5em" class="fa fa-lg fa-twitter fa-2x"></i></a>
+          <a href="https://www.linkedin.com/company/heroes-on-the-water?trk=company_name" target="_blank"><i style="margin-right: 0.5em" class="fa fa-lg fa-linkedin fa-2x"></i></a>
+          <a href="https://www.youtube.com/user/PaddleFishHeal/" target="_blank"><i style="margin-right: 0.5em" class="fa fa-lg fa-youtube fa-2x"></i></a>
+        </div>
+
+      </div>
+
+      <div class="footer-section" style="float: left; width: 33%; text-align: center">
+        <h3>About HOW</h3>
+        <h4>HOW helps wounded warriors cast a more positive outlook on life.</h4>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#donate">Donate</button><br>
+        <img class="fixed-ratio-resize" style="padding-right: 0.5em; padding-top: 0.5em; width: 20%" src="\images\awards\CFC.jpg"/>
+        <img class="fixed-ratio-resize" style="padding-right: 0.5em; padding-top: 0.5em; width: 20%" src="\images\awards\Guidestar_Gold.png"/>
+        <img class="fixed-ratio-resize" style="padding-right: 0.5em; padding-top: 0.5em; width: 25%" src="\images\awards\2014TopNonprofitBadge.png"/>
+        <img class="fixed-ratio-resize" style="padding-left: 10px; padding-top: 10px; width: 25%" src="\images\awards\2015TopNonprofitBadge.png"/>
+      </div>
     </div>
-  </div>
-  </div>
-</footer>
+    </div>
+  </footer>
 
   <!-- Donation modal that is triggered -->
   <div class="modal fade" id="donate" role="dialog">

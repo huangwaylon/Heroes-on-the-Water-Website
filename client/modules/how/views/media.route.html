@@ -1,6 +1,6 @@
 <div class="container animated fadeIn">
   <ul class="nav nav-pills">
-    <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("press")'>Press</a></li>
+    <li class="active" role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("press")'>Press</a></li>
     <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("outing")'>Outings</a></li>
     <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("smiles")'>Smiles</a></li>
     <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("families")'>Families</a></li>
@@ -8,16 +8,14 @@
     <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("dogs")'>Dogs</a></li>
     <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("casting")'>Casting</a></li>
     <li role="presentation"><a data-toggle="tab" href="" ng-click='mediaCtrl.initGallery("boondoggle")'>Boondoggle</a></li>
-
   </ul>
 </div>
-    <hr>
+  <hr>
   <div class="container-fluid">
     <section data-scrollbar id="gallery" class="gallery" itemscope itemtype="http://schema.org/ImageGallery">
       <div id="pressnote"></div>
       <gallery-image></gallery-image>
     </section>
-
 
     <!-- <div class="griddle">
       <div class="griddle-item"><img src="/images/press/press_1.jpg" width="395" height="624"/></div>
@@ -27,7 +25,6 @@
 
     <!-- Root element of PhotoSwipe. Must have class pswp. -->
     <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
         <!-- Background of PhotoSwipe.
              It's a separate element, as animating opacity is faster than rgba(). -->
         <div class="pswp__bg"></div>
