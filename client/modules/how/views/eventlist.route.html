@@ -3,9 +3,9 @@
   <div class="row">
     <div class="col-sm-12, col-md-12">
       <ul class="nav nav-tabs" id="tabbles">
-        <li class="active"><a data-toggle="tab" href="#search">Search for Event</a></li>
-        <li><a data-toggle="tab" href="#view" >View All Events</a></li>
-        <li><a data-toggle="tab" href="#create">Create Event</a></li>
+        <li class="active"><a data-toggle="tab" href="#view">View All Events</a></li>
+        <li><a data-toggle="tab" href="#search">Search for Event</a></li>
+        <li><a data-toggle="tab" href="#create" ng-show="isAdmin">Create Event</a></li>
       </ul>
     </div>
   </div>
@@ -13,7 +13,32 @@
   <div class="row">
       <!--content for each tab -->
       <div class="tab-content">
-      <div id="search" class="tab-pane fade in active">
+        <div id="view" class="tab-pane fade in active">
+          <div class="col-sm-6 col-md-6">
+          <h3>View All Events</h3>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">All Events</h3>
+            </div>
+              <table class="table table-hover table-striped">
+                <tr>
+                  <th><button ng-click="sortEventsByName()">Name</button></th>
+                  <th><button ng-click="sortEventsByDate()">Start Time</button></th>
+                  <th><button ng-click="sortEventsByDate()">End Time</button></th>
+                  <th><button ng-click="sortEventsByLocation()">Location</button></th>
+                </tr>
+                <tr ng-repeat="events in eventlistCtrl.allEvents">
+
+                  <td><a href="/#/events/{{events._id}}">{{events.name}}</a></td>
+                  <td>{{events.date}} {{events.starttime}}</td>
+                  <td>{{events.date}} {{events.endtime}}</td>
+                  <td>{{events.location}}</td>
+                </tr>
+              </table>
+          </div>
+        </div>
+        </div>
+      <div id="search" class="tab-pane fade">
         <br>
         <div class="col-sm-4 col-md-2">
           <div class="alert alert-danger" role="alert" ng-show="errormessage"><b>Invalid time:</b> Please use the datepicker to select a time.</div>
@@ -75,7 +100,6 @@
               </tr>
             </table>
         </div>
-
       </div>
       </div>
       <div id="create" class="tab-pane fade">
@@ -99,7 +123,7 @@
       </div>
         <h3>Create an Event</h3>
         <!--This is where the form goes. Don't forget ng-model to add to the variable. -->
-        <form class="form-horizontal" ng-submit="eventlistCtrl.addEvent()" novalidate>
+        <form ng-show="isAdmin" class="form-horizontal" ng-submit="eventlistCtrl.addEvent()" novalidate>
           <div class="form-group">
             <div class="col-sm-6 col-md-6">
               <label for="eventName">Event Name</label>
@@ -144,6 +168,7 @@
               <textarea class="form-control" rows="3" ng-model="eventlistCtrl.newEvent.description" id="eventDescription"></textarea>
             </div>
           </div>
+          <!--Add checkboxes for participant or volunteer, or have two buttons, and have them choose which ones. -->
           <div class="col-sm-6 col-md-6">
             <button type="submit" style="width: 95%" class="btn-lg btn-info btn-block">Submit</button>
           </div>
