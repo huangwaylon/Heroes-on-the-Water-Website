@@ -52,7 +52,7 @@
           <!-- <p class="navbar-text navbar-right" style="margin-right:0px; "> Signed in as : </p> -->
           <ul class="nav navbar-nav navbar-right" ng-show="!notLoggedIn" >
             <li class="dropdown">
-              <a href="http://getbootstrap.com/examples/sticky-footer-navbar/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.name}}<span class="caret"></span></a>
+              <a href="http://getbootstrap.com/examples/sticky-footer-navbar/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.firstname}} {{user.lastname}}<span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="/#/mailbox">Mail</a></li>
                 <li><a href="/#/profile">Profile</a></li>
@@ -60,7 +60,7 @@
                 <li class="dropdown-header">Links</li>
                 <li><a href="/#/events">Events</a></li>
                 <li ng-show="isAdmin"><a href="/#/inventory">Inventory</a></li>
-                <li><a href="/#/logout">Logout</a></li>
+                <li><a href="" ng-click="logoutUser()">Logout</a></li>
               </ul>
             </li>
           </ul>
