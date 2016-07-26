@@ -49,6 +49,21 @@
           $scope.errormessage = false;
         }
 
+        // Sorting Functions ******************************************************
+        function sortByDate(a, b) {
+          return new Date(a.date).getTime() - new Date(b.date).getTime();
+        }
+        function sortBy(prop) {
+          return function(a, b) {
+            if (a[prop] > b[prop]) {
+                return 1;
+            } else if (a[prop] < b[prop]) {
+                return -1;
+            }
+            return 0;
+          }
+        }
+
         $scope.sortType     = 'name'; // set the default sort type
         $scope.sortReverse  = false;  // set the default sort order
 
