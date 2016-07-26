@@ -102,6 +102,14 @@
       <!-- Button trigger modal -->
 
       <!-- Modal -->
+
+
+
+
+
+      <!--Tomorrow, woork on getting if the user is logged in, auto fill out the information.
+          CSS for inventory and chapters page-->
+
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="signupLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -112,24 +120,28 @@
             <div class="modal-body">
               <form ng-submit="signup()">
                 <div class="form-group">
-                  <label for="inputFirstame">First Name</label>
-                  <input type="text" class="form-control" id="inputFirstname" placeholder="First Name" ng-model="user.firstname">
+                  <label for="inputFirstname">First Name</label>
+                  <input type="text" class="form-control" id="inputFirstname" value="{{user.firstname}}" placeholder="First Name" ng-model="newPerson.firstname">
                 </div>
                 <div class="form-group">
                   <label for="inputLastname">Last Name</label>
-                  <input type="text" class="form-control" id="inputLastname" placeholder="Last Name" ng-model="user.lastname">
+                  <input type="text" class="form-control" id="inputLastname" placeholder="Last Name" ng-model="newPerson.lastname">
                 </div>
                 <div class="form-group">
                   <label for="inputDisplayname">Display Name <small>Account or awesome nickname!</small></label>
-                  <input type="text" class="form-control" id="inputDisplayname" placeholder="ex. NeonAnimal" ng-model="user.username">
+                  <input type="text" class="form-control" id="inputDisplayname" placeholder="ex. NeonAnimal" ng-model="newPerson.username">
                 </div>
                 <div class="form-group">
                   <label for="inputEmail">Contact Email</label>
-                  <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="user.email">
+                  <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="newPerson.email">
                 </div>
                 <div class="form-group">
                   <label for="inputDisabilities">Disabilities <small>Please list any disabilities you may have</small></label>
-                  <input type="text" class="form-control" id="inputEmail" placeholder="Disabilities" ng-model="user.disabilities">
+                  <input type="text" class="form-control" id="inputEmail" placeholder="Disabilities" ng-model="newPerson.disabilities">
+                </div>
+                <div class="form-group">
+                    <label class="radio-inline"><input type="radio" value="participant" ng-model="signupType">Participant</label>
+                    <label class="radio-inline"><input type="radio" value="volunteer" ng-model="signupType">Volunteer</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Sign up for Event</button>
               </form>
@@ -175,6 +187,7 @@
               </form>
             </div>
             <div class="modal-footer">
+
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>
