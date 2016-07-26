@@ -13,7 +13,9 @@
 
     // Check that the user is logged in
     if (!AuthService.isLoggedIn()) {
-      $location.path('/login');
+      $scope.success = false;
+      $scope.error = true;
+      $scope.errorMessage = "Please sign in!"
     } else {
       AuthService.hello($scope.user);
     }

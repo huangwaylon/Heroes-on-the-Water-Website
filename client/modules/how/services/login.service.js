@@ -151,6 +151,7 @@
             if(status === 200 && data.status){
               user = true;
               deferred.resolve();
+              $rootScope.$broadcast("user_login");
             } else {
               user = false;
               deferred.reject();
@@ -176,6 +177,7 @@
         $http.get('/user/logout')
           // handle success
           .success(function (data) {
+            $rootScope.$broadcast("user_logout");
             user = false;
             deferred.resolve();
           })

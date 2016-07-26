@@ -68,7 +68,7 @@
         var picker = new Pikaday({ field: $('#datepicker')[0] });
 
         this.updateEvent = function() {
-          eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
+            eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
             $scope.changebanner = true;
           });
           $timeout(function () {

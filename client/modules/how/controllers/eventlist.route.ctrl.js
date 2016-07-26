@@ -44,6 +44,9 @@
           }
         }
 
+        $scope.sortType     = 'name'; // set the default sort type
+        $scope.sortReverse  = false;  // set the default sort order
+
         $scope.sortEventsByName = function() {
           self.allEvents.sort(sortBy("name"));
           console.log("name");
