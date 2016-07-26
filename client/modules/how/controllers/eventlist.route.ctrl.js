@@ -22,19 +22,17 @@
         } else {
           //console.log("User is not logged in");
         }
-        $scope.$watch(function() {
-          return $scope.user;
-        }, function() {
-          $timeout(function () {
-            if($scope.user.account != undefined || $scope.user.account != null) {
-              if($scope.user.account == "Administrator") {
-                $scope.isAdmin = true;
-              }
-            } else {
-              $scope.isAdmin = false;
-            }
-          }, 1500);
-        });
+
+        $scope.$on("user_loaded", checkUserPermissions);
+
+        function checkUserPermissions() {
+          if ($scope.user.account && $scope.user.account != "Administrator") {
+            $scope.isAdmin = false;
+          } else {
+            $scope.isAdmin = true;
+          }
+        }
+
         $scope.success = false;
         $scope.errorbanner = false;
         var picker = new Pikaday({ field: $('#datepicker')[0] });
