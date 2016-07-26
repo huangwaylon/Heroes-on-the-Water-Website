@@ -6,10 +6,15 @@
         var self = this;
         $scope.eventDetails;
         $scope.isAdmin = false;
+        this.id = $routeParams.id;
+        this.event = {};
+        var picker = new Pikaday({ field: $('#datepicker')[0] });
         $scope.changebanner = false;
         $scope.participantbanner = false;
         $scope.volunteerbanner = false;
         $scope.removedbanner = false;
+        $scope.signupType = '';
+        $scope.newPerson = {};
         $scope.user = {};
         $scope.loggedIn = false;
         $scope.newParticipant = {};
@@ -43,6 +48,9 @@
           }, 3000);
           this.event;
           $scope.newParticipant = {};
+          $timeout(function() {
+            $('#participantModel').modal('hide');
+          }, 1000);
         };
 
         //Method adds volunteers, taking newVolunteer object and submitting to service.
@@ -56,12 +64,47 @@
           }, 3000);
           this.event;
           $scope.newVolunteer = {};
+          $timeout(function() {
+            $('#volunteerModal').modal('hide');
+          }, 1000);
         };
 
-        // Event related functions
-        this.id = $routeParams.id;
-        this.event = {};
-        var picker = new Pikaday({ field: $('#datepicker')[0] });
+        $scope.signup = function() {
+          console.log($scope.newPerson);
+          if($scope.signupType == "participant") {
+            $scope.newParticipant = $scope.newPerson;
+            $scope.addParticipant();
+            $scope.newPerson = {};
+
+          }
+          else if($scope.signupType == "volunteer") {
+            $scope.newVolunteer = $scope.newPerson;
+            $scope.addVolunteer();
+            $scope.newPerson = {};
+          }
+          else {
+            alert("Neither participant or volunteer was selected");
+          }
+          $timeout(function() {
+            $('#myModal').modal('hide');
+          }, 1000);
+
+        }
+
+        // $scope.$watch(function() {
+        //   return $scope.user;
+        // }, function() {
+        //   $timeout(function () {
+        //     if($scope.user.account != undefined || $scope.user.account != null) {
+        //       if($scope.user.account == "Administrator") {
+        //         $scope.isAdmin = true;
+        //       }
+        //     } else {
+        //       $scope.isAdmin = false;
+        //     }
+        //   }, 1500);
+        // });
+
 
         this.updateEvent = function() {
             eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
