@@ -139,7 +139,6 @@
       }
 
       function login(username, password) {
-
         // create a new instance of deferred
         var deferred = $q.defer();
 
@@ -169,7 +168,6 @@
       }
 
       function logout() {
-
         // create a new instance of deferred
         var deferred = $q.defer();
 
@@ -189,7 +187,6 @@
 
         // return promise object
         return deferred.promise;
-
       }
 
 
