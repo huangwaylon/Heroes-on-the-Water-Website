@@ -2,8 +2,8 @@
   angular.module('app.how').service('eventlistService', function($log, $http, $q) {
     $log.debug('Initializing eventlistService');
 
+    // Variable initialization
     var self = this;
-
     this.eventlist = [];
     this.fulllist = '';
     this.users = '';
@@ -13,6 +13,11 @@
       return new Date(a.date).getTime() - new Date(b.date).getTime();
     }
 
+    /*
+    Sort By proposition - curried function
+    prop - a specified attribute
+    Returns a comparison function based on the proposition prop
+    */
     function sortBy(prop) {
       return function(a, b) {
         if (a[prop] > b[prop]) {

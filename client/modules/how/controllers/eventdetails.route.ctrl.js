@@ -1,8 +1,8 @@
 (function() {
   angular.module('app.how').controller('eventDetailsRouteCtrl',
       function($log, $scope, $routeParams, $http, $timeout, eventlistService, AuthService, $location) {
-        //$log.debug('Initializing eventDetailsRouteCtrl');
 
+        // Initialize scope variables
         var self = this;
         $scope.eventDetails;
         $scope.isAdmin = false;
@@ -12,14 +12,26 @@
         $scope.removedbanner = false;
         $scope.user = {};
         $scope.loggedIn = false;
-        if (AuthService.isLoggedIn()) {
-            AuthService.hello($scope.user);
-        } else {
-          //console.log("User is not logged in");
-        }
-
         $scope.newParticipant = {};
         $scope.newVolunteer = {};
+
+        // Check that the user is logged in
+        if (AuthService.isLoggedIn()) {
+          // Start process to get user details
+          AuthService.hello($scope.user);
+        }
+
+        // Register listener to user loaded
+        $scope.$on("user_loaded", checkUserPermissions);
+
+        // Check the user's permissions, e.g. Admin, volunteer, etc.
+        function checkUserPermissions() {
+          if ($scope.user.account && $scope.user.account != "Administrator") {
+            $scope.isAdmin = false;
+          } else {
+            $scope.isAdmin = true;
+          }
+        }
 
         $scope.addParticipant = function() {
           $scope.eventDetails.participants.push($scope.newParticipant);
@@ -46,23 +58,7 @@
           $scope.newVolunteer = {};
         };
 
-
-        $scope.$watch(function() {
-          return $scope.user;
-        }, function() {
-          $timeout(function () {
-            if($scope.user.account != undefined || $scope.user.account != null) {
-              if($scope.user.account == "Administrator") {
-                $scope.isAdmin = true;
-              }
-            } else {
-              $scope.isAdmin = false;
-            }
-          }, 1500);
-        });
-
-
-
+        // Event related functions
         this.id = $routeParams.id;
         this.event = {};
         var picker = new Pikaday({ field: $('#datepicker')[0] });
