@@ -44,8 +44,8 @@
 	});
   }; */
 
-  newDonor.insert('/donors/', function (req, res) {
-  	var donor = new Donor({
+ app.post('/donors/', function (req, res) {
+  	var donor = new donor({
   		firstname: req.body.firstname,
   		lastname: req.body.lastname,
   		email: req.body.email,
@@ -57,9 +57,15 @@
   		state: req.body.state,
   		country: req.body.country,
   		comment: req.body.comment
+  	}).save(function(err, doc) {
+  		if (err){
+  			res.json(err);
+  		} else {
+  			res.send("successfully inserted");
+  		}
   	});
 
-  	donorInfos.insertOne(donor, function(err) {
+ /* 	db.donors.insert(donor, function(err) {
   		if (err) {
   			throw err;
   		} else {
@@ -70,7 +76,7 @@
 
   res.redirect('/');
 
-/*	donorInfo.insert('/donors/', function(req, res, next) {
+	donorInfo.insert('/donors/', function(req, res, next) {
 		var donor = {
 	  		firstname: req.body.firstname,
 	  		lastname: req.body.lastname,
@@ -93,7 +99,7 @@
 			console.log("Donor inserted");
 			db.close();
 		});
-	});
-	  	res.redirect('/');*/
+	}); */
+	  	res.redirect('/');
 	}); 
 })();
