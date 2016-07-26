@@ -42,7 +42,7 @@
 		console.log("Donor inserted");
 		db.close();
 	});
-  }; 
+  }; */
 
  app.post('/donors/', function (req, res) {
   	var donor = new donor({
