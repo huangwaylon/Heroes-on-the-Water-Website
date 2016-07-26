@@ -42,7 +42,7 @@
 		console.log("Donor inserted");
 		db.close();
 	});
-  }; */
+  }; 
 
  app.post('/donors/', function (req, res) {
   	var donor = new donor({
@@ -64,6 +64,7 @@
   			res.send("successfully inserted");
   		}
   	});
+  });
 
  /* 	db.donors.insert(donor, function(err) {
   		if (err) {
@@ -99,7 +100,7 @@
 			console.log("Donor inserted");
 			db.close();
 		});
-	}); */
-	  	res.redirect('/');
+	}); 
+	  	res.redirect('/'); */
 	}); 
 })();
