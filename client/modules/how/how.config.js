@@ -47,6 +47,7 @@
     })
     .when('/logout', {
       controller: 'logoutController',
+      controllerAs: 'logoutCtrl',
       access: {restricted: true}
     })
     .when('/register', {
