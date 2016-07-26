@@ -32,6 +32,7 @@
             return defer.promise;
         };
 
+        //Sends mail to backend
         this.postMail = function(mail) {
             $log.debug('Entering mailService.postMail', mail);
 
@@ -61,5 +62,24 @@
 
             return defer.promise;
         };
+
+        //User calls this function to send mail. Handles sending to a list of people and passes
+        //it off to the postMail() function to actually send mails to the backend.
+        this.sendMail = function(mail){
+            var recipients = mail.recipient.split(",");
+            var mailArray = new Array();
+            for(var i=0; i<recipients.length; i++){
+                recipients[i] = recipients[i].trim();
+                mailArray[i] = {
+                    sender: mail.sender,
+                    recipient: recipients[i],
+                    subject: mail.subject,
+                    body: mail.body,
+                    read: false
+                };
+                this.postMail(mailArray[i]);
+            }
+        }
+
     });
 })();
