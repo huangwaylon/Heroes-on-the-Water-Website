@@ -38,7 +38,7 @@
                     body: $scope.body,
                     read: false
                 };
-                mailService.postMail(message);
+                mailService.sendMail(message);
             }
         });
 
