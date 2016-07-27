@@ -9,6 +9,7 @@
     $scope.success = false;
     $scope.error = false;
     $scope.disabled = false;
+    $scope.editMode = new Array();
     $scope.user = {};
 
     // Check that the user is logged in
@@ -81,6 +82,24 @@
             $scope.removeSuccess = false;
           }, 2000);
         });
+    };
+
+    // Remove item function
+    $scope.toggleEdit = function (index) {
+      $scope.editMode[index] = !$scope.editMode[index];
+      //Save button clicked, submit update to DB
+      if(!$scope.editMode[index]){
+        var editedItem = {
+            i_id: $scope.allItems[index]._id,
+            i_name: $scope.allItems[index].name,
+            i_description: $scope.allItems[index].description,
+            i_chapter: $scope.allItems[index].chapter,
+            i_events: $scope.allItems[index].events.split(", "),
+            i_isUsed: $scope.allItems[index].isUsed
+        };
+        console.log(editedItem);
+        InvService.update(editedItem);
+      }
     };
 
     // Refresh inventory list function
