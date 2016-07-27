@@ -122,6 +122,7 @@
         });
       }
 
+      // Checks the user's status in the backend
       function getUserStatus() {
         return $http.get('/user/status')
         // handle success

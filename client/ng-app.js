@@ -14,6 +14,22 @@
     });
   });
 
+  // Runs when the current route changes
+  appModule.run(function ($rootScope, $location, $route, AuthService) {
+    $rootScope.$on('$routeChangeStart',
+      function (event, next, current) {
+        // Check the user's status
+        AuthService.getUserStatus().then(function(){
+          // Check that the user is logged in
+          if (AuthService.isLoggedIn()) {
+            // Broadcast to listeners, specifically NavbarCtrl, to retrieve
+            // user info and update views
+            $rootScope.$broadcast("user_login");
+          }
+        });
+    });
+  });
+
   // Navigation bar controller
   appModule.controller('NavbarCtrl', function($log, $location, $scope, AuthService) {
     $scope.user = {};
