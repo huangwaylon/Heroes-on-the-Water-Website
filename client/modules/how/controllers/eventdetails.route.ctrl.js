@@ -107,9 +107,9 @@
         // Method removes participant at index specified
         $scope.removeParticipant = function(index) {
           $scope.eventDetails.participants.splice(index, 1);
-          //eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
-          //  console.log("Removed participant");
-          //});
+          eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
+            console.log("Removed participant");
+          });
         };
 
         // Method removes volunteer at index specified
