@@ -9,7 +9,7 @@
         all: all
       });
 
-      function add(name, description, isUsed) {
+      function add(name, description, chapter, events, isUsed) {
         // create a new instance of deferred
         var deferred = $q.defer();
 
@@ -17,6 +17,8 @@
         $http.post('/inventory/add',
           {i_name: name,
             i_description: description,
+            i_chapter: chapter,
+            i_events: events,
             i_isUsed: isUsed})
           // handle success
           .success(function (data, status) {
