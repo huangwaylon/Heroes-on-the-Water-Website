@@ -61,8 +61,8 @@ module.exports = function(grunt) {
           'node_modules/masonry-layout/dist/masonry.pkgd.min.js',
           'node_modules/imagesloaded/imagesloaded.pkgd.min.js',
           'node_modules/smooth-scrollbar/dist/smooth-scrollbar.js',
-          'client/js/pikaday.js',
           'node_modules/angular-xeditable/dist/js/xeditable.min.js'
+
 
         ],
         dest: 'public/lib.js' // They will all be concatenated in a single file here
@@ -72,7 +72,6 @@ module.exports = function(grunt) {
               'node_modules/photoswipe/dist/photoswipe.css',
               'node_modules/photoswipe/dist/default-skin/default-skin.css',
               'node_modules/smooth-scrollbar/dist/smooth-scrollbar.css',
-              'client/css/pikaday.css',
               'node_modules/angular-xeditable/dist/css/xeditable.min.css'
         ], // Same for CSS libraries
         dest: 'public/lib.css'
