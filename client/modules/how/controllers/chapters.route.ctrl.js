@@ -9,6 +9,8 @@
               $(this).tab('show')
             });
 
+
+
             $scope.callService = function() {
                 $scope.$watch(function() {
                     return chapterService.chapters;
@@ -19,6 +21,15 @@
                         $scope.loadScript();
                     }
                 });
+            }
+
+            $scope.addressChange = function() {
+              if($('#addressinput').val() == "") {
+                self.filteredChapters = chapterService.chapters;
+                if (self.chapters.length > 0) {
+                    $scope.loadScript();
+                }
+              }
             }
 
             $scope.initialize = function() {
