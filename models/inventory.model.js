@@ -4,8 +4,8 @@ var mongoose = require('mongoose');
 // Properties of the Item Type object
 var Inventory = new mongoose.Schema({
   name: { type: String, required: true, unique: false }, // e.g. Kayak, Fishing Pole, Life Jacket
-  chapter: { type: String, required: false, unique: false }, // Chapter that has the item in its inventory
   description: { type: String, required: false, unique: false }, // Condition, details, restrictions
+  chapter: { type: String, required: false, unique: false }, // Chapter that has the item in its inventory
   isUsed: { type: Boolean, required: false, unique: false } // Is registered to be used at an event
 });
 

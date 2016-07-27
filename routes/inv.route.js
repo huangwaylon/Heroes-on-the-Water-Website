@@ -7,8 +7,8 @@ var Q = require('q');
 inventory_router.post('/add', function(req, res) {
   var newItem = new Inventory({
                   name: req.body.i_name,
-                  chapter: req.body.i_chapter,
                   description: req.body.i_description,
+                  chapter: req.body.i_chapter,
                   isUsed: req.body.i_isUsed
                 });
   Inventory.create(newItem,

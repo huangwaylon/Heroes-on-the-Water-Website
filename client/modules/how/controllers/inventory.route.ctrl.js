@@ -52,6 +52,7 @@
     $scope.add = function () {
       InvService.add($scope.itemName,
                     $scope.itemDescription,
+                    $scope.itemChapter,
                     $scope.itemUsed)
         .then(function () {
           $scope.refresh();

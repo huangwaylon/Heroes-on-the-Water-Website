@@ -13,12 +13,14 @@
           <tr>
             <th>Iten Name</th>
             <th>Iten Description</th>
+            <th>Chapter</th>
             <th>In Use</th>
             <th style="text-align:center"> Remove</th>
           </tr>
           <tr ng-repeat="item in allItems">
             <td>{{item.name}}</td>
             <td>{{item.description}}</td>
+            <td>{{item.chapter}}</td>
             <td><input type="checkbox" class="form-control" checked="{{item.isUsed.toString()}}"/></td>
             <td style="text-align:center"><a href=""><span class="glyphicon glyphicon-remove-sign" ng-click="remove($index)" aria-hidden="true"></span></a></td>
           </tr>
@@ -39,6 +41,10 @@
         <div class="form-group">
           <label>Item Description</label>
           <input type="text" class="form-control" ng-model="itemDescription">
+        </div>
+        <div class="form-group">
+          <label>Chapter</label>
+          <input type="text" class="form-control" ng-model="itemChapter">
         </div>
         <div class="form-group">
           <label>Item Is Used</label>
