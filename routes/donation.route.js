@@ -5,23 +5,23 @@
 
 	var mongoose = require('mongoose');
 
-	var donor = require('../models/donation.model.js');
+	var Donor = require('../models/donation.model.js');
 
-	donationRoute.post('/donors', function(req, res) {
-		var newDonor = new donor(req.body);
+	router.post('/', function(req, res, next) {
+		var newDonor = new Donor(req.body);
 
 		newDonor.save(function (err, donor) {
 			if (err) {
 				next(err);
 				return;
 			}
-			res.send(donor)
+			res.send(donor);
 		});
 	});
 
 
-	donationRoute.get('/donors', function(req, res) {
-		donor.find(function (err, components) {
+	router.get('/', function(req, res, next) {
+		Donor.find(function (err, components) {
 			if (err) {
 				res.json(err);
 			}
@@ -29,5 +29,5 @@
 		});
 	}); 
 
-	module.exports = donationRoute;
+	module.exports = router;
 })();

@@ -8,6 +8,7 @@
         $scope.allDonors = [];
 
         $scope.addDonor = function() {
+          console.log("in addDonor");
           var currDonor = {
             firstname: $scope.firstname,
             lastname: $scope.lastname,
@@ -21,7 +22,8 @@
             country: $scope.country,
             comment: $scope.comment
           };
-          allDonors.push(currDonor);
+          $scope.allDonors.push(currDonor);
+          console.log(currDonor);
           donationService.addDonor(currDonor);
         };
       });
