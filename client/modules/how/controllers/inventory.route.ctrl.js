@@ -94,7 +94,7 @@
             i_name: $scope.allItems[index].name,
             i_description: $scope.allItems[index].description,
             i_chapter: $scope.allItems[index].chapter,
-            i_events: $scope.allItems[index].events.split(", "),
+            i_events: $scope.allItems[index].events.toString().split(","),
             i_isUsed: $scope.allItems[index].isUsed
         };
         console.log(editedItem);
