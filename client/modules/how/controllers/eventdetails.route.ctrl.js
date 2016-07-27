@@ -4,7 +4,9 @@
 
         // Initialize scope variables
         var self = this;
-        $scope.eventDetails;
+        $scope.eventDetails = {};
+        $scope.eventDetails.volunteers = [];
+        $scope.eventDetails.participants = [];
         $scope.isAdmin = false;
         this.id = $routeParams.id;
         this.event = {};
@@ -22,7 +24,6 @@
         $scope.newParticipant = {};
         $scope.newVolunteer = {};
         $('#leavebutton').hide();
-
 
         // Check that the user is logged in
         if (AuthService.isLoggedIn()) {
@@ -71,7 +72,7 @@
           $('#myModal').modal('show');
         }
 
-
+        //Method adds participants, taking new participant object and submitting to service.
         $scope.addParticipant = function() {
           $scope.eventDetails.participants.push($scope.newParticipant);
           eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
@@ -101,6 +102,22 @@
           $timeout(function() {
             $('#volunteerModal').modal('hide');
           }, 1000);
+        };
+
+        // Method removes participant at index specified
+        $scope.removeParticipant = function(index) {
+          $scope.eventDetails.participants.splice(index, 1);
+          //eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
+          //  console.log("Removed participant");
+          //});
+        };
+
+        // Method removes volunteer at index specified
+        $scope.removeVolunteer = function(index) {
+          $scope.eventDetails.volunteers.splice(index, 1);
+          eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
+            console.log("Removed volunteer");
+          });
         };
 
         //Include check here to see if a username already exists within the participant list.

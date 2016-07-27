@@ -55,6 +55,7 @@
                 <th>Name</th>
                 <th>Disabilities</th>
                 <th>Contact Email</th>
+                <th ng-show="isAdmin">Remove</th>
               </tr>
               <tr ng-repeat="events in eventDetails.participants">
 
@@ -62,6 +63,7 @@
                 <td>{{events.firstname}} {{events.lastname}}</td>
                 <td>{{events.disabilities}}</td>
                 <td>{{events.email}}</td>
+                <td ng-show="isAdmin" style="text-align:center"><span class="glyphicon glyphicon-remove-sign" ng-click="removeParticipant($index)" aria-hidden="true"></span></td>
               </tr>
             </table>
             <!-- <div><a href="" id="eventParticipants" editable-text="eventDetails.participants" ng-show="isAdmin">{{eventDetails.participants}}</a><span ng-show="!isAdmin">{{eventDetails.participants}}</span></div> -->
@@ -75,6 +77,7 @@
                 <th>Name</th>
                 <th>Disabilities</th>
                 <th>Contact Email</th>
+                <th ng-show="isAdmin">Remove</th>
               </tr>
               <tr ng-repeat="events in eventDetails.volunteers">
 
@@ -82,11 +85,12 @@
                 <td>{{events.firstname}} {{events.lastname}}</td>
                 <td>{{events.disabilities}}</td>
                 <td>{{events.email}}</td>
+                <td ng-show="isAdmin" style="text-align:center"><span class="glyphicon glyphicon-remove-sign" ng-click="removeVolunteer($index)" aria-hidden="true"></span></td>
               </tr>
             </table>
             <!-- <div><a href="" id="eventVolunteers" editable-text="eventDetails.volunteers" ng-show="isAdmin">{{eventDetails.volunteers}}</a><span ng-show="!isAdmin">{{eventDetails.volunteers}}</span></div> -->
             <br>
-            <button class="btn-lg btn-success btn-block" ng-show="isAdmin" data-toggle="modal" data-target="#volunteerModal">Add participant</button>
+            <button class="btn-lg btn-success btn-block" ng-show="isAdmin" data-toggle="modal" data-target="#volunteerModal">Add volunteer</button>
           </div>
           <div id="broadcast" class="tab-pane fade" ng-show="isAdmin"><div class="form-group"><input type="text" class="form-control" ng-model="subject" name="subject" placeholder="Subject" style="margin-bottom:10px;" /></div><div class="form-group"><textarea class="form-control" ng-model="body" name="message" placeholder="Type in your message" rows="5" style="margin-bottom:10px;"></textarea></div>Recipients:<label class="checkbox-inline"><input type="checkbox" ng-model="sendParticipants">Participants</label><label class="checkbox-inline"><input type="checkbox" ng-model="sendVolunteers">Volunteers</label><br><br><button class="btn-lg btn-success btn-block" ng-click="sendBroadcast()" ng-show="isAdmin">Send broadcast</button></div>
         </div>

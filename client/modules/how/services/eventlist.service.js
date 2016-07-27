@@ -31,7 +31,6 @@
 
     this.getUsers = function() {
       var defer = $q.defer();
-
       $http.get('/user/users').then(
           function(response) {
             //$log.debug('events resolve', response);
@@ -52,7 +51,6 @@
 
     this.updateEvent = function(events, id) {
       var defer = $q.defer();
-
       $http.put('/events/', events).then(
           function(response) {
             //$log.debug('eventlist resolve: ', response);
