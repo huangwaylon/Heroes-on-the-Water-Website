@@ -1,6 +1,6 @@
 (function() {
   angular.module('app.how').controller('eventDetailsRouteCtrl',
-      function($log, $scope, $routeParams, $http, $timeout, eventlistService, AuthService, $location) {
+      function($log, $scope, $routeParams, $http, $timeout, eventlistService, AuthService, InvService, $location) {
 
         // Initialize scope variables
         var self = this;
@@ -23,6 +23,11 @@
         $scope.loggedIn = false;
         $scope.newParticipant = {};
         $scope.newVolunteer = {};
+        // Initialize the allItems variable which stores all the inventory items
+        $scope.allItems = [];
+        // Load up the initial list of existing inventory items
+        InvService.all($scope);
+
         $('#leavebutton').hide();
 
         // Check that the user is logged in
@@ -136,7 +141,10 @@
           $timeout(function() {
             $('#myModal').modal('hide');
           }, 500);
+        }
 
+        $scope.updateInventory = function() {
+          console.log("Update!");
         }
 
         this.updateEvent = function() {

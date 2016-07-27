@@ -28,6 +28,7 @@
             <li class="active"><a data-toggle="tab" href="#details">Details</a></li>
             <li><a data-toggle="tab" href="#participants">Participants ({{eventDetails.participants.length}})</a></li>
             <li><a data-toggle="tab" href="#volunteers">Volunteers ({{eventDetails.volunteers.length}})</a></li>
+            <li ng-show="isAdmin"><a data-toggle="tab" href="#inventory">Inventory</a></li>
             <li ng-show="isAdmin"><a data-toggle="tab" href="#broadcast">Broadcast</a></li>
           </ul>
           <!--content for each tab -->
@@ -35,20 +36,22 @@
           <div id="details" class="tab-pane fade in active">
             <br>
             <div class="col-sm-6 col-md-6">
-            <div><b>Name:</b> <a href="" id="eventName" editable-text="eventDetails.name" ng-show="isAdmin">{{eventDetails.name}}</a><span ng-show="!isAdmin">{{eventDetails.name}}</span></div>
-            <div><b>Date:</b> <input style="width: 20%; min-width: 140px;" class="form-control" type="text" value="{{eventDetails.date}}" id="datepicker" ng-show="isAdmin"><span ng-show="!isAdmin">{{eventDetails.date}}</span></div>
-            <div><b>Start Time:<small ng-show="isAdmin">Format: 8:00 AM</small> </b><a href="" id="eventStarttime" editable-text="eventDetails.starttime" ng-show="isAdmin">{{eventDetails.starttime}}</a><span ng-show="!isAdmin">{{eventDetails.starttime}}</span></div>
-            <div><b>End Time:<small ng-show="isAdmin">Format: 8:00 PM</small> </b><a href="" id="eventEndtime" editable-text="eventDetails.endtime" ng-show="isAdmin">{{eventDetails.endtime}}</a><span ng-show="!isAdmin">{{eventDetails.endtime}}</span></div>
-            <div><b>Max Participants: </b><a href="" id="eventMaxParticipants" editable-text="eventDetails.maxParticipants" ng-show="isAdmin">{{eventDetails.maxParticipants}}</a><span ng-show="!isAdmin">{{eventDetails.maxParticipants}}</span></div>
-            <div><b>Max Volunteers: </b><a href="" id="eventMaxVolunteers" editable-text="eventDetails.maxVolunteers" ng-show="isAdmin">{{eventDetails.maxVolunteers}}</a><span ng-show="!isAdmin">{{eventDetails.maxVolunteers}}</span></div>
-          </div>
+              <div><b>Name:</b> <a href="" id="eventName" editable-text="eventDetails.name" ng-show="isAdmin">{{eventDetails.name}}</a><span ng-show="!isAdmin">{{eventDetails.name}}</span></div>
+              <div><b>Date:</b> <input style="width: 20%; min-width: 140px;" class="form-control" type="text" value="{{eventDetails.date}}" id="datepicker" ng-show="isAdmin"><span ng-show="!isAdmin">{{eventDetails.date}}</span></div>
+              <div><b>Start Time:<small ng-show="isAdmin">Format: 8:00 AM</small> </b><a href="" id="eventStarttime" editable-text="eventDetails.starttime" ng-show="isAdmin">{{eventDetails.starttime}}</a><span ng-show="!isAdmin">{{eventDetails.starttime}}</span></div>
+              <div><b>End Time:<small ng-show="isAdmin">Format: 8:00 PM</small> </b><a href="" id="eventEndtime" editable-text="eventDetails.endtime" ng-show="isAdmin">{{eventDetails.endtime}}</a><span ng-show="!isAdmin">{{eventDetails.endtime}}</span></div>
+              <div><b>Max Participants: </b><a href="" id="eventMaxParticipants" editable-text="eventDetails.maxParticipants" ng-show="isAdmin">{{eventDetails.maxParticipants}}</a><span ng-show="!isAdmin">{{eventDetails.maxParticipants}}</span></div>
+              <div><b>Max Volunteers: </b><a href="" id="eventMaxVolunteers" editable-text="eventDetails.maxVolunteers" ng-show="isAdmin">{{eventDetails.maxVolunteers}}</a><span ng-show="!isAdmin">{{eventDetails.maxVolunteers}}</span></div>
+            </div>
             <div class="col-sm-6 col-md-6">
-            <div><b>Location:</b> <a href="" id="eventLocation" editable-text="eventDetails.location" ng-show="isAdmin">{{eventDetails.location}}</a><span ng-show="!isAdmin">{{eventDetails.location}}</span></div>
-            <div><b>Description: </b><a href="" id="eventDescription" editable-text="eventDetails.description" ng-show="isAdmin">{{eventDetails.description}}</a><span ng-show="!isAdmin">{{eventDetails.description}}</span></div>
+              <div><b>Location:</b> <a href="" id="eventLocation" editable-text="eventDetails.location" ng-show="isAdmin">{{eventDetails.location}}</a><span ng-show="!isAdmin">{{eventDetails.location}}</span></div>
+              <div><b>Description: </b><a href="" id="eventDescription" editable-text="eventDetails.description" ng-show="isAdmin">{{eventDetails.description}}</a><span ng-show="!isAdmin">{{eventDetails.description}}</span></div>
+            </div>
+            <br/><br/><br/>
+            <button type="button" ng-click="eventDetailsCtrl.updateEvent()" ng-show="isAdmin" class="btn btn-primary">Submit Changes</button>
           </div>
-          </div>
-          <div id="participants" class="tab-pane fade">
 
+          <div id="participants" class="tab-pane fade">
             <table class="table table-hover table-striped">
               <tr>
                 <th>Username</th>
@@ -92,15 +95,49 @@
             <br>
             <button class="btn-lg btn-success btn-block" ng-show="isAdmin" data-toggle="modal" data-target="#volunteerModal">Add volunteer</button>
           </div>
-          <div id="broadcast" class="tab-pane fade" ng-show="isAdmin"><div class="form-group"><input type="text" class="form-control" ng-model="subject" name="subject" placeholder="Subject" style="margin-bottom:10px;" /></div><div class="form-group"><textarea class="form-control" ng-model="body" name="message" placeholder="Type in your message" rows="5" style="margin-bottom:10px;"></textarea></div>Recipients:<label class="checkbox-inline"><input type="checkbox" ng-model="sendParticipants">Participants</label><label class="checkbox-inline"><input type="checkbox" ng-model="sendVolunteers">Volunteers</label><br><br><button class="btn-lg btn-success btn-block" ng-click="sendBroadcast()" ng-show="isAdmin">Send broadcast</button></div>
+          <div id="broadcast" class="tab-pane fade" ng-show="isAdmin">
+            <div class="form-group">
+              <input type="text" class="form-control" ng-model="subject" name="subject" placeholder="Subject" style="margin-bottom:10px;" />
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" ng-model="body" name="message" placeholder="Type in your message" rows="5" style="margin-bottom:10px;">
+              </textarea>
+            </div>
+            Recipients:
+            <label class="checkbox-inline">
+              <input type="checkbox" ng-model="sendParticipants">
+              Participants
+            </label>
+            <label class="checkbox-inline">
+              <input type="checkbox" ng-model="sendVolunteers">
+              Volunteers
+            </label>
+            <br><br>
+            <button class="btn-lg btn-success btn-block" ng-click="sendBroadcast()" ng-show="isAdmin">Send broadcast</button>
+          </div>
+
+          <div id="inventory" class="tab-pane fade" ng-show="isAdmin">
+            <table class="table table-hover table-striped">
+              <tr>
+                <th>Iten Name</th>
+                <th>Iten Description</th>
+                <th>Chapter</th>
+                <th>Use For This Event</th>
+              </tr>
+              <tr ng-repeat="item in allItems">
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.chapter}}</td>
+                <td><input type="checkbox" class="form-control" checked="{{item.isUsed.toString()}}"/></td>
+              </tr>
+            </table>
+            <button class="btn btn-primary" ng-click="updateInventory()">Update Inventory</button>
+          </div>
         </div>
         </div>
       </div>
       <button class="btn-lg btn-info btn-block" id="signupbutton" ng-click="checkSignup()" ng-show="!isAdmin">SIGN UP FOR THIS EVENT</button>
       <button class="btn-lg btn-danger btn-block" id="leavebutton" ng-click="removeSelf()">LEAVE EVENT</button>
-        <!--This button needs to hidden and disabled unless they are admin-->
-        <button type="button" ng-click="eventDetailsCtrl.updateEvent()" ng-show="isAdmin" class="btn btn-primary">Submit Changes</button>
-
     </div>
   </div>
   <div class="row">
