@@ -89,12 +89,16 @@
       $scope.editMode[index] = !$scope.editMode[index];
       //Save button clicked, submit update to DB
       if(!$scope.editMode[index]){
+        var events = $scope.allItems[index].events.toString().split(",");
+        for(var i=0; i<events.length; i++){
+          events[i] = events[i].trim();
+        }
         var editedItem = {
             i_id: $scope.allItems[index]._id,
             i_name: $scope.allItems[index].name,
             i_description: $scope.allItems[index].description,
             i_chapter: $scope.allItems[index].chapter,
-            i_events: $scope.allItems[index].events.toString().split(","),
+            i_events: events,
             i_isUsed: $scope.allItems[index].isUsed
         };
         console.log(editedItem);
