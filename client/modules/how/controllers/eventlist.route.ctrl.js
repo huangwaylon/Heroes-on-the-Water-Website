@@ -1,8 +1,6 @@
 (function() {
   angular.module('app.how').controller('eventlistRouteCtrl',
       function($log, $scope, $http, $timeout, eventlistService, AuthService, $location) {
-        //$log.debug('Initializing eventlistRouteCtrl');
-
         var self = this;
         $scope.errormessage = false;
         eventlistService.eventlist = "";
@@ -19,12 +17,12 @@
         $scope.loggedIn = false;
         if (AuthService.isLoggedIn()) {
             AuthService.hello($scope.user);
-        } else {
-          //console.log("User is not logged in");
         }
 
         $scope.$on("user_loaded", checkUserPermissions);
+        $scope.$on("user_login", setLogin);
 
+        // Checks the user's permission level
         function checkUserPermissions() {
           if ($scope.user.account && ($scope.user.account == "Administrator" ||
                                       $scope.user.account == "Region Leader" ||
@@ -33,6 +31,11 @@
           } else {
             $scope.isAdmin = false;
           }
+        }
+
+        function setLogin() {
+          // Get user details after login
+          AuthService.hello($scope.user);
         }
 
         $scope.success = false;
@@ -85,7 +88,6 @@
         this.removeEvent = function(id) {
           eventlistService.removeEvent(id);
         }
-
 
         this.addEvent = function() {
           eventlistService.postEvent(self.newEvent).then(

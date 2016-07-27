@@ -21,6 +21,7 @@
     }
 
     $scope.$on("user_loaded", checkUserPermissions);
+    $scope.$on("user_login", setLogin);
 
     function checkUserPermissions() {
       if ($scope.user.account && ($scope.user.account == "Administrator" ||
@@ -34,6 +35,13 @@
         $scope.errorMessage = "Not an Administrator!";
       }
     }
+
+    // After login, get user info again - happens on refresh
+    function setLogin() {
+      // Get user details after login
+      AuthService.hello($scope.user);
+    }
+
 
     // Initialize the allItems variable which stores all the inventory items
     $scope.allItems = [];
