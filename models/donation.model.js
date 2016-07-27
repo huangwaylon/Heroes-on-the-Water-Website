@@ -13,7 +13,7 @@
 			zip: { type: Number, required: false,  unique: false },
 			state: { type: String, required: false, unique: false },
 			country: { type: String, required: false, unique: false},
-			comment: { type: String, required: false, unique: true }
+			comment: { type: String, required: false, unique: false }
 		}
 	});
 
