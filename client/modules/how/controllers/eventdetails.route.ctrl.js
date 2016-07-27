@@ -13,12 +13,16 @@
         $scope.participantbanner = false;
         $scope.volunteerbanner = false;
         $scope.removedbanner = false;
+        $scope.maxP = false;
+        $scope.maxV = false;
         $scope.signupType = '';
         $scope.newPerson = {};
         $scope.user = {};
         $scope.loggedIn = false;
         $scope.newParticipant = {};
         $scope.newVolunteer = {};
+        $('#leavebutton').hide();
+
 
         // Check that the user is logged in
         if (AuthService.isLoggedIn()) {
@@ -39,6 +43,32 @@
             $scope.isAdmin = false;
           }
         }
+
+        //Function is currently called when clicking on the signup button. If user is signed in and exists in the event, it turns into
+        //a leave event button. that button currently does not have functionality. Should add functionality to it.
+        //Also, how do we check for users who didn't make an account, and signed up, and want to leave the event?
+        $scope.checkSignup = function() {
+
+          if($scope.user.username != null || $scope.user.username != undefined) {
+            for(var i = 0; i < $scope.eventDetails.participants.length; i++) {
+              if($scope.user.username == $scope.eventDetails.participants[i].username) {
+                $('#signupbutton').hide();
+                $('#leavebutton').show();
+                break;
+              }
+            }
+            for(var i  = 0; i < $scope.eventDetails.volunteers.length; i++) {
+              if($scope.user.username == $scope.eventDetails.volunteers[i].username) {
+                $('#signupbutton').hide();
+                $('#leavebutton').show();
+                break;
+              }
+            }
+          } else {
+            $('#myModal').modal('show');
+          }
+        }
+
 
         $scope.addParticipant = function() {
           $scope.eventDetails.participants.push($scope.newParticipant);
@@ -71,42 +101,24 @@
           }, 1000);
         };
 
+        //Include check here to see if a username already exists within the participant list.
         $scope.signup = function() {
-          console.log($scope.newPerson);
           if($scope.signupType == "participant") {
-            $scope.newParticipant = $scope.newPerson;
+            $scope.newParticipant = $scope.user;
             $scope.addParticipant();
-            $scope.newPerson = {};
-
-          }
+            }
           else if($scope.signupType == "volunteer") {
-            $scope.newVolunteer = $scope.newPerson;
+            $scope.newVolunteer = $scope.user;
             $scope.addVolunteer();
-            $scope.newPerson = {};
-          }
+            }
           else {
             alert("Neither participant or volunteer was selected");
           }
           $timeout(function() {
             $('#myModal').modal('hide');
-          }, 1000);
+          }, 500);
 
         }
-
-        // $scope.$watch(function() {
-        //   return $scope.user;
-        // }, function() {
-        //   $timeout(function () {
-        //     if($scope.user.account != undefined || $scope.user.account != null) {
-        //       if($scope.user.account == "Administrator") {
-        //         $scope.isAdmin = true;
-        //       }
-        //     } else {
-        //       $scope.isAdmin = false;
-        //     }
-        //   }, 1500);
-        // });
-
 
         this.updateEvent = function() {
             eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
@@ -142,6 +154,18 @@
               maxVolunteers: self.event.maxVolunteers,
               participants: self.event.participants,
               volunteers: self.event.volunteers
+            };
+            if($scope.eventDetails.maxParticipants == $scope.eventDetails.participants.length) {
+              $scope.maxP = true;
+              console.log("Max participants have been reached");
+            }
+            if($scope.eventDetails.maxVolunteers == $scope.eventDetails.volunteers.length) {
+              $scope.maxV = true;
+              console.log("Max volunteers have been reached");
+            }
+            if($scope.maxP == true && $scope.maxV == true) {
+              $('#signupbutton').prop('disabled', true);
+              $('#signupbutton').val('Maximum participants and volunteers reached');
             }
           });
 
