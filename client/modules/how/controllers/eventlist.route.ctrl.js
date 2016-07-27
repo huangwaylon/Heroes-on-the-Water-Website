@@ -74,15 +74,12 @@
 
         $scope.sortEventsByName = function() {
           self.allEvents.sort(sortBy("name"));
-          console.log("name");
         }
         $scope.sortEventsByDate = function() {
           self.allEvents.sort(sortByDate);
-          console.log("date");
         }
         $scope.sortEventsByLocation = function() {
           self.allEvents.sort(sortBy("location"));
-          console.log("location");
         }
 
         this.removeEvent = function(id) {

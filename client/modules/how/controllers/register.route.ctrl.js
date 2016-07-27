@@ -19,7 +19,7 @@
                               $scope.registerForm.account)
           // handle success
           .then(function () {
-            $location.path('/login');
+            $location.path('/');
             $scope.disabled = false;
             $scope.registerForm = {};
           })
@@ -30,8 +30,6 @@
             $scope.disabled = false;
             $scope.registerForm = {};
           });
-
       };
-
   }]);
 })();

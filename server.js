@@ -36,6 +36,7 @@
   var routes = require('./routes/api.route.js');
   var eventlistRoute = require('./routes/eventlist.route.js');
   var inventoryRoute = require('./routes/inv.route.js');
+  var blogRoute = require('./routes/blog.route.js');
 
   app.use(express.static('public'));
 
@@ -67,7 +68,8 @@
   app.use('/user', routes);
   app.use('/inventory', inventoryRoute);
   app.use('/chapters', chapterRoute);
-  app.use('/mail', mailRoute)
+  app.use('/mail', mailRoute);
+  app.use('/blog', blogRoute)
 
   app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, './client', 'index.html'));
