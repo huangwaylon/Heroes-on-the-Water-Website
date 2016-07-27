@@ -90,7 +90,7 @@
           $scope.newParticipant = {};
           $timeout(function() {
             $('#participantModel').modal('hide');
-          }, 1000);
+          }, 500);
         };
 
         //Method adds volunteers, taking newVolunteer object and submitting to service.
@@ -106,7 +106,7 @@
           $scope.newVolunteer = {};
           $timeout(function() {
             $('#volunteerModal').modal('hide');
-          }, 1000);
+          }, 500);
         };
 
         // Method removes participant at index specified
