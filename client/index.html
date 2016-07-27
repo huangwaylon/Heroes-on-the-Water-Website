@@ -121,7 +121,7 @@
         </div>
 
         <div class="modal-body">
-          <form role="form" class="inputs" action="/donors/" method="POST">
+          <form role="form" class="inputs" action="/donors/" method="POST" ng-submit="addDonor()">
             <div class="form-group">
               <label style="color: red" for="firstname">*Firstname: </label><br>
               <input type="text" class="form-control" placeholder="John" id="firstname">
@@ -170,7 +170,7 @@
         </div>
 
         <div class="modal-footer">
-          <button type="submit" value="submit" class="btn btn-success" data-dismiss="modal">Submit</button>
+          <button type="submit" class="btn btn-success" data-dismiss="modal">Submit</button>
         </div>
       </div>
     </div>

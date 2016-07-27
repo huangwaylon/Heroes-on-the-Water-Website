@@ -63,7 +63,7 @@
   // data routes
   app.use('/user/', routes);
   app.use('/inventory/', inventoryRoute);
-  app.use('/donors/', routes);
+  app.use('/donors/', donationRoute);
   app.use('/examples', exampleRoute);
   app.use('/galleryImages', galleryImageRoute);
   app.use('/events', eventlistRoute);

@@ -60,6 +60,12 @@
       controller: 'mailboxRouteCtrl',
       controllerAs: 'mailboxCtrl',
       access: {restricted: true}
+    })
+    .when('/donors', {
+      templateUrl: '/modules/how/views/donors.route.html',
+      controller: 'donationRouteCtrl',
+      controllerAs: 'donationCtrl',
+      access: {restricted: false}
     });
   });
 })();
