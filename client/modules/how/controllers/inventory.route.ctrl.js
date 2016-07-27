@@ -83,6 +83,7 @@
         });
     };
 
+
     // Refresh inventory list function
     $scope.refresh = function () {
       InvService.all($scope);
