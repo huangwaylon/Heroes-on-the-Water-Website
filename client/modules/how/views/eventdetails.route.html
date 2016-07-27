@@ -90,7 +90,8 @@
         </div>
         </div>
       </div>
-      <button class="btn-lg btn-info btn-block" ng-show="!isAdmin" data-toggle="modal" data-target="#myModal">SIGN UP FOR THIS EVENT</button>
+      <button class="btn-lg btn-info btn-block" id="signupbutton" ng-click="checkSignup()" ng-show="!isAdmin">SIGN UP FOR THIS EVENT</button>
+      <button class="btn-lg btn-danger btn-block" id="leavebutton" ng-click="removeSelf()">LEAVE EVENT</button>
         <!--This button needs to hidden and disabled unless they are admin-->
         <button type="button" ng-click="eventDetailsCtrl.updateEvent()" ng-show="isAdmin" class="btn btn-primary">Submit Changes</button>
 
@@ -102,14 +103,6 @@
       <!-- Button trigger modal -->
 
       <!-- Modal -->
-
-
-
-
-
-      <!--Tomorrow, woork on getting if the user is logged in, auto fill out the information.
-          CSS for inventory and chapters page-->
-
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="signupLabel">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -120,28 +113,28 @@
             <div class="modal-body">
               <form ng-submit="signup()">
                 <div class="form-group">
-                  <label for="inputFirstname">First Name</label>
-                  <input type="text" class="form-control" id="inputFirstname" value="{{user.firstname}}" placeholder="First Name" ng-model="newPerson.firstname">
+                  <label for="inputFirstame">First Name</label>
+                  <input type="text" class="form-control" id="inputFirstname" placeholder="First Name" ng-model="user.firstname">
                 </div>
                 <div class="form-group">
                   <label for="inputLastname">Last Name</label>
-                  <input type="text" class="form-control" id="inputLastname" placeholder="Last Name" ng-model="newPerson.lastname">
+                  <input type="text" class="form-control" id="inputLastname" placeholder="Last Name" ng-model="user.lastname">
                 </div>
                 <div class="form-group">
                   <label for="inputDisplayname">Display Name <small>Account or awesome nickname!</small></label>
-                  <input type="text" class="form-control" id="inputDisplayname" placeholder="ex. NeonAnimal" ng-model="newPerson.username">
+                  <input type="text" class="form-control" id="inputDisplayname" placeholder="ex. NeonAnimal" ng-model="user.username">
                 </div>
                 <div class="form-group">
                   <label for="inputEmail">Contact Email</label>
-                  <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="newPerson.email">
+                  <input type="email" class="form-control" id="inputEmail" placeholder="Email" ng-model="user.email">
                 </div>
                 <div class="form-group">
                   <label for="inputDisabilities">Disabilities <small>Please list any disabilities you may have</small></label>
-                  <input type="text" class="form-control" id="inputEmail" placeholder="Disabilities" ng-model="newPerson.disabilities">
+                  <input type="text" class="form-control" id="inputEmail" placeholder="Disabilities" ng-model="user.disabilities">
                 </div>
                 <div class="form-group">
-                    <label class="radio-inline"><input type="radio" value="participant" ng-model="signupType">Participant</label>
-                    <label class="radio-inline"><input type="radio" value="volunteer" ng-model="signupType">Volunteer</label>
+                    <label class="radio-inline"><input type="radio" ng-show="!maxP" value="participant" ng-model="signupType" required>Participant</label>
+                    <label class="radio-inline"><input type="radio" ng-show="!maxV" value="volunteer" ng-model="signupType">Volunteer</label>
                 </div>
                 <button type="submit" class="btn btn-primary">Sign up for Event</button>
               </form>
@@ -187,7 +180,6 @@
               </form>
             </div>
             <div class="modal-footer">
-
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>

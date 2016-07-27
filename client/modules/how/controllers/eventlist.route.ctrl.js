@@ -96,7 +96,7 @@
                 self.newEvent = {};
                 eventlistService.getEvents();
                 $timeout(function(){
-                  $scope.success = false; $location.path('/events'); }, 3000);
+                  $scope.success = false; $location.path('/events'); }, 2500);
               }, function(error, status) {
                 $scope.errorbanner = true;
                 //$log.log('addEvent reject', error, status);
