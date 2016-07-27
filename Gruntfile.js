@@ -62,6 +62,7 @@ module.exports = function(grunt) {
           'node_modules/imagesloaded/imagesloaded.pkgd.min.js',
           'node_modules/smooth-scrollbar/dist/smooth-scrollbar.js',
           'node_modules/angular-xeditable/dist/js/xeditable.min.js'
+          'client/js/pikaday.js'
 
 
         ],
@@ -73,6 +74,7 @@ module.exports = function(grunt) {
               'node_modules/photoswipe/dist/default-skin/default-skin.css',
               'node_modules/smooth-scrollbar/dist/smooth-scrollbar.css',
               'node_modules/angular-xeditable/dist/css/xeditable.min.css'
+              'client/css/pikaday.css'
         ], // Same for CSS libraries
         dest: 'public/lib.css'
       },
