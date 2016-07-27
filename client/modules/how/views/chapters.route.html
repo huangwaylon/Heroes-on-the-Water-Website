@@ -16,26 +16,28 @@
         <div id="map"></div>
       </div>
       <div id="listview" class="tab-pane fade">
-        <form>
-            <h4>Enter your address or zipcode and select a distance to list chapters near you:</h4>
-            <input type="text" ng-model="formAddress" placeholder="Address or Zip code">
-            <select ng-model="formDistance" ng-init="formDistance=10">
-                <option value="10" ng-selected="true">10 miles</option>
-                <option value="25">25 miles</option>
-                <option value="50">50 miles</option>
-                <option value="100">100 miles</option>
-                <option value="200">200 miles</option>
-                <option value="500">500 miles</option>
-            </select>
-            <button ng-click="submitForms()">Submit</button>
-        </form>
-        <div ng-repeat="chapter in chaptersCtrl.filteredChapters">
-            <br><b>{{chapter.name}}</b>
-            <br>{{chapter.city}}, {{chapter.state}}
-            <br>{{chapter.description}}
-            <br><a href={{chapter.url}}>Chapter Website</a>
-            <br> Email: {{chapter.email}}
-            <br>
+        <div class="col-sm-6 col-md-6">
+          <form>
+              <h4>Enter your address or zipcode and select a distance to list chapters near you:</h4>
+              <input type="text" class="form-control" ng-model="formAddress" placeholder="Address or Zip code" style="width:30%; min-width:100px; display:inline-block;">
+              <select ng-model="formDistance" class="form-control" ng-init="formDistance=10" style="width:20%; min-width:110px; display:inline-block;">
+                  <option value="10" ng-selected="true">10 miles</option>
+                  <option value="25">25 miles</option>
+                  <option value="50">50 miles</option>
+                  <option value="100">100 miles</option>
+                  <option value="200">200 miles</option>
+                  <option value="500">500 miles</option>
+              </select>
+              <button class="btn btn-primary" ng-click="submitForms()">Submit</button>
+          </form>
+          <div ng-repeat="chapter in chaptersCtrl.filteredChapters">
+              <br><b>{{chapter.name}}</b>
+              <br>{{chapter.city}}, {{chapter.state}}
+              <br>{{chapter.description}}
+              <br><a href={{chapter.url}}>Chapter Website</a>
+              <br> Email: {{chapter.email}}
+              <br>
+          </div>
         </div>
       </div>
     </div>
