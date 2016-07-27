@@ -43,8 +43,8 @@
           <ul class="nav navbar-nav">
             <li ng-class="{ active: navbarCtrl.isActive('/') }"><a href="/#/">Home</a></li>
             <li ng-class="{ active: navbarCtrl.isActive('/events') }"><a href="/#/events">Events</a></li>
-            <li ng-class="{ active: navbarCtrl.isActive('/media') }"><a href="/#/media">Media</a></li>
             <li ng-class="{ active: navbarCtrl.isActive('/chapters') }"><a href="/#/chapters">Chapters</a></li>
+            <li ng-class="{ active: navbarCtrl.isActive('/media') }"><a href="/#/media">Media</a></li>
             <li ng-class="{ active: navbarCtrl.isActive('/heroes') }"><a href="/#/heroes">Heroes</a></li>
             <li ng-class="{ active: navbarCtrl.isActive('/contact') }"><a href="/#/contact">About Us</a></li>
           </ul>
@@ -56,11 +56,11 @@
               <ul class="dropdown-menu">
                 <li><a href="/#/mailbox">Mail</a></li>
                 <li><a href="/#/profile">Profile</a></li>
+                <li><a href="" ng-click="logoutUser()">Logout</a></li>
                 <li role="separator" class="divider"></li>
                 <li class="dropdown-header">Links</li>
                 <li><a href="/#/events">Events</a></li>
                 <li ng-show="isAdmin"><a href="/#/inventory">Inventory</a></li>
-                <li><a href="" ng-click="logoutUser()">Logout</a></li>
               </ul>
             </li>
           </ul>

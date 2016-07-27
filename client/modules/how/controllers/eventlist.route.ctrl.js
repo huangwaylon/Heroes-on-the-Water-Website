@@ -22,19 +22,17 @@
         } else {
           //console.log("User is not logged in");
         }
-        $scope.$watch(function() {
-          return $scope.user;
-        }, function() {
-          $timeout(function () {
-            if($scope.user.account != undefined || $scope.user.account != null) {
-              if($scope.user.account == "Administrator") {
-                $scope.isAdmin = true;
-              }
-            } else {
-              $scope.isAdmin = false;
-            }
-          }, 1500);
-        });
+
+        $scope.$on("user_loaded", checkUserPermissions);
+
+        function checkUserPermissions() {
+          if ($scope.user.account && $scope.user.account != "Administrator") {
+            $scope.isAdmin = false;
+          } else {
+            $scope.isAdmin = true;
+          }
+        }
+
         $scope.success = false;
         $scope.errorbanner = false;
         var picker = new Pikaday({ field: $('#datepicker')[0] });
@@ -49,6 +47,21 @@
         $scope.resetTab = function() {
           $scope.errorbanner = false;
           $scope.errormessage = false;
+        }
+
+        // Sorting Functions ******************************************************
+        function sortByDate(a, b) {
+          return new Date(a.date).getTime() - new Date(b.date).getTime();
+        }
+        function sortBy(prop) {
+          return function(a, b) {
+            if (a[prop] > b[prop]) {
+                return 1;
+            } else if (a[prop] < b[prop]) {
+                return -1;
+            }
+            return 0;
+          }
         }
 
         $scope.sortType     = 'name'; // set the default sort type
