@@ -78,8 +78,8 @@
                         body: mail.body,
                         read: false
                     };
-                }
-                this.postMail(mailArray[i]);
+                    this.postMail(mailArray[i]);
+                }     
             }
         }
 
