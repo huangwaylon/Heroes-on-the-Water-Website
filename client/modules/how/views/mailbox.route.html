@@ -16,7 +16,7 @@
 		<div id="mailbox" class="tab-pane fade in active">
 			<div class="row animated fadeIn">
 				<div class="col-sm-4 col-md-5">
-					<div class="list-group" style="max-height: 400px">
+					<div class="list-group" style="height: 200px; overflow: auto; max-height: 400px; min-height: 200px">
 					  <span ng-repeat="message in mailResults"><a href="" class="list-group-item" ng-click="openMail($index)"><span style="">{{message.sender}}</span> : {{message.subject}}</a></span>
 					</div>
 				</div>

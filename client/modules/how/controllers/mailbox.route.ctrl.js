@@ -1,13 +1,12 @@
 (function() {
     angular.module('app.how').controller('mailboxRouteCtrl',
-        function($log, $scope, AuthService, mailService, $timeout) {
+        function($log, $scope, AuthService, mailService, $timeout, $location) {
             //$log.debug('Initializing mailboxRouteCtrl');
 
             var self = this;
             $scope.userResult = {};
             $scope.username = {};
             $scope.successMail = false;
-            $scope.reply = {};
 
 
             $('#tabs a').click(function (e) {
@@ -28,7 +27,9 @@
 
             $scope.reply = function() {
               $('#recipientInput').val(mailService.currentmail.sender);
+              $scope.recipient = mailService.currentmail.sender;
               $('#subjectInput').val("RE: " + mailService.currentmail.subject);
+              $scope.subject = mailService.currentmail.subject;
               $('#mailtab').tab('show');
             }
 
@@ -39,6 +40,8 @@
                 $scope.username = response.username;
                 $scope.submitLookup();
             });
+        } else {
+          $location.path('/profile');
         }
 
             $scope.submitLookup = function() {
