@@ -4,6 +4,10 @@
             $log.debug('Initializing chaptersRouteCtrl');
 
             var self = this;
+            $('#tabs a').click(function (e) {
+              e.preventDefault()
+              $(this).tab('show')
+            });
 
             $scope.callService = function() {
                 $scope.$watch(function() {

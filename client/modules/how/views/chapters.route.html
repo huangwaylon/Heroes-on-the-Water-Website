@@ -4,34 +4,41 @@
     width: 100%;
 }
 </style>
-<div ng-init="callService()">
-    <ul><h4>Todo:</h4>
-        <li>CSS</li>
-        <li>Have a button/tabs to select list or map view? </li>
-        <li>Link from chapter infowindow/list item to that chapter's events page?</li>
+<div class="container" ng-init="callService()">
+  <div class="col-sm-12 col-md-12">
+    <ul class="nav nav-tabs" id="tabs">
+      <li class="active"><a data-toggle="tab" href="#mapview">Map View</a></li>
+      <li><a data-toggle="tab" href="#listview">List View</a></li>
     </ul>
-    <br>
-    <div id="map"></div>
-    <br>
-    <form>
-        <h4>Enter your address or zipcode and select a distance to list chapters near you:</h4>
-        <input type="text" ng-model="formAddress" placeholder="Address or Zip code">
-        <select ng-model="formDistance" ng-init="formDistance=10">
-            <option value="10" ng-selected="true">10 miles</option>
-            <option value="25">25 miles</option>
-            <option value="50">50 miles</option>
-            <option value="100">100 miles</option>
-            <option value="200">200 miles</option>
-            <option value="500">500 miles</option>
-        </select>
-        <button ng-click="submitForms()">Submit</button>
-    </form>
-    <div ng-repeat="chapter in chaptersCtrl.filteredChapters">
-        <br><b>{{chapter.name}}</b>
-        <br>{{chapter.city}}, {{chapter.state}}
-        <br>{{chapter.description}}
-        <br><a href={{chapter.url}}>Chapter Website</a>
-        <br> Email: {{chapter.email}}
-        <br>
+
+    <div class="tab-content">
+      <div id="mapview" class="tab-pane fade in active">
+        <div id="map"></div>
+      </div>
+      <div id="listview" class="tab-pane fade">
+        <form>
+            <h4>Enter your address or zipcode and select a distance to list chapters near you:</h4>
+            <input type="text" ng-model="formAddress" placeholder="Address or Zip code">
+            <select ng-model="formDistance" ng-init="formDistance=10">
+                <option value="10" ng-selected="true">10 miles</option>
+                <option value="25">25 miles</option>
+                <option value="50">50 miles</option>
+                <option value="100">100 miles</option>
+                <option value="200">200 miles</option>
+                <option value="500">500 miles</option>
+            </select>
+            <button ng-click="submitForms()">Submit</button>
+        </form>
+        <div ng-repeat="chapter in chaptersCtrl.filteredChapters">
+            <br><b>{{chapter.name}}</b>
+            <br>{{chapter.city}}, {{chapter.state}}
+            <br>{{chapter.description}}
+            <br><a href={{chapter.url}}>Chapter Website</a>
+            <br> Email: {{chapter.email}}
+            <br>
+        </div>
+      </div>
     </div>
+
+  </div>
 </div>
