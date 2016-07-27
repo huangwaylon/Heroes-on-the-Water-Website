@@ -26,8 +26,8 @@
         <div class="panel-body">
           <ul class="nav nav-tabs" id="tabbies">
             <li class="active"><a data-toggle="tab" href="#details">Details</a></li>
-            <li><a data-toggle="tab" href="#participants">Participants</a></li>
-            <li><a data-toggle="tab" href="#volunteers">Volunteers</a></li>
+            <li><a data-toggle="tab" href="#participants">Participants ({{eventDetails.participants.length}})</a></li>
+            <li><a data-toggle="tab" href="#volunteers">Volunteers ({{eventDetails.volunteers.length}})</a></li>
             <li ng-show="isAdmin"><a data-toggle="tab" href="#broadcast">Broadcast</a></li>
           </ul>
           <!--content for each tab -->
@@ -100,7 +100,6 @@
       <button class="btn-lg btn-danger btn-block" id="leavebutton" ng-click="removeSelf()">LEAVE EVENT</button>
         <!--This button needs to hidden and disabled unless they are admin-->
         <button type="button" ng-click="eventDetailsCtrl.updateEvent()" ng-show="isAdmin" class="btn btn-primary">Submit Changes</button>
-
 
     </div>
   </div>
