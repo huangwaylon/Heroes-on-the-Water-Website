@@ -86,22 +86,7 @@
                             <br>
                             <button class="btn-lg btn-success btn-block" ng-show="isAdmin" data-toggle="modal" data-target="#volunteerModal">Add participant</button>
                         </div>
-                        <div id="broadcast" class="tab-pane fade" ng-show="isAdmin">
-                            <div class="form-group">
-                                <input type="text" class="form-control" ng-model="subject" name="subject" placeholder="Subject" style="margin-bottom:10px;" />
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" ng-model="body" name="message" placeholder="Type in your message" rows="5" style="margin-bottom:10px;"></textarea>
-                            </div>
-                            Recipients:
-                            <label class="checkbox-inline">
-                                <input type="checkbox" ng-model="sendParticipants">Participants</label>
-                            <label class="checkbox-inline">
-                                <input type="checkbox" ng-model="sendVolunteers">Volunteers</label>
-                            <br>
-                            <br>
-                            <button class="btn-lg btn-success btn-block" ng-click="sendBroadcast()" ng-show="isAdmin">Send broadcast</button>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
