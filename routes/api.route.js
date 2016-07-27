@@ -58,6 +58,7 @@ router.get('/logout', function(req, res) {
   });
 });
 
+// Checks the user's status - logged in or not
 router.get('/status', function(req, res) {
   if (!req.isAuthenticated()) {
     return res.status(200).json({
