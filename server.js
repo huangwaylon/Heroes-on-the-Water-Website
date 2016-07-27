@@ -28,7 +28,6 @@
   var User = require('./models/user.model.js');
 
   // Required routes
-  var exampleRoute = require('./routes/example.route.js');
   var galleryImageRoute = require('./routes/gallery-image.route.js');
   var chapterRoute = require('./routes/chapter.route.js');
   var donationRoute = require('./routes/donation.route.js');
@@ -62,7 +61,6 @@
   passport.deserializeUser(User.deserializeUser());
 
   // data routes
-  app.use('/examples', exampleRoute);
   app.use('/galleryImages', galleryImageRoute);
   app.use('/events', eventlistRoute);
   app.use('/user', routes);
