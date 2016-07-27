@@ -11,9 +11,9 @@
             var defer = $q.defer();
 
             $http({
-              url: '/mail',
-              method: "GET",
-              params: {mailId: mailId}
+                url: '/mail',
+                method: "GET",
+                params: { mailId: mailId }
             }).then(
                 function(response) {
                     $log.debug('getMail resolve', response);
@@ -45,11 +45,11 @@
                     defer.resolve(response);
                     AuthService.findUserByUsername(mail.recipient, userObject).then(function(result) {
                         userObject.mail.push(response.data._id);
-                    AuthService.updateUser(userObject);
+                        AuthService.updateUser(userObject);
                     }, function(error) {
                         $log.log("mailService.postMail AuthService.updateUser callback error");
                     });;
-                    
+
                 },
                 function(error, status) {
                     $log.log('postMail reject', error, status);
@@ -65,18 +65,20 @@
 
         //User calls this function to send mail. Handles sending to a list of people and passes
         //it off to the postMail() function to actually send mails to the backend.
-        this.sendMail = function(mail){
+        this.sendMail = function(mail) {
             var recipients = mail.recipient.split(",");
             var mailArray = new Array();
-            for(var i=0; i<recipients.length; i++){
+            for (var i = 0; i < recipients.length; i++) {
                 recipients[i] = recipients[i].trim();
-                mailArray[i] = {
-                    sender: mail.sender,
-                    recipient: recipients[i],
-                    subject: mail.subject,
-                    body: mail.body,
-                    read: false
-                };
+                if (recipients[i] != "") {
+                    mailArray[i] = {
+                        sender: mail.sender,
+                        recipient: recipients[i],
+                        subject: mail.subject,
+                        body: mail.body,
+                        read: false
+                    };
+                }
                 this.postMail(mailArray[i]);
             }
         }
