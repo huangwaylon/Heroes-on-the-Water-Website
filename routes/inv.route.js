@@ -9,6 +9,7 @@ inventory_router.post('/add', function(req, res) {
                   name: req.body.i_name,
                   description: req.body.i_description,
                   chapter: req.body.i_chapter,
+                  events: req.body.i_events,
                   isUsed: req.body.i_isUsed
                 });
   Inventory.create(newItem,
