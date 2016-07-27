@@ -53,10 +53,12 @@
 
     // Checks the user's information
     function getUserInfo() {
-      if ($scope.user.account && $scope.user.account != "Administrator") {
-        $scope.isAdmin = false;
-      } else {
+      if ($scope.user.account && ($scope.user.account == "Administrator" ||
+                                  $scope.user.account == "Region Leader" ||
+                                  $scope.user.account == "Chapter Leader")) {
         $scope.isAdmin = true;
+      } else {
+        $scope.isAdmin = false;
       }
     }
 

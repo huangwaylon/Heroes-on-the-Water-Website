@@ -23,14 +23,15 @@
     $scope.$on("user_loaded", checkUserPermissions);
 
     function checkUserPermissions() {
-      if ($scope.user.account && $scope.user.account != "Administrator") {
-        console.log("Not an Administrator!");
-        $scope.success = false;
-        $scope.error = true;
-        $scope.errorMessage = "Not an Administrator!"
-      } else {
+      if ($scope.user.account && ($scope.user.account == "Administrator" ||
+                                  $scope.user.account == "Region Leader" ||
+                                  $scope.user.account == "Chapter Leader")) {
         $scope.success = true;
         $scope.error = false;
+      } else {
+        $scope.success = false;
+        $scope.error = true;
+        $scope.errorMessage = "Not an Administrator!";
       }
     }
 
