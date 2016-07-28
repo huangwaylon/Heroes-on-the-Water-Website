@@ -1,13 +1,12 @@
 (function() {
     angular.module('app.how').controller('mailboxRouteCtrl',
         function($log, $scope, AuthService, mailService, $timeout, $location) {
-            //$log.debug('Initializing mailboxRouteCtrl');
 
             var self = this;
             $scope.userResult = {};
             $scope.username = {};
             $scope.successMail = false;
-
+            $scope.unreadCount = 0;
 
             $('#tabs a').click(function (e) {
               e.preventDefault()
@@ -39,6 +38,7 @@
                 $scope.mailResults[index].read = true;
                 //$scope.$apply(); //Need to refresh the style for that mail, not sure if this works
               }
+              unreadCountTotal();
             }
 
             $scope.reply = function() {
@@ -60,53 +60,63 @@
           $location.path('/profile');
         }
 
-            $scope.submitLookup = function() {
-                AuthService.findUserByUsername($scope.username, $scope.userResult).then(function(result) {
-                	mailService.mail = [];
-                	for (var i=0; i<$scope.userResult.mail.length; i++){
-                		var id=$scope.userResult.mail[i];
-                		mailService.getMailById(id);
-                	}
-                	$scope.mailResults = mailService.mail;
-                }, function(error) {
-                    console.log("mailbox ctrl submitLookup error");
-                });
-
+        function unreadCountTotal() {
+          $scope.unreadCountTotal = 0;
+          for (var i = 0; i < $scope.mailResults.length; i++) {
+            var item = $scope.mailResults[i];
+            if (!item.read) {
+              $scope.unreadCountTotal++;
             }
+          }
+        }
 
-            $scope.submitMail = function() {
-                var message = {
-                    sender: $scope.username,
-                    recipient: $scope.recipient,
-                    subject: $scope.subject,
-                    body: $scope.body,
-                    date: new Date(),
-                    read: false
-                };
-                mailService.sendMail(message);
-                $scope.successMail = true;
-                $scope.recipient = "";
-                $scope.subject = "";
-                $scope.body = "";
-                $timeout(function() {
-                  $scope.successMail = false;
-                }, 2000);
-            }
+        $scope.$on("mail_loaded", unreadCountTotal);
 
-            //Changes the style of a message depending on if it is read or not
-            $scope.setMailStyle = function(index){
-              var mail = $scope.mailResults[index];
-              //message is already read
-              if(mail.read){
-                return {'background-color': '#F5F5F5'};
-              }
-              //unread message
-              else{
-                return {'font-weight': 'bold', 'background-color': 'white'};
-              }
-            }
+        $scope.submitLookup = function() {
+            AuthService.findUserByUsername($scope.username, $scope.userResult).then(function(result) {
+            	mailService.mail = [];
+            	for (var i=0; i<$scope.userResult.mail.length; i++){
+            		var id=$scope.userResult.mail[i];
+            		mailService.getMailById(id);
+            	}
+              $scope.mailResults = mailService.mail;
+            }, function(error) {
+                console.log("mailbox ctrl submitLookup error");
+            });
+        }
 
-        });
+        $scope.submitMail = function() {
+            var message = {
+                sender: $scope.username,
+                recipient: $scope.recipient,
+                subject: $scope.subject,
+                body: $scope.body,
+                date: new Date(),
+                read: false
+            };
+            mailService.sendMail(message);
+            $scope.successMail = true;
+            $scope.recipient = "";
+            $scope.subject = "";
+            $scope.body = "";
+            $timeout(function() {
+              $scope.successMail = false;
+            }, 2000);
+        }
 
+        //Changes the style of a message depending on if it is read or not
+        $scope.setMailStyle = function(index){
+          var mail = $scope.mailResults[index];
+          //message is already read
+          if(mail.read){
+            return {'background-color': '#F5F5F5'};
+          }
+          //unread message
+          else{
+            return {'font-weight': 'bold', 'background-color': 'white'};
+          }
+        }
+
+    });
 
 })();

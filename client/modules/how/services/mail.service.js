@@ -1,5 +1,5 @@
 (function() {
-    angular.module('app.how').service('mailService', function($log, $http, $q, AuthService) {
+    angular.module('app.how').service('mailService', function($log, $http, $q, AuthService,$rootScope) {
 
         var self = this;
 
@@ -20,6 +20,7 @@
                     //$log.debug('getMail resolve', response);
                     self.mail.push(response.data);
                     defer.resolve(response);
+                    $rootScope.$broadcast("mail_loaded");
                 },
                 function(error, status) {
                     //$log.log('getMail reject', error, status);
