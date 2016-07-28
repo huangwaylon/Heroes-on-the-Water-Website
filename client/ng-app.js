@@ -77,7 +77,10 @@
 
         // Checks the user's information
         function getUserInfo() {
-          checkMail();
+            if($scope.user.account){
+                checkMail();
+            }
+          
             // Check the user's permission level
             if ($scope.user.account && ($scope.user.account == "Administrator" ||
                     $scope.user.account == "Region Leader" ||
