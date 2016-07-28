@@ -1,14 +1,11 @@
 (function() {
-    angular.module('app.how').service('donationService',
-        function($log, $http, $q) {
-            //$log.debug('Initializing donationService');
-
+    angular.module('app.how').service('donationService',['$log', '$http', '$q', '$rootScope',
+        function($log, $http, $q, $rootScope) {
             // return available functions for use in the controllers
             return ({
-                addDonor: addDonor
+                addDonor: addDonor,
+                all: all
             });
-
-            var self = this;
 
             // Function responsible for adding the new donor.
             function addDonor(newDonor) {
@@ -31,7 +28,7 @@
                 };
 
                 // Send a post request to the server for the new donor.
-                $http.post('/donors', donation)
+                $http.post('/donors/add', donation)
                     .success(function(data, status) {
                         console.log(data);
                         // Handle success
@@ -47,6 +44,19 @@
                     });
                 // Return promise object
                 return deferred.promise;
-            };
-        });
+            }
+
+            function all(scope) {
+                return $http.get('/donors/all').then(function(response) {
+                    scope.allDonors = response.data;
+                    console.log(response.data);
+                    broadcast();
+                });
+            }
+
+            function broadcast() {
+                $rootScope.$broadcast("donors_loaded");
+            }
+        }
+      ]);
 })();
