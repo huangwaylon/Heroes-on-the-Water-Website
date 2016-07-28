@@ -31,7 +31,7 @@
   var exampleRoute = require('./routes/example.route.js');
   var galleryImageRoute = require('./routes/gallery-image.route.js');
   var chapterRoute = require('./routes/chapter.route.js');
-  var donationRoute = require('./routes/donation.route.js');
+  var router = require('./routes/donation.route.js');
   var mailRoute = require('./routes/mail.route.js');
   var routes = require('./routes/api.route.js');
   var eventlistRoute = require('./routes/eventlist.route.js');
@@ -63,7 +63,7 @@
   // data routes
   app.use('/user/', routes);
   app.use('/inventory/', inventoryRoute);
-  app.use('/donors', donationRoute);
+  app.use('/donors', router);
   app.use('/examples', exampleRoute);
   app.use('/galleryImages', galleryImageRoute);
   app.use('/events', eventlistRoute);

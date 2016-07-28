@@ -10,8 +10,12 @@
 
             var self = this;
 
+            // Function responsible for adding the new donor.
             function addDonor(newDonor) {
+                // New instance of defer
                 var deferred = $q.defer();
+
+                // Collect the information of the donor.
                 var donation = {
                     firstname: newDonor.firstname,
                     lastname: newDonor.lastname,
@@ -25,18 +29,23 @@
                     country: newDonor.country,
                     comment: newDonor.comment
                 };
-                $http.post('/donors', donation)
+
+                // Send a post request to the server for the new donor.
+                $http.post('/', donation)
                     .success(function(data, status) {
                         console.log(data);
+                        // Handle success
                         if (status == 200 && data.status) {
                             deferred.resolve();
                         } else {
                             deferred.reject();
                         }
                     })
+                    // Handle error
                     .error(function(data) {
                         deferred.reject()
                     });
+                // Return promise object
                 return deferred.promise;
             };
 

@@ -9,6 +9,8 @@
 
         $scope.addDonor = function() {
           console.log("in addDonor");
+
+          // Store the new donor's information
           var currDonor = {
             firstname: $scope.firstname,
             lastname: $scope.lastname,
@@ -22,6 +24,8 @@
             country: $scope.country,
             comment: $scope.comment
           };
+
+          // Add the new donor to the array
           $scope.allDonors.push(currDonor);
           console.log(currDonor);
           donationService.addDonor(currDonor);

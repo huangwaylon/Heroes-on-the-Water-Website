@@ -1,6 +1,7 @@
 (function() {
     var mongoose = require('mongoose');
 
+    // Information from the donor that will be stored.
     var donationSchema = new mongoose.Schema({
         firstname: { type: String, required: true, unique: false },
         lastname: { type: String, required: true, unique: false },
