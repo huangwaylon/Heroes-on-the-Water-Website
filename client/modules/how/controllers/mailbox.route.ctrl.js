@@ -19,24 +19,27 @@
               $('#subjectInput').val("");
             }
 
-            $scope.openMail = function(index) {
-              mailService.currentmail = $scope.mailResults[index];
+            $scope.openMail = function(mail) {
+              //console.log("index2: ", index);
+              //mailService.currentmail = $scope.mailResults[index];
+              //console.log($scope.mailResults[index]);
+              mailService.currentmail = mail;
               $('#currentmail').show();
               $('#replybutton').show();
-              var mail = $scope.mailResults[index];
+              //var mail = $scope.mailResults[index];
               //Message was unread, set it to read
               if(!mail.read){
-                var mail = {
-                  _id: $scope.mailResults[index]._id,
-                  sender: $scope.mailResults[index].sender,
-                  recipient: $scope.mailResults[index].recipient,
-                  subject: $scope.mailResults[index].subject,
-                  body: $scope.mailResults[index].body,
-                  date: $scope.mailResults[index].date,
+                var newMail = {
+                  _id: mail._id,
+                  sender: mail.sender,
+                  recipient: mail.recipient,
+                  subject: mail.subject,
+                  body: mail.body,
+                  date: mail.date,
                   read: true
                 };
-                mailService.updateMail(mail);
-                $scope.mailResults[index].read = true;
+                mailService.updateMail(newMail);
+                mail.read = true;
                 //$scope.$apply(); //Need to refresh the style for that mail, not sure if this works
               }
             }
@@ -94,8 +97,9 @@
             }
 
             //Changes the style of a message depending on if it is read or not
-            $scope.setMailStyle = function(index){
-              var mail = $scope.mailResults[index];
+            $scope.setMailStyle = function(mail){
+              //console.log("index1: ", index);
+              //var mail = $scope.mailResults[index];
               //message is already read
               if(mail.read){
                 return {'background-color': '#F5F5F5'};
