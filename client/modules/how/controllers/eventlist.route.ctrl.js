@@ -4,10 +4,26 @@
         var self = this;
         $scope.errormessage = false;
         eventlistService.eventlist = "";
+        $scope.success = false;
+        $scope.errorbanner = false;
+        var curDate = new Date();
+        var picker = new Pikaday({
+          field: $('#datepicker')[0]
+        });
+        var pickerz = new Pikaday({ field: $('#datepickerz')[0],
+        minDate: curDate,
+        defaultDate: curDate
+       });
+        $('#tabbles a').click(function (e) {
+          e.preventDefault()
+          $(this).tab('show')
+        });
+
         $scope.$watch(function() {
           return eventlistService.fulllist;
         }, function() {
           self.allEvents = eventlistService.fulllist;
+          checkDate(self.allEvents);
         });
         this.newEvent = {};
         this.newEvent.participants = [];
@@ -21,6 +37,24 @@
 
         $scope.$on("user_loaded", checkUserPermissions);
         $scope.$on("user_login", setLogin);
+
+        Date.prototype.withoutTime = function () {
+        var d = new Date(this);
+        d.setHours(0, 0, 0, 0, 0);
+        return d;
+        }
+
+
+        function checkDate(events) {
+          var currentDate = picker.getDate(new Date());
+          for(var i = 0; i < events.length; i++) {
+            if(currentDate.getTime() >= new Date(events[i].date).getTime()) {
+              if(currentDate.withoutTime() > new Date(events[i].date).withoutTime()) {
+                self.allEvents.splice(i, 1);
+              }
+            }
+          }
+        }
 
         // Checks the user's permission level
         function checkUserPermissions() {
@@ -37,16 +71,6 @@
           // Get user details after login
           AuthService.hello($scope.user);
         }
-
-        $scope.success = false;
-        $scope.errorbanner = false;
-        var picker = new Pikaday({ field: $('#datepicker')[0] });
-        var pickerz = new Pikaday({ field: $('#datepickerz')[0] });
-
-        $('#tabbles a').click(function (e) {
-          e.preventDefault()
-          $(this).tab('show')
-        });
 
 
         $scope.resetTab = function() {
@@ -106,6 +130,7 @@
 
         };
 
+        //Takes date and searches by that
         this.searchEvents = function() {
           var time = $('#datepicker').val();
           if(eventlistService.fulllist != null || eventlistService.fulllist != undefined) {

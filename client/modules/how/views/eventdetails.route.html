@@ -37,14 +37,14 @@
             <br>
             <div class="col-sm-6 col-md-6">
               <div><b>Name:</b> <a href="" id="eventName" editable-text="eventDetails.name" ng-show="isAdmin">{{eventDetails.name}}</a><span ng-show="!isAdmin">{{eventDetails.name}}</span></div>
-              <div><b>Date:</b> <input style="width: 20%; min-width: 140px;" class="form-control" type="text" value="{{eventDetails.date}}" id="datepicker" ng-show="isAdmin"><span ng-show="!isAdmin">{{eventDetails.date}}</span></div>
+              <div><b>Date:</b> <input style="width: 20%; min-width: 140px;" class="form-control" type="text" value="{{eventDetails.date}}" id="datepicker" ng-show="isAdmin" ng-model="eventDetails.date"><span ng-show="!isAdmin">{{eventDetails.date}}</span></div>
               <div><b>Start Time:<small ng-show="isAdmin">Format: 8:00 AM</small> </b><a href="" id="eventStarttime" editable-text="eventDetails.starttime" ng-show="isAdmin">{{eventDetails.starttime}}</a><span ng-show="!isAdmin">{{eventDetails.starttime}}</span></div>
               <div><b>End Time:<small ng-show="isAdmin">Format: 8:00 PM</small> </b><a href="" id="eventEndtime" editable-text="eventDetails.endtime" ng-show="isAdmin">{{eventDetails.endtime}}</a><span ng-show="!isAdmin">{{eventDetails.endtime}}</span></div>
               <div><b>Max Participants: </b><a href="" id="eventMaxParticipants" editable-text="eventDetails.maxParticipants" ng-show="isAdmin">{{eventDetails.maxParticipants}}</a><span ng-show="!isAdmin">{{eventDetails.maxParticipants}}</span></div>
               <div><b>Max Volunteers: </b><a href="" id="eventMaxVolunteers" editable-text="eventDetails.maxVolunteers" ng-show="isAdmin">{{eventDetails.maxVolunteers}}</a><span ng-show="!isAdmin">{{eventDetails.maxVolunteers}}</span></div>
             </div>
             <div class="col-sm-6 col-md-6">
-              <div><b>Location:</b> <a href="" id="eventLocation" editable-text="eventDetails.location" ng-show="isAdmin">{{eventDetails.location}}</a><span ng-show="!isAdmin">{{eventDetails.location}}</span></div>
+              <div><b>Location:</b> <a href="" id="eventLocation" editable-text="eventDetails.location" ng-show="isAdmin">{{eventDetails.location}}</a><span ng-show="!isAdmin"><a href="http://maps.google.com/?q={{eventDetails.location}}" target="_blank">{{eventDetails.location}}</a></span></div>
               <div><b>Description: </b><a href="" id="eventDescription" editable-text="eventDetails.description" ng-show="isAdmin">{{eventDetails.description}}</a><span ng-show="!isAdmin">{{eventDetails.description}}</span></div>
             </div>
             <br/><br/><br/>
@@ -205,7 +205,7 @@
               <h4 class="modal-title" id="signupLabel">{{eventDetails.name}}</h4>
             </div>
             <div class="modal-body">
-              <form ng-submit="signup()">
+              <form id="signupform" ng-submit="signup()">
                 <div class="form-group">
                   <label for="inputFirstame">First Name</label>
                   <input type="text" class="form-control" id="inputFirstname" placeholder="First Name" ng-model="user.firstname">

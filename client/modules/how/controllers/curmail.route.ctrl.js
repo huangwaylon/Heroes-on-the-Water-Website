@@ -5,6 +5,7 @@
 
         var self = this;
 
+        //Watch function for directive
         $scope.$watch(function() {
           return mailService.currentmail;
         }, function() {

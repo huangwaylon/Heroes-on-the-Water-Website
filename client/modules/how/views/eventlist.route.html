@@ -10,7 +10,7 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row animated fadeIn">
       <!--content for each tab -->
       <div class="tab-content">
       <div id="search" class="tab-pane fade">
@@ -103,29 +103,29 @@
           <div class="form-group">
             <div class="col-sm-6 col-md-6">
               <label for="eventName">Event Name</label>
-              <input type="text" class="form-control" ng-model="eventlistCtrl.newEvent.name" id="eventName" placeholder="Event Name">
+              <input type="text" class="form-control" ng-model="eventlistCtrl.newEvent.name" id="eventName" placeholder="Event Name" required>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-6 col-md-6">
               <label for="eventLocation">Location</label>
-              <input type="text" class="form-control" ng-model="eventlistCtrl.newEvent.location" id="eventLocation" placeholder="Event Location">
+              <input type="text" class="form-control" ng-model="eventlistCtrl.newEvent.location" id="eventLocation" placeholder="Event Location" required>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-6 col-md-6">
               <label for="eventDate">Date</label>
-              <input type="text" class="form-control" ng-model="eventlistCtrl.newEvent.date" id="datepickerz" placeholder="Event Date">
+              <input type="text" class="form-control" ng-model="eventlistCtrl.newEvent.date" id="datepickerz" placeholder="Event Date" required>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-3 col-md-3">
                 <label>Start Time <small>Format: 8:00 AM</small></label>
-                <input type="text" class="form-control timepicker"  ng-model="eventlistCtrl.newEvent.starttime" id="startTime" placeholder="Start Time">
+                <input type="text" class="form-control timepicker"  ng-model="eventlistCtrl.newEvent.starttime" id="startTime" placeholder="Start Time" required>
               </div>
             <div class="col-sm-3 col-md-3">
                 <label>End Time  <small>Format: 8:00 PM</small></label>
-                <input type="text" class="form-control timepicker"  ng-model="eventlistCtrl.newEvent.endtime" id="endTime" placeholder="End Time">
+                <input type="text" class="form-control timepicker"  ng-model="eventlistCtrl.newEvent.endtime" id="endTime" placeholder="End Time" required>
               </div>
             </div>
           <div class="form-group">
