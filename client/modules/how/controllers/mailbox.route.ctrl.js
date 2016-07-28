@@ -7,6 +7,7 @@
             $scope.username = {};
             $scope.successMail = false;
             $scope.unreadCount = 0;
+            $scope.selectedMessage = {};
 
             $('#tabs a').click(function(e) {
                 e.preventDefault()
@@ -19,6 +20,7 @@
             }
 
             $scope.openMail = function(mail) {
+              $scope.selectedMessage = mail;
                 //console.log("index2: ", index);
                 //mailService.currentmail = $scope.mailResults[index];
                 //console.log($scope.mailResults[index]);
@@ -90,8 +92,9 @@
 
             //Changes the style of a message depending on if it is read or not
             $scope.setMailStyle = function(mail) {
-                //console.log("index1: ", index);
-                //var mail = $scope.mailResults[index];
+                if(mail == $scope.selectedMessage){
+                    return { 'background-color': '#F5F5F5', 'border-width': '3px', 'border-color': '#AFAFAF' };
+                }
                 //message is already read
                 if (mail.read) {
                     return { 'background-color': '#F5F5F5' };
