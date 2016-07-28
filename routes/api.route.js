@@ -1,10 +1,12 @@
+// Dependencies
 var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 
+// Load the User model
 var User = require('../models/user.model.js');
-var Q = require('q');
 
+// Register a new user with PassportJs
 router.post('/register', function(req, res) {
   User.register(new User({
     username: req.body.username,
@@ -20,6 +22,7 @@ router.post('/register', function(req, res) {
         err: err
       });
     }
+    // Automatically authenticate/login the user that just registered
     passport.authenticate('local')(req, res, function () {
       return res.status(200).json({
         status: 'Registration successful!'
@@ -28,22 +31,28 @@ router.post('/register', function(req, res) {
   });
 });
 
+// Request to login a user
 router.post('/login', function(req, res, next) {
+  // Attempt to authenticate user with PassportJs
   passport.authenticate('local', function(err, user, info) {
     if (err) {
+      // Error occurred
       return next(err);
     }
     if (!user) {
+      // User does not exist
       return res.status(401).json({
         err: info
       });
     }
     req.logIn(user, function(err) {
       if (err) {
+        // Login attempt failed
         return res.status(500).json({
           err: 'Could not log in user'
         });
       }
+      // Login was successful
       res.status(200).json({
         status: 'Login successful!'
       });
@@ -51,14 +60,18 @@ router.post('/login', function(req, res, next) {
   })(req, res, next);
 });
 
+// Logout current user request
 router.get('/logout', function(req, res) {
   req.logout();
+  // Logout successful
   res.status(200).json({
     status: 'Bye!'
   });
 });
 
 // Checks the user's status - logged in or not
+// Returned json includes a status field that indicates
+// whether or not a user is logged in
 router.get('/status', function(req, res) {
   if (!req.isAuthenticated()) {
     return res.status(200).json({
@@ -70,12 +83,15 @@ router.get('/status', function(req, res) {
   });
 });
 
+// Request to get current user
 router.get('/getuser', function(req, res) {
   if (!req.isAuthenticated()) {
+    // No user is currently logged in
     return res.status(200).json({
       status: false
     });
   }
+  // User retrieval was successful
   res.status(200).json({
     status: true,
     username: req.user.username,
@@ -83,18 +99,23 @@ router.get('/getuser', function(req, res) {
   });
 });
 
+// Request to obtain all users from database
 router.get('/users', function (req, res) {
   User.find(function (err, components) {
-    if (err)
+    if (err) {
+      // Error occurred
       res.send(err);
-
+    }
+    // Return all users
     res.json(components);
   });
 });
 
+// Request to update an existing user
 router.post('/update', function(req, res) {
+  // Retrieve the user object that is passed in
   var currUser = req.body;
-  console.log(currUser);
+  // Have the database update the entry
   User.update({username: currUser.username}, {
     username: currUser.username,
     firstname: currUser.firstname,
@@ -104,12 +125,13 @@ router.post('/update', function(req, res) {
     account: currUser.account,
     mail: currUser.mail
   }, function(err, numberAffected, rawResponse) {
-    console.log(rawResponse);
     if (err) {
+      // Error occurred
       return res.status(500).json({
         err: err
       });
     }
+    // User update was successful
     return res.status(200).json({
       status: 'Update successful!'
     });
