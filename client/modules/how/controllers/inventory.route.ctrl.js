@@ -11,7 +11,8 @@
     $scope.disabled = false;
     $scope.editMode = new Array();
     $scope.user = {};
-
+    $scope.sortType     = 'name'; // set the default sort type
+    $scope.sortReverse  = false;  // set the default sort order
     // Check that the user is logged in
     if (!AuthService.isLoggedIn()) {
       $scope.success = false;

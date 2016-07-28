@@ -30,6 +30,9 @@
         // Load up the initial list of existing inventory items
         InvService.all($scope);
 
+        $scope.sortType     = 'name'; // set the default sort type
+        $scope.sortReverse  = false;  // set the default sort order
+
         $('#leavebutton').hide();
 
         // Check that the user is logged in
