@@ -1,6 +1,6 @@
 (function() {
   angular.module('app.how').controller('eventDetailsRouteCtrl',
-      function($log, $scope, $routeParams, $http, $timeout, eventlistService, AuthService, InvService, $location) {
+      function($log, $scope, $routeParams, $http, $timeout, eventlistService, mailService, AuthService, InvService, $location) {
 
         // Initialize scope variables
         var self = this;
@@ -223,6 +223,39 @@
             }, 3000);
           });
         };
+
+        $scope.sendBroadcast = function() {
+                console.log("sendBroadcast()");
+                console.log($scope.eventDetails);
+                var recipients = "";
+                if ($scope.sendParticipants) {
+                    for (var i = 0; i < $scope.eventDetails.participants.length; i++) {
+                        if ($scope.eventDetails.participants[i] != "") {
+                            recipients += $scope.eventDetails.participants[i].username;
+                            recipients += ", ";
+                        }
+                    }
+                }
+                if ($scope.sendVolunteers) {
+                    for (var i = 0; i < $scope.eventDetails.volunteers.length; i++) {
+                        if ($scope.eventDetails.volunteers[i] != "") {
+                            recipients += $scope.eventDetails.volunteers[i].username;
+                            recipients += ", ";
+                        }
+                    }
+                }
+                var message = {
+                    sender: $scope.user.username,
+                    recipient: recipients,
+                    subject: $scope.subject,
+                    body: $scope.body,
+                    date: new Date(),
+                    read: false
+                };
+                console.log("Message to be sent: ");
+                console.log(message);
+                mailService.sendMail(message);
+            }
 
         this.event = eventlistService.getEventById(this.id).then(
           function(event) {
