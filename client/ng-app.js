@@ -5,8 +5,10 @@
   editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
   });
 
+  // Route controls for the entire site
   appModule.config(function($routeProvider) {
     $routeProvider.when('/', {
+      // The home page
       templateUrl: '/home.route.html',
     }).otherwise({
       // Prevent user from going to an unindexed subdomain
