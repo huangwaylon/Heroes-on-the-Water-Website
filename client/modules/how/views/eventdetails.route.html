@@ -117,21 +117,32 @@
           </div>
 
           <div id="inventory" class="tab-pane fade" ng-show="isAdmin">
+            <p><b>Inventory Reserved for this Event</b></p>
             <table class="table table-hover table-striped">
               <tr>
-                <th>Iten Name</th>
-                <th>Iten Description</th>
+                <th>Item Name</th>
+                <th>Item Description</th>
                 <th>Chapter</th>
-                <th>Use For This Event</th>
               </tr>
-              <tr ng-repeat="item in allItems">
+              <tr ng-repeat="item in usedItems track by $index" ng-click="removeItem($index)">
                 <td>{{item.name}}</td>
                 <td>{{item.description}}</td>
                 <td>{{item.chapter}}</td>
-                <td><input type="checkbox" class="form-control" checked="{{item.isUsed.toString()}}"/></td>
               </tr>
             </table>
-            <button class="btn btn-primary" ng-click="updateInventory()">Update Inventory</button>
+            <p><b>Existing Inventory not Reserved for this Event</b></p>
+            <table class="table table-hover table-striped">
+              <tr>
+                <th>Item Name</th>
+                <th>Item Description</th>
+                <th>Chapter</th>
+              </tr>
+              <tr ng-repeat="item in unusedItems track by $index" ng-click="addItem($index)">
+                <td>{{item.name}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.chapter}}</td>
+              </tr>
+            </table>
           </div>
         </div>
         </div>

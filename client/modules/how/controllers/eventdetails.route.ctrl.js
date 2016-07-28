@@ -25,6 +25,8 @@
         $scope.newVolunteer = {};
         // Initialize the allItems variable which stores all the inventory items
         $scope.allItems = [];
+        $scope.usedItems = [];
+        $scope.unusedItems = [];
         // Load up the initial list of existing inventory items
         InvService.all($scope);
 
@@ -143,8 +145,61 @@
           }, 500);
         }
 
-        $scope.updateInventory = function() {
-          console.log("Update!");
+        $scope.$on("inventory_loaded", updateInventoryLists);
+
+        function updateInventoryLists() {
+          for (var i = 0; i < $scope.allItems.length; i++) {
+            var obj = $scope.allItems[i];
+            for (var j = 0; j < obj.events.length; j++) {
+              var objEventId = (obj.events)[j];
+              if (objEventId === $scope.eventDetails._id) {
+                $scope.usedItems.push(obj);
+                break;
+              }
+            }
+          }
+          $scope.unusedItems = $scope.allItems.diff($scope.usedItems);
+        }
+
+        Array.prototype.diff = function(a) {
+          return this.filter(function(i) {return a.indexOf(i) < 0;});
+        };
+
+        $scope.addItem = function(index) {
+          var item = $scope.unusedItems[index];
+          $scope.usedItems.push(item);
+          $scope.unusedItems.splice(index, 1);
+
+          item.events.push($scope.eventDetails._id);
+          var editedItem = {
+              i_id: item._id,
+              i_name: item.name,
+              i_description: item.description,
+              i_chapter: item.chapter,
+              i_events: item.events,
+              i_isUsed: item.isUsed
+          };
+          InvService.update(editedItem);
+        }
+
+        $scope.removeItem = function(index) {
+          var item = $scope.usedItems[index];
+          $scope.unusedItems.push(item);
+          $scope.usedItems.splice(index, 1);
+
+          var position = item.events.indexOf($scope.eventDetails._id);
+          if ( ~position ) {
+            item.events.splice(position, 1);
+          }
+          var editedItem = {
+              i_id: item._id,
+              i_name: item.name,
+              i_description: item.description,
+              i_chapter: item.chapter,
+              i_events: item.events,
+              i_isUsed: item.isUsed
+          };
+          InvService.update(editedItem);
         }
 
         this.updateEvent = function() {
@@ -182,6 +237,8 @@
               participants: self.event.participants,
               volunteers: self.event.volunteers
             };
+            InvService.broadcast();
+
             if($scope.eventDetails.maxParticipants <= $scope.eventDetails.participants.length) {
               $scope.maxP = true;
               console.log("Max participants have been reached");

@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "angular": "^1.5.7",
+    "angular-counter":"^0.2.1",
     "angular-route": "^1.5.7",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",

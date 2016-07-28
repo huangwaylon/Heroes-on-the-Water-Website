@@ -1,12 +1,13 @@
 (function() {
-    angular.module('app.how').factory('InvService', ['$q', '$timeout', '$http',
-        function($q, $timeout, $http) {
+    angular.module('app.how').factory('InvService', ['$q', '$timeout', '$http', '$rootScope',
+        function($q, $timeout, $http, $rootScope) {
             // return available functions for use in the controllers
             return ({
                 add: add,
                 remove: remove,
                 all: all,
-                update: update
+                update: update,
+                broadcast: broadcast
             });
 
             function add(name, description, chapter, events, isUsed) {
@@ -62,7 +63,6 @@
             //Edits fields within an existing item in the DB
             function update(item) {
                 var deferred = $q.defer();
-
                 $http.post('/inventory/update', item)
                     // handle success
                     .success(function(data, status) {
@@ -83,9 +83,13 @@
             function all(scope) {
                 return $http.get('/inventory/all').then(function(response) {
                     scope.allItems = response.data;
+                    broadcast();
                 });
             }
 
+            function broadcast() {
+              $rootScope.$broadcast("inventory_loaded");
+            }
         }
     ]);
 })();
