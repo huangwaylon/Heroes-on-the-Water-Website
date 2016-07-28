@@ -17,7 +17,7 @@
 			<div class="row animated fadeIn">
 				<div class="col-sm-4 col-md-5">
 					<div class="list-group" style="height: 400px; overflow: auto; max-height: 400px; min-height: 200px">
-					  <span ng-repeat="message in mailResults | orderBy:'date':true track by $index"><a href="" class="list-group-item" ng-click="openMail($index)" ng-style="setMailStyle($index)"><span ng-style="setMailStyle($index)">{{message.sender}}</span> : {{message.subject}} <span ng-style="setMailStyle($index)" style="float:right">{{message.date | date}}</span></a></span>
+					  <span ng-repeat="message in mailResults | orderBy:'date':true"><a href="" class="list-group-item" ng-click="openMail(message)" ng-style="setMailStyle(message)"><span ng-style="setMailStyle(message)">{{message.sender}}</span> : {{message.subject}} <span ng-style="setMailStyle(message)" style="float:right">{{message.date | date}}</span></a></span>
 					</div>
 				</div>
 				<div class="col-sm-6 col-md-6">
