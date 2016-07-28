@@ -83,6 +83,9 @@
                 };
                 mailService.sendMail(message);
                 $scope.successMail = true;
+                $scope.recipient = "";
+                $scope.subject = "";
+                $scope.body = "";
                 $timeout(function() {
                   $scope.successMail = false;
                 }, 2000);
