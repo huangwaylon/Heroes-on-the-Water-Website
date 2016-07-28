@@ -117,32 +117,37 @@
           </div>
 
           <div id="inventory" class="tab-pane fade" ng-show="isAdmin">
-            <p><b>Inventory Reserved for this Event</b></p>
-            <table class="table table-hover table-striped">
-              <tr>
-                <th>Item Name</th>
-                <th>Item Description</th>
-                <th>Chapter</th>
-              </tr>
-              <tr ng-repeat="item in usedItems track by $index" ng-click="removeItem($index)">
-                <td>{{item.name}}</td>
-                <td>{{item.description}}</td>
-                <td>{{item.chapter}}</td>
-              </tr>
-            </table>
-            <p><b>Existing Inventory not Reserved for this Event</b></p>
-            <table class="table table-hover table-striped">
-              <tr>
-                <th>Item Name</th>
-                <th>Item Description</th>
-                <th>Chapter</th>
-              </tr>
-              <tr ng-repeat="item in unusedItems track by $index" ng-click="addItem($index)">
-                <td>{{item.name}}</td>
-                <td>{{item.description}}</td>
-                <td>{{item.chapter}}</td>
-              </tr>
-            </table>
+            <br/>
+            <p><b>Inventory reserved for this event</b></p>
+            <div style="overflow: auto; max-height:400px;">
+              <table class="table table-hover table-striped">
+                <tr>
+                  <th>Item Name</th>
+                  <th>Item Description</th>
+                  <th>Chapter</th>
+                </tr>
+                <tr ng-repeat="item in usedItems track by $index" ng-click="removeItem($index)">
+                  <td>{{item.name}}</td>
+                  <td>{{item.description}}</td>
+                  <td>{{item.chapter}}</td>
+                </tr>
+              </table>
+            </div>
+            <p><b>Existing inventory not reserved for this event</b></p>
+            <div style="overflow: auto; max-height:400px;">
+              <table class="table table-hover table-striped">
+                <tr>
+                  <th>Item Name</th>
+                  <th>Item Description</th>
+                  <th>Chapter</th>
+                </tr>
+                <tr ng-repeat="item in unusedItems track by $index" ng-click="addItem($index)">
+                  <td>{{item.name}}</td>
+                  <td>{{item.description}}</td>
+                  <td>{{item.chapter}}</td>
+                </tr>
+              </table>
+            </div>
           </div>
         </div>
         </div>
