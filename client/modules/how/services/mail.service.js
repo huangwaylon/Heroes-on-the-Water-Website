@@ -26,7 +26,7 @@
                     defer.reject(error, status);
                 },
                 function(progress) {
-                  //  $log.debug('postMail notify', progress);
+                    //  $log.debug('postMail notify', progress);
                     defer.notify(progress);
                 });
 
@@ -82,6 +82,26 @@
                     this.postMail(mailArray[i]);
                 }
             }
+        }
+
+        //Updates a mail document. Used for toggling read/unread
+        this.updateMail = function(mail) {
+            var deferred = $q.defer();
+            $http.post('/mail/update', mail)
+                // handle success
+                .success(function(data, status) {
+                    if (status === 200 && data.status) {
+                        deferred.resolve();
+                    } else {
+                        deferred.reject();
+                    }
+                })
+                // handle error
+                .error(function(data) {
+                    deferred.reject();
+                });
+            // return promise object
+            return deferred.promise;
         }
 
     });

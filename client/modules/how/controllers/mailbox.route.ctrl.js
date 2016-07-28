@@ -23,6 +23,21 @@
               mailService.currentmail = $scope.mailResults[index];
               $('#currentmail').show();
               $('#replybutton').show();
+              var mail = $scope.mailResults[index];
+              //Message was unread, set it to read
+              if(!mail.read){
+                var mail = {
+                  _id: $scope.mailResults[index]._id,
+                  sender: $scope.mailResults[index].sender,
+                  recipient: $scope.mailResults[index].recipient,
+                  subject: $scope.mailResults[index].subject,
+                  body: $scope.mailResults[index].body,
+                  read: true
+                };
+                mailService.updateMail(mail);
+                $scope.mailResults[index].read = true;
+                //$scope.$apply(); //Need to refresh the style for that mail, not sure if this works
+              }
             }
 
             $scope.reply = function() {
@@ -72,6 +87,20 @@
                   $scope.successMail = false;
                 }, 2000);
             }
+
+            //Changes the style of a message depending on if it is read or not
+            $scope.setMailStyle = function(index){
+              var mail = $scope.mailResults[index];
+              //message is already read
+              if(mail.read){
+                return {'background-color': '#F5F5F5'};
+              }
+              //unread message
+              else{
+                return {'font-weight': 'bold', 'background-color': 'white'};
+              }
+            }
+
         });
 
 
