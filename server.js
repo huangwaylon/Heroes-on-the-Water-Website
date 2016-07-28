@@ -33,7 +33,7 @@
   // Required routes for the website
   var galleryImageRoute = require('./routes/gallery-image.route.js');
   var chapterRoute = require('./routes/chapter.route.js');
-  var router = require('./routes/donation.route.js');
+  var donorRoute = require('./routes/donation.route.js');
   var mailRoute = require('./routes/mail.route.js');
   var routes = require('./routes/api.route.js');
   var eventlistRoute = require('./routes/eventlist.route.js');
@@ -73,7 +73,7 @@
   app.use('/chapters', chapterRoute);
   app.use('/mail', mailRoute);
   app.use('/blog', blogRoute);
-  app.use('/donors', router);
+  app.use('/donors', donorRoute);
 
   // Define the initial file to be rendered
   app.get('/', function(req, res) {

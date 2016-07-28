@@ -1,10 +1,9 @@
 (function() {
   angular.module('app.how').controller('donationRouteCtrl',
       function($log, $scope, donationService) {
-        $log.debug('Initializing donationRouteCtrl');
-
         // Array to store all the donors
         $scope.allDonors = [];
+        donationService.all($scope);
 
         // Function to add the new donor
         $scope.addDonor = function() {

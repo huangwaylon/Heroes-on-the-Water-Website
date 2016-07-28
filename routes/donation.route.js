@@ -1,14 +1,12 @@
 (function() {
-
 	var express = require('express');
-	var router = express.Router();
-
+	var donor_router = express.Router();
 	var mongoose = require('mongoose');
 
 	var Donor = require('../models/donation.model.js');
 
 	// Post request for the donors
-	router.post('/', function(req, res, next) {
+	donor_router.post('/add', function(req, res, next) {
 		// Store the new donor's information
 		var newDonor = new Donor(req.body);
 
@@ -25,7 +23,7 @@
 	});
 
 	// Get request for the donors
-	router.get('/', function(req, res, next) {
+	donor_router.get('/all', function(req, res, next) {
 		// Find the donor's information
 		Donor.find(function (err, components) {
 			// Handle error
@@ -35,7 +33,7 @@
 			// Send donor information
 			res.send(components);
 		});
-	}); 
+	});
 
-	module.exports = router;
+	module.exports = donor_router;
 })();

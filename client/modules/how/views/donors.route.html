@@ -1,6 +1,14 @@
 <div class="container">
-	<h3>List of Donors: </h3><br>
+	<h2>Donors to Heroes on the Water</h2>
 	<ul ng-repeat="donor in allDonors">
-		<li>{{donor}}</li>
+		<div>
+			<h3>Donation by: {{donor.firstname}} {{donor.lastname}}</h3>
+			<h4><b>Donation amount: {{donor.donation | currency:"USD$"}}</b></h4>
+			<p><b>Email:</b> {{donor.email}}</p>
+			<p><b>Phone Number:</b> {{donor.phone}}</p>
+			<p><b>Address:</b> {{donor.address}} {{donor.city}} {{donor.zip}}, {{donor.state}} {{donor.country}}</p>
+			<p><b>Comment:</b> {{donor.comment}}</p>
+		</div>
+		<hr/>
 	</ul>
 </div>
