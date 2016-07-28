@@ -5,21 +5,37 @@
 
 	var mongoose = require('mongoose');
 
-	var Donor = require('../models/donor.model.js');
+	var Donor = require('../models/donation.model.js');
 
-	// Handle get request to get all example resources
-	router.get('/', function(req, res, next) {
-		console.log('handling get /donors');
-		Donor.find({}, function(err, donors) {
+	// Post request for the donors
+	router.post('/', function(req, res, next) {
+		// Store the new donor's information
+		var newDonor = new Donor(req.body);
+
+		// Save the new donor
+		newDonor.save(function (err, donor) {
+			// Handle error
 			if (err) {
 				next(err);
 				return;
 			}
-
-			console.log('returning donors: ', donors);
-			res.send(donors);
+			// Send the new donor document
+			res.send(donor);
 		});
 	});
 
+	// Get request for the donors
+	router.get('/', function(req, res, next) {
+		// Find the donor's information
+		Donor.find(function (err, components) {
+			// Handle error
+			if (err) {
+				res.json(err);
+			}
+			// Send donor information
+			res.send(components);
+		});
+	}); 
+
 	module.exports = router;
-});
+})();

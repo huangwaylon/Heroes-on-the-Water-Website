@@ -61,6 +61,11 @@
       controllerAs: 'mailboxCtrl',
       access: {restricted: true}
     })
+    .when('/donors', {
+      templateUrl: '/modules/how/views/donors.route.html',
+      controller: 'donationRouteCtrl',
+      controllerAs: 'donationCtrl'
+    })
     .when('/blogmanage', {
       templateUrl: '/modules/how/views/blogmanage.route.html',
       controller: 'blogManageRouteCtrl',

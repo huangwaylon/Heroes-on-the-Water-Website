@@ -75,9 +75,11 @@
       <ng-view></ng-view>
   </body>
 
+  <!-- Begin footer -->
   <!--style="position: relative; right: 0; bottom: 0; left: 0; width: 100%; height: 255px; font-size: 1em"-->
   <footer class="footer" >
     <div class="container-fluid">
+      <!-- First section of footer that will contain contact info and social media links. -->
       <div class="row-fluid" style="padding-top: 10px">
         <div class="col-sm-4 col-md-4" style="text-align: center;">
           <h3>Contact Us</h3>
@@ -96,11 +98,13 @@
             <a href="https://www.youtube.com/user/PaddleFishHeal/" target="_blank"><i style="margin-right: 0.5em" class="fa fa-lg fa-youtube fa-2x"></i></a>
           </div>
         </div>
+        <!-- Second section of footer that will contain a short about HOW and a donate button. -->
         <div class="col-sm-4 col-md-4"  style="text-align: center">
           <h3>About HOW</h3>
           <h4>HOW helps wounded warriors cast a positive outlook on life.</h4>
           <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#donate">Donate</button>
         </div>
+        <!-- Last section of footer that will contain the badges that have been awarded. -->
         <div class="col-sm-4 col-md-4"  style="text-align: center; padding-top: 40px">
           <img class="fixed-ratio-resize" style="padding-right: 0.5em; width: 20%" src="\images\awards\CFC.jpg"/>
           <img class="fixed-ratio-resize" style="padding-right: 0.5em; width: 20%" src="\images\awards\Guidestar_Gold.png"/>
@@ -112,10 +116,11 @@
   </footer>
 
   <!-- Donation modal that is triggered -->
-  <div class="modal fade" id="donate" role="dialog">
+  <div class="modal fade" id="donate" role="dialog" ng-controller="donationRouteCtrl">
     <div class="modal-dialog">
       <!-- Modal content -->
       <div class="modal-content">
+        <!-- Begin modal header that will contain instructions and an exit button. -->
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h3 class="modal-title">Donation Request</h3>
@@ -123,65 +128,60 @@
           <p style="float: right; color: red"> *required </p>
         </div>
 
+        <!-- Begin modal body that will contain the form to be filled out. -->
         <div class="modal-body">
-          <form role="form">
+          <form role="form" class="inputs" action="/#/donors" method="POST" ng-submit="addDonor()">
             <div class="form-group">
               <label style="color: red" for="firstname">*Firstname: </label><br>
-              <input type="firstname" class="form-control" placeholder="John" id="name1">
+              <input type="text" class="form-control" placeholder="John" id="firstname" ng-model="firstname">
               <label style="color: red" for="lastname">*Lastname: </label><br>
-              <input type="lastname" class="form-control" placeholder="Doe" id="name2">
+              <input type="text" class="form-control" placeholder="Doe" id="lastname" ng-model="lastname">
 
               <label style="color: red" for="email">*Email: </label>
-              <input type="email" class="form-control" placeholder="your_email@how.com" id="email">
-            </div>
-          </form>
+              <input type="email" class="form-control" placeholder="your_email@how.com" id="email" ng-model="email">
 
-          <form class="form-inline">
-            <div class="form-group">
-              <label style="color: red" for="phone">*Phone: </label>
-              <input type="phone" class="form-control" placeholder="(555) 555-5555" id="number">
-              <label style="color: red" for="donation_amount"> *Donation:</label>
-              <input type="donation_amount" class="form-control" placeholder="100" id="amount">
-            </div>
-          </form>
+              <br>
 
-          <br>
+              <div class="form-inline">
+                <label style="color: red" for="phone">*Phone: </label>
+                <input type="text" class="form-control" placeholder="(555) 555-5555" id="phone" ng-model="phone">
+                <label style="color: red" for="donation_amount"> *Donation:</label>
+                <input type="text" class="form-control" placeholder="100" id="donation" ng-model="donation">
+              </div>
 
-          <form>
-            <div class="form-group">
+              <br>
+
               <label for="address">Address: </label>
-              <input type="address" class="form-control" placeholder="150 Main St." id="addr">
-            </div>
-          </form>
+              <input type="text" class="form-control" placeholder="150 Main St." id="address" ng-model="address">
 
-          <form class="form-inline">
-            <div class="form-group">
-              <label for="city">  City: </label>
-              <input type="city" class="form-control" placeholder="Bothell" id="city">
-              <label for="zip_code"> Zip Code </label>
-              <input type="zip_code" class="form-control" placeholder="98011" id="zip">
+              <br>
 
-              <br><br>
+              <div class="form-inline">
+                <label for="city">  City: </label>
+                <input type="text" class="form-control" placeholder="Bothell" id="city" ng-model="city">
+                <label for="zip_code"> Zip Code </label>
+                <input type="number" class="form-control" placeholder="98011" id="zip" ng-model="zip">
 
-              <label for="state"> State: </label>
-              <input type="state" class="form-control" placeholder="WA" id="state">
-              <label for="country"> Country: </label>
-              <input type="country" class="form-control" placeholder="USA" id="country">
-            </div>
-          </form>
+                <br><br>
 
-          <br>
+                <label for="state"> State: </label>
+                <input type="text" class="form-control" placeholder="WA" id="state" ng-model="state">
+                <label for="country"> Country: </label>
+                <input type="text" class="form-control" placeholder="USA" id="country" ng-model="country">
+              </div>
 
-          <form>
-            <div class="form-group">
+              <br>
+
               <label for="comment"> Comments: </label><br>
-              <textarea class="form-control" style="resize: none; min-width: 100%; max-width: 100%" rows="5" placeholder="Include any additional information that you wish to share as well as general comments." id="comment"></textarea>
+              <textarea class="form-control" style="resize: none; min-width: 100%; max-width: 100%" rows="5" placeholder="Include any additional information that you wish to share as well as general comments." id="comment" ng-model="comment">
+              </textarea>
             </div>
           </form>
         </div>
 
+        <!-- Footer to modal where the person can submit the form. -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-dismiss="modal">Submit</button>
+          <button type="submit" class="btn btn-success" data-dismiss="modal" ng-click="addDonor()">Submit</button>
         </div>
       </div>
     </div>
