@@ -6,7 +6,12 @@
         var self = this;
 
         galleryImageService.imagelist = "";
+        galleryImageService.getImages().then(function() {
+          galleryImageService.imagelist = galleryImageService.dbimages[0].outingImages;
 
+        });
+
+        //Initializes imagelist with set of image links depending on what was clicked
         this.initGallery= function(type) {
           if(galleryImageService.dbimages[0] != null || galleryImageService.dbimages[0] != undefined) {
             if(type == "press") {
@@ -37,6 +42,7 @@
 
       };
 
+      //Initializes photo gallery plugin
         var initPhotoSwipeFromDOM = function(gallerySelector) {
 
         // parse slide data (url, title, size ...) from DOM elements

@@ -10,7 +10,8 @@
             });
 
 
-
+            //Function sets a watch on chapterService, sets $scope to chapters and starts
+            //loadScript if there are more than one chapter to parse through.
             $scope.callService = function() {
                 $scope.$watch(function() {
                     return chapterService.chapters;
@@ -23,6 +24,7 @@
                 });
             }
 
+            //If input box for address/zip changes, show all chapters again.
             $scope.addressChange = function() {
               if($('#addressinput').val() == "") {
                 self.filteredChapters = chapterService.chapters;
@@ -32,6 +34,7 @@
               }
             }
 
+            //Init google maps
             $scope.initialize = function() {
                 $scope.mapOptions = {
                     zoom: 4,
@@ -56,6 +59,7 @@
                 $scope.drawChapters(self.chapters);
             }
 
+            //load google api scripts
             $scope.loadScript = function() {
                 //Already visisted chapters page before, now returning. Don't re-add script
                 if (typeof google === 'object' && typeof google.maps === 'object') {
@@ -78,6 +82,7 @@
                 }
             }
 
+            //draws chapters on top of map
             $scope.drawChapters = function(chapters) {
                 var infoWindow = new google.maps.InfoWindow();
 
@@ -104,6 +109,7 @@
                 }
             }
 
+            //takes form info and filters based on address or zip
             $scope.submitForms = function() {
                 var lat = '';
                 var lng = '';
@@ -120,6 +126,7 @@
                 });
             }
 
+            //helper function for filtering lat lng
             $scope.filterByDistance = function(lat1, lng1) {
                 self.filteredChapters = [];
                 for(var i=0; i<self.chapters.length; i++){

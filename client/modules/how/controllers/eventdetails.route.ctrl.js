@@ -55,44 +55,49 @@
           }
         }
 
+
         //Function is currently called when clicking on the signup button. If user is signed in and exists in the event, it turns into
         //a leave event button. that button currently does not have functionality. Should add functionality to it.
-        //Also, how do we check for users who didn't make an account, and signed up, and want to leave the event?
         $scope.checkSignup = function() {
-
-          if($scope.user.username != null || $scope.user.username != undefined) {
-            for(var i = 0; i < $scope.eventDetails.participants.length; i++) {
-              if($scope.user.username == $scope.eventDetails.participants[i].username) {
-                $('#signupbutton').hide();
-                $('#leavebutton').show();
-                break;
-              }
-            }
-            for(var i  = 0; i < $scope.eventDetails.volunteers.length; i++) {
-              if($scope.user.username == $scope.eventDetails.volunteers[i].username) {
-                $('#signupbutton').hide();
-                $('#leavebutton').show();
-                break;
-              }
-            }
-          } else {
-          }
+          $('#myModal').modal('show');
+          // if($scope.user.username != null || $scope.user.username != undefined) {
+          //   for(var i = 0; i < $scope.eventDetails.participants.length; i++) {
+          //     if($scope.user.username == $scope.eventDetails.participants[i].username) {
+          //       $('#signupbutton').hide();
+          //       $('#leavebutton').show();
+          //       break;
+          //     }
+          //   }
+          //   for(var i  = 0; i < $scope.eventDetails.volunteers.length; i++) {
+          //     if($scope.user.username == $scope.eventDetails.volunteers[i].username) {
+          //       $('#signupbutton').hide();
+          //       $('#leavebutton').show();
+          //       break;
+          //     }
+          //   }
+          // } else {
+          // }
           //This line opens up the signup modal. It should go in the else statement, when it checks and sees that the user
           //hasn't already signed up
-          $('#myModal').modal('show');
+
         }
 
         //Method adds participants, taking new participant object and submitting to service.
         $scope.addParticipant = function() {
           $scope.eventDetails.participants.push($scope.newParticipant);
-          eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
-            $scope.participantbanner = true;
-          });
-          $timeout(function () {
-              $scope.participantbanner = false;
-          }, 3000);
-          this.event;
-          $scope.newParticipant = {};
+          if(!$scope.maxP) {
+            eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
+              $scope.participantbanner = true;
+            });
+            $timeout(function () {
+                $scope.participantbanner = false;
+            }, 3000);
+            this.event;
+            $scope.newParticipant = {};
+          } else {
+            alert("Max participants reached for this event!");
+          }
+
           $timeout(function() {
             $('#participantModel').modal('hide');
           }, 500);
@@ -101,14 +106,18 @@
         //Method adds volunteers, taking newVolunteer object and submitting to service.
         $scope.addVolunteer = function() {
           $scope.eventDetails.volunteers.push($scope.newVolunteer);
-          eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
-            $scope.volunteerbanner = true;
-          });
-          $timeout(function () {
-              $scope.volunteerbanner = false;
-          }, 3000);
-          this.event;
-          $scope.newVolunteer = {};
+          if(!$scope.maxV) {
+            eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
+              $scope.volunteerbanner = true;
+            });
+            $timeout(function () {
+                $scope.volunteerbanner = false;
+            }, 3000);
+            this.event;
+            $scope.newVolunteer = {};
+          } else {
+            alert('Maximum amount of volunteers reached!');
+          }
           $timeout(function() {
             $('#volunteerModal').modal('hide');
           }, 500);
@@ -145,7 +154,9 @@
           }
           $timeout(function() {
             $('#myModal').modal('hide');
+            $('#signupform').reset();
           }, 500);
+          $('#signupbutton').hide();
         }
 
         $scope.$on("inventory_loaded", updateInventoryLists);
@@ -205,6 +216,7 @@
           InvService.update(editedItem);
         }
 
+        //Updates current event, and displays alert banner on change.
         this.updateEvent = function() {
             eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
             $scope.changebanner = true;
@@ -215,6 +227,7 @@
           this.event;
         };
 
+        //Removes event, then redirects to main event page.
         this.removeEvent = function(id) {
           eventlistService.removeEvent(id).then(function() {
             $scope.removedbanner = true;
@@ -223,7 +236,6 @@
             }, 3000);
           });
         };
-
         $scope.sendBroadcast = function() {
                 console.log("sendBroadcast()");
                 console.log($scope.eventDetails);
@@ -257,6 +269,7 @@
                 mailService.sendMail(message);
             }
 
+        //Sets eventDetails to current event information
         this.event = eventlistService.getEventById(this.id).then(
           function(event) {
             self.event = event.data;
@@ -283,6 +296,9 @@
               $scope.maxV = true;
               console.log("Max volunteers have been reached");
             }
+            if($scope.maxP && $scope.maxV) {
+            $('#signupbutton').hide();
+          }
           });
 
         $('#tabbies a').click(function (e) {
