@@ -5,6 +5,7 @@
 
         this.mail = [];
         this.currentmail = {};
+        
 
         this.getMailById = function(mailId) {
             //$log.debug('Entering mailService.getMailById');
