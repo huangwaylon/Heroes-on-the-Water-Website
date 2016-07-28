@@ -1,8 +1,9 @@
 (function() {
+  // Dependencies
   var appModule = angular.module('app', ['ngRoute', 'app.how', 'xeditable','counter']);
 
   appModule.run(function(editableOptions) {
-  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+    editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
   });
 
   // Route controls for the entire site
@@ -16,7 +17,7 @@
     });
   });
 
-  // Runs when the current route changes
+  // Runs whenever the current route changes
   appModule.run(function ($rootScope, $location, $route, AuthService) {
     $rootScope.$on('$routeChangeStart',
       function (event, next, current) {
@@ -34,6 +35,7 @@
 
   // Navigation bar controller
   appModule.controller('NavbarCtrl', function($log, $location, $scope, AuthService) {
+    // Initialize $scope variables
     $scope.user = {};
     $scope.notLoggedIn = true;
     $scope.isAdmin = false;
@@ -43,18 +45,21 @@
     $scope.$on("user_logout", setLogout);
     $scope.$on("user_loaded", getUserInfo);
 
+    // Login detected, retrieve user details
     function setLogin() {
       $scope.notLoggedIn = false;
       // Get user details after login
       AuthService.hello($scope.user);
     }
 
+    // Logout detected, set variables
     function setLogout() {
       $scope.notLoggedIn = true;
     }
 
     // Checks the user's information
     function getUserInfo() {
+      // Check permission level of the user
       if ($scope.user.account && ($scope.user.account == "Administrator" ||
                                   $scope.user.account == "Region Leader" ||
                                   $scope.user.account == "Chapter Leader")) {
@@ -64,12 +69,14 @@
       }
     }
 
+    // Logout the existing user and redirect to the homepage
     $scope.logoutUser = function () {
       AuthService.logout().then(function () {
         $location.path('/');
       });
     }
 
+    // Obtain the current active path
     this.isActive = function(viewLocation) {
       return viewLocation === $location.path();
     };

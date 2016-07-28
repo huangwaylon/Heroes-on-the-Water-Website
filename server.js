@@ -12,6 +12,7 @@
   var localStrategy = require('passport-local' ).Strategy;
   var MongoStore = require('connect-mongo')(expressSession);
 
+  // Set up the express framework
   var app = express();
 
   // Set up parsing of the body as a JSON object
@@ -20,14 +21,16 @@
   // Set up database url for mongoose to connect to
   mongoose.connect('mongodb://localhost:27017/blackwater', function (err) {
     if (err) {
+      // Error occurred
       console.log(err);
     }
   });
 
   var Schema = mongoose.Schema;
+  // Load the model that defines the user
   var User = require('./models/user.model.js');
 
-  // Required routes
+  // Required routes for the website
   var galleryImageRoute = require('./routes/gallery-image.route.js');
   var chapterRoute = require('./routes/chapter.route.js');
   var router = require('./routes/donation.route.js');
@@ -37,6 +40,7 @@
   var inventoryRoute = require('./routes/inv.route.js');
   var blogRoute = require('./routes/blog.route.js');
 
+  // Create the route 'public'
   app.use(express.static('public'));
 
   // Define middleware
