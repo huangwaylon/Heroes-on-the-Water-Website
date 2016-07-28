@@ -4,6 +4,12 @@
             $log.debug('Initializing chaptersRouteCtrl');
 
             var self = this;
+            $('#tabs a').click(function (e) {
+              e.preventDefault()
+              $(this).tab('show')
+            });
+
+
 
             $scope.callService = function() {
                 $scope.$watch(function() {
@@ -15,6 +21,15 @@
                         $scope.loadScript();
                     }
                 });
+            }
+
+            $scope.addressChange = function() {
+              if($('#addressinput').val() == "") {
+                self.filteredChapters = chapterService.chapters;
+                if (self.chapters.length > 0) {
+                    $scope.loadScript();
+                }
+              }
             }
 
             $scope.initialize = function() {

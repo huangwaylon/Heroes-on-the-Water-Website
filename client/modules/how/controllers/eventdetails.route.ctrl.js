@@ -1,10 +1,12 @@
 (function() {
   angular.module('app.how').controller('eventDetailsRouteCtrl',
-      function($log, $scope, $routeParams, $http, $timeout, eventlistService, AuthService, $location) {
+      function($log, $scope, $routeParams, $http, $timeout, eventlistService, AuthService, InvService, $location) {
 
         // Initialize scope variables
         var self = this;
-        $scope.eventDetails;
+        $scope.eventDetails = {};
+        $scope.eventDetails.volunteers = [];
+        $scope.eventDetails.participants = [];
         $scope.isAdmin = false;
         this.id = $routeParams.id;
         this.event = {};
@@ -13,12 +15,20 @@
         $scope.participantbanner = false;
         $scope.volunteerbanner = false;
         $scope.removedbanner = false;
+        $scope.maxP = false;
+        $scope.maxV = false;
         $scope.signupType = '';
         $scope.newPerson = {};
         $scope.user = {};
         $scope.loggedIn = false;
         $scope.newParticipant = {};
         $scope.newVolunteer = {};
+        // Initialize the allItems variable which stores all the inventory items
+        $scope.allItems = [];
+        // Load up the initial list of existing inventory items
+        InvService.all($scope);
+
+        $('#leavebutton').hide();
 
         // Check that the user is logged in
         if (AuthService.isLoggedIn()) {
@@ -31,13 +41,43 @@
 
         // Check the user's permissions, e.g. Admin, volunteer, etc.
         function checkUserPermissions() {
-          if ($scope.user.account && $scope.user.account != "Administrator") {
-            $scope.isAdmin = false;
-          } else {
+          if ($scope.user.account && ($scope.user.account == "Administrator" ||
+                                      $scope.user.account == "Region Leader" ||
+                                      $scope.user.account == "Chapter Leader")) {
             $scope.isAdmin = true;
+          } else {
+            $scope.isAdmin = false;
           }
         }
 
+        //Function is currently called when clicking on the signup button. If user is signed in and exists in the event, it turns into
+        //a leave event button. that button currently does not have functionality. Should add functionality to it.
+        //Also, how do we check for users who didn't make an account, and signed up, and want to leave the event?
+        $scope.checkSignup = function() {
+
+          if($scope.user.username != null || $scope.user.username != undefined) {
+            for(var i = 0; i < $scope.eventDetails.participants.length; i++) {
+              if($scope.user.username == $scope.eventDetails.participants[i].username) {
+                $('#signupbutton').hide();
+                $('#leavebutton').show();
+                break;
+              }
+            }
+            for(var i  = 0; i < $scope.eventDetails.volunteers.length; i++) {
+              if($scope.user.username == $scope.eventDetails.volunteers[i].username) {
+                $('#signupbutton').hide();
+                $('#leavebutton').show();
+                break;
+              }
+            }
+          } else {
+          }
+          //This line opens up the signup modal. It should go in the else statement, when it checks and sees that the user
+          //hasn't already signed up
+          $('#myModal').modal('show');
+        }
+
+        //Method adds participants, taking new participant object and submitting to service.
         $scope.addParticipant = function() {
           $scope.eventDetails.participants.push($scope.newParticipant);
           eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
@@ -50,7 +90,7 @@
           $scope.newParticipant = {};
           $timeout(function() {
             $('#participantModel').modal('hide');
-          }, 1000);
+          }, 500);
         };
 
         //Method adds volunteers, taking newVolunteer object and submitting to service.
@@ -66,45 +106,46 @@
           $scope.newVolunteer = {};
           $timeout(function() {
             $('#volunteerModal').modal('hide');
-          }, 1000);
+          }, 500);
         };
 
-        $scope.signup = function() {
-          console.log($scope.newPerson);
-          if($scope.signupType == "participant") {
-            $scope.newParticipant = $scope.newPerson;
-            $scope.addParticipant();
-            $scope.newPerson = {};
+        // Method removes participant at index specified
+        $scope.removeParticipant = function(index) {
+          $scope.eventDetails.participants.splice(index, 1);
+          eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
+            console.log("Removed participant");
+          });
+        };
 
-          }
+        // Method removes volunteer at index specified
+        $scope.removeVolunteer = function(index) {
+          $scope.eventDetails.volunteers.splice(index, 1);
+          eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
+            console.log("Removed volunteer");
+          });
+        };
+
+        //Include check here to see if a username already exists within the participant list.
+        $scope.signup = function() {
+          if($scope.signupType == "participant") {
+            $scope.newParticipant = $scope.user;
+            $scope.addParticipant();
+            }
           else if($scope.signupType == "volunteer") {
-            $scope.newVolunteer = $scope.newPerson;
+            $scope.newVolunteer = $scope.user;
             $scope.addVolunteer();
-            $scope.newPerson = {};
-          }
+            }
           else {
             alert("Neither participant or volunteer was selected");
           }
           $timeout(function() {
             $('#myModal').modal('hide');
-          }, 1000);
-
+          }, 500);
         }
 
-        // $scope.$watch(function() {
-        //   return $scope.user;
-        // }, function() {
-        //   $timeout(function () {
-        //     if($scope.user.account != undefined || $scope.user.account != null) {
-        //       if($scope.user.account == "Administrator") {
-        //         $scope.isAdmin = true;
-        //       }
-        //     } else {
-        //       $scope.isAdmin = false;
-        //     }
-        //   }, 1500);
-        // });
-
+        $scope.updateInventory = function() {
+          console.log("Update!");
+        }
 
         this.updateEvent = function() {
             eventlistService.updateEvent($scope.eventDetails, this.id).then(function (){
@@ -140,6 +181,14 @@
               maxVolunteers: self.event.maxVolunteers,
               participants: self.event.participants,
               volunteers: self.event.volunteers
+            };
+            if($scope.eventDetails.maxParticipants <= $scope.eventDetails.participants.length) {
+              $scope.maxP = true;
+              console.log("Max participants have been reached");
+            }
+            if($scope.eventDetails.maxVolunteers <= $scope.eventDetails.volunteers.length) {
+              $scope.maxV = true;
+              console.log("Max volunteers have been reached");
             }
           });
 

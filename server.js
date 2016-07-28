@@ -28,7 +28,6 @@
   var User = require('./models/user.model.js');
 
   // Required routes
-  var exampleRoute = require('./routes/example.route.js');
   var galleryImageRoute = require('./routes/gallery-image.route.js');
   var chapterRoute = require('./routes/chapter.route.js');
   var router = require('./routes/donation.route.js');
@@ -36,6 +35,7 @@
   var routes = require('./routes/api.route.js');
   var eventlistRoute = require('./routes/eventlist.route.js');
   var inventoryRoute = require('./routes/inv.route.js');
+  var blogRoute = require('./routes/blog.route.js');
 
   app.use(express.static('public'));
 
@@ -61,16 +61,14 @@
   passport.deserializeUser(User.deserializeUser());
 
   // data routes
-  app.use('/user/', routes);
-  app.use('/inventory/', inventoryRoute);
-  app.use('/donors', router);
-  app.use('/examples', exampleRoute);
   app.use('/galleryImages', galleryImageRoute);
   app.use('/events', eventlistRoute);
   app.use('/user', routes);
   app.use('/inventory', inventoryRoute);
   app.use('/chapters', chapterRoute);
-  app.use('/mail', mailRoute)
+  app.use('/mail', mailRoute);
+  app.use('/blog', blogRoute);
+  app.use('/donors', router);
 
   app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, './client', 'index.html'));

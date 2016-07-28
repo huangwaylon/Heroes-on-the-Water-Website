@@ -66,6 +66,18 @@
       controller: 'donationRouteCtrl',
       controllerAs: 'donationCtrl',
       access: {restricted: false}
+    })
+    .when('/blogmanage', {
+      templateUrl: '/modules/how/views/blogmanage.route.html',
+      controller: 'blogManageRouteCtrl',
+      controllerAs: 'blogManageCtrl',
+      access: {restricted: true}
+    })
+    .when('/blog', {
+      templateUrl: '/modules/how/views/blog.route.html',
+      controller: 'blogRouteCtrl',
+      controllerAs: 'blogCtrl',
+      access: {restricted: false}
     });
   });
 })();

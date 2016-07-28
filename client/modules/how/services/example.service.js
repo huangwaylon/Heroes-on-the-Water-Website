@@ -50,6 +50,6 @@
       return defer.promise;
     };
 
-    this.getExamples();
+    //this.getExamples();
   });
 })();

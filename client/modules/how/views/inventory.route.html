@@ -11,20 +11,40 @@
       <div style="overflow: auto; height:400px;">
         <table class="table table-hover table-striped">
           <tr>
-            <th>Iten Name</th>
-            <th>Iten Description</th>
+            <th>Item Name</th>
+            <th>Item Description</th>
+            <th>Chapter</th>
+            <th>Events</th>
             <th>In Use</th>
-            <th style="text-align:center"> Remove</th>
+            <th style="text-align:center">Edit</th>
+            <th style="text-align:center">Remove</th>
           </tr>
           <tr ng-repeat="item in allItems">
-            <td>{{item.name}}</td>
-            <td>{{item.description}}</td>
-            <td><input type="checkbox" class="form-control" checked="{{item.isUsed.toString()}}"/></td>
+
+            <td ng-hide="editMode[$index]">{{item.name}}</td>
+            <td ng-show="editMode[$index]"><input type="text" class="form-control" ng-model="allItems[$index].name"> </td>
+
+            <td ng-hide="editMode[$index]">{{item.description}}</td>
+            <td ng-show="editMode[$index]"><input type="text" class="form-control" ng-model="allItems[$index].description"> </td>
+
+            <td ng-hide="editMode[$index]">{{item.chapter}}</td>
+            <td ng-show="editMode[$index]"><input type="text" class="form-control" ng-model="allItems[$index].chapter"> </td>
+
+            <td ng-hide="editMode[$index]">{{item.events}}</td>
+            <td ng-show="editMode[$index]"><input type="text" class="form-control" ng-model="allItems[$index].events"> </td>
+
+            <td ng-hide="editMode[$index]"><input type="checkbox" class="form-control" ng-model="allItems[$index].isUsed" disabled="disabled"></td>
+            <td ng-show="editMode[$index]"><input type="checkbox" class="form-control" ng-model="allItems[$index].isUsed"> </td>
+
+            <td ng-hide="editMode[$index]" style="text-align:center"><button ng-click="toggleEdit($index)" class="btn-xs btn-primary">Edit</button></td>
+            <td ng-show="editMode[$index]" style="text-align:center"><button ng-click="toggleEdit($index)" class="btn-xs btn-primary">Save</button></td>
+
             <td style="text-align:center"><a href=""><span class="glyphicon glyphicon-remove-sign" ng-click="remove($index)" aria-hidden="true"></span></a></td>
           </tr>
         </table>
       </div>
-
+    </div>
+  </div>
       <!-- <ul>
         <li ng-repeat="x in allItems"><input type="checkbox" checked="{{x.isUsed}}"/>{{x.name}}, {{x.description}}, (id #: {{x._id}})<span ng-click="remove($index)">×</span></li>
       </ul> -->
@@ -39,6 +59,14 @@
         <div class="form-group">
           <label>Item Description</label>
           <input type="text" class="form-control" ng-model="itemDescription">
+        </div>
+        <div class="form-group">
+          <label>Chapter</label>
+          <input type="text" class="form-control" ng-model="itemChapter">
+        </div>
+        <div class="form-group">
+          <label>Events</label>
+          <input type="text" class="form-control" ng-model="itemEvents">
         </div>
         <div class="form-group">
           <label>Item Is Used</label>

@@ -1,8 +1,6 @@
 (function() {
   angular.module('app.how').controller('eventlistRouteCtrl',
       function($log, $scope, $http, $timeout, eventlistService, AuthService, $location) {
-        //$log.debug('Initializing eventlistRouteCtrl');
-
         var self = this;
         $scope.errormessage = false;
         eventlistService.eventlist = "";
@@ -19,18 +17,25 @@
         $scope.loggedIn = false;
         if (AuthService.isLoggedIn()) {
             AuthService.hello($scope.user);
-        } else {
-          //console.log("User is not logged in");
         }
 
         $scope.$on("user_loaded", checkUserPermissions);
+        $scope.$on("user_login", setLogin);
 
+        // Checks the user's permission level
         function checkUserPermissions() {
-          if ($scope.user.account && $scope.user.account != "Administrator") {
-            $scope.isAdmin = false;
-          } else {
+          if ($scope.user.account && ($scope.user.account == "Administrator" ||
+                                      $scope.user.account == "Region Leader" ||
+                                      $scope.user.account == "Chapter Leader")) {
             $scope.isAdmin = true;
+          } else {
+            $scope.isAdmin = false;
           }
+        }
+
+        function setLogin() {
+          // Get user details after login
+          AuthService.hello($scope.user);
         }
 
         $scope.success = false;
@@ -69,21 +74,17 @@
 
         $scope.sortEventsByName = function() {
           self.allEvents.sort(sortBy("name"));
-          console.log("name");
         }
         $scope.sortEventsByDate = function() {
           self.allEvents.sort(sortByDate);
-          console.log("date");
         }
         $scope.sortEventsByLocation = function() {
           self.allEvents.sort(sortBy("location"));
-          console.log("location");
         }
 
         this.removeEvent = function(id) {
           eventlistService.removeEvent(id);
         }
-
 
         this.addEvent = function() {
           eventlistService.postEvent(self.newEvent).then(
@@ -94,7 +95,7 @@
                 self.newEvent = {};
                 eventlistService.getEvents();
                 $timeout(function(){
-                  $scope.success = false; $location.path('/events'); }, 3000);
+                  $scope.success = false; $location.path('/events'); }, 2500);
               }, function(error, status) {
                 $scope.errorbanner = true;
                 //$log.log('addEvent reject', error, status);

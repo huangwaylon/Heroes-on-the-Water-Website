@@ -1,7 +1,7 @@
 (function() {
-  angular.module('app.how').controller('inventoryRouteCtrl',
-  ['$scope', '$location', 'InvService', 'AuthService', '$timeout',
-  function ($scope, $location, InvService, AuthService, $timeout) {
+  angular.module('app.how').controller('blogManageRouteCtrl',
+  ['$scope', '$location', 'BlogService', 'AuthService', '$timeout',
+  function ($scope, $location, BlogService, AuthService, $timeout) {
 
     // Initialize values
     $scope.removeSuccess = false;
@@ -9,7 +9,6 @@
     $scope.success = false;
     $scope.error = false;
     $scope.disabled = false;
-    $scope.editMode = new Array();
     $scope.user = {};
 
     // Check that the user is logged in
@@ -21,10 +20,10 @@
       AuthService.hello($scope.user);
     }
 
-    $scope.$on("user_loaded", checkUserPermissions);
+    $scope.$on("user_loaded", setUserVariables);
     $scope.$on("user_login", setLogin);
 
-    function checkUserPermissions() {
+    function setUserVariables() {
       if ($scope.user.account && ($scope.user.account == "Administrator" ||
                                   $scope.user.account == "Region Leader" ||
                                   $scope.user.account == "Chapter Leader")) {
@@ -35,6 +34,14 @@
         $scope.error = true;
         $scope.errorMessage = "Not an Administrator!";
       }
+      $scope.author = $scope.user.firstname + " " + $scope.user.lastname;
+
+      var date = new Date();
+      var day = date.getDate();
+      var monthIndex = date.getMonth();
+      var year = date.getFullYear();
+      var monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+      $scope.today = day + " " + monthNames[monthIndex] + " " + year;
     }
 
     // After login, get user info again - happens on refresh
@@ -43,35 +50,35 @@
       AuthService.hello($scope.user);
     }
 
-
-    // Initialize the allItems variable which stores all the inventory items
+    // Initialize the allItems variable which stores all the blog items
     $scope.allItems = [];
-    // Load up the initial list of existing inventory items
-    InvService.all($scope);
+    // Load up the initial list of existing blog items
+    BlogService.all($scope);
 
-    // Add function
+    // Add blog function
     $scope.add = function () {
-      InvService.add($scope.itemName,
-                    $scope.itemDescription,
-                    $scope.itemChapter,
-                    $scope.itemEvents,
-                    $scope.itemUsed)
+      BlogService.add($scope.b_title,
+                    $scope.b_body,
+                    $scope.author,
+                    $scope.today)
         .then(function () {
           $scope.refresh();
           $scope.addSuccess = true;
-          $scope.addMessage = "Added item!";
+          $scope.addMessage = "Blog item posted!";
           $scope.disabled = false;
           $scope.removeSuccess = false;
           $timeout(function () {
             $scope.addSuccess = false;
           }, 2000);
         });
+      $scope.b_title = "";
+      $scope.b_body = "";
     };
 
-    // Remove item function
+    // Remove blog item function
     $scope.remove = function (index) {
       var itemToRemove = $scope.allItems[index];
-      InvService.remove(itemToRemove._id)
+      BlogService.remove(itemToRemove._id)
         .then(function () {
           $scope.refresh();
           $scope.removeSuccess = true;
@@ -84,32 +91,9 @@
         });
     };
 
-    // Remove item function
-    $scope.toggleEdit = function (index) {
-      $scope.editMode[index] = !$scope.editMode[index];
-      //Save button clicked, submit update to DB
-      if(!$scope.editMode[index]){
-        var events = $scope.allItems[index].events.toString().split(",");
-        for(var i=0; i<events.length; i++){
-          events[i] = events[i].trim();
-        }
-        var editedItem = {
-            i_id: $scope.allItems[index]._id,
-            i_name: $scope.allItems[index].name,
-            i_description: $scope.allItems[index].description,
-            i_chapter: $scope.allItems[index].chapter,
-            i_events: events,
-            i_isUsed: $scope.allItems[index].isUsed
-        };
-        console.log(editedItem);
-        InvService.update(editedItem);
-      }
-    };
-
-    // Refresh inventory list function
+    // Refresh blog list function
     $scope.refresh = function () {
-      InvService.all($scope);
-      console.log($scope.allItems);
+      BlogService.all($scope);
     };
   }]);
 })();
