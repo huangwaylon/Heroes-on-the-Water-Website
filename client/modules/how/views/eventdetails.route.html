@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="row">
+  <div class="row col-sm-8 col-md-8 col-md-offset-2">
     <div class="alert alert-success alert-dismissible animated fadeIn" role="alert" ng-show="changebanner" style="text-align:center">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       <strong>Success!</strong> Event successfully changed.
@@ -28,7 +28,7 @@
             <li class="active"><a data-toggle="tab" href="#details">Details</a></li>
             <li><a data-toggle="tab" href="#participants">Participants ({{eventDetails.participants.length}})</a></li>
             <li><a data-toggle="tab" href="#volunteers">Volunteers ({{eventDetails.volunteers.length}})</a></li>
-            <li ng-show="isAdmin"><a data-toggle="tab" href="#inventory">Inventory</a></li>
+            <li ng-show="isAdmin"><a data-toggle="tab" href="#inventory">Inventory ({{usedItems.length}})</a></li>
             <li ng-show="isAdmin"><a data-toggle="tab" href="#broadcast">Broadcast</a></li>
           </ul>
           <!--content for each tab -->
