@@ -5,8 +5,10 @@
 
         var self = this;
 
+        // Array to store all the donors
         $scope.allDonors = [];
 
+        // Function to add the new donor
         $scope.addDonor = function() {
           console.log("in addDonor");
 
@@ -27,7 +29,6 @@
 
           // Add the new donor to the array
           $scope.allDonors.push(currDonor);
-          console.log(currDonor);
           donationService.addDonor(currDonor);
         };
       });
