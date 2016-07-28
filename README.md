@@ -2,7 +2,9 @@
 
 ## Introduction
 
-Welcome to Bothell's Finest's repository for the Heroes on the Water website
+Welcome to Bothell's Finest's repository for the Heroes on the Water website!
+
+This website is the culmination of several weeks worth of designing, work, and collaboration!
 
 Technologies we used:
 
@@ -11,6 +13,7 @@ Technologies we used:
  * AngularJS - Framework for web app development
  * Node.js - JavaScript runtime
 
+We believe that our site fully utilizes the technologies mentioned above and showcases good design and coding principles.
 
 ## Setup
 
@@ -57,8 +60,12 @@ This was an awesome team effort! Created by (in order of last name, alphabetical
 * Adilene Pulgarin
 * Jeff Zhong
 
+## Questions and Comments
+
+If you have any questions or comments, please feel free to reach out to us for help or information.
+
 ## References
 
  * [Installing Node.js](https://docs.npmjs.com/getting-started/installing-node) for details about installing Node.js
- * [Intalling MongoDB](https://docs.mongodb.com/manual/installation/) for details about installing MongoDB
+ * [Installing MongoDB](https://docs.mongodb.com/manual/installation/) for details about installing MongoDB
  * [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for details about installing Git
