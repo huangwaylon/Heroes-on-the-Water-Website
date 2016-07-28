@@ -55,6 +55,7 @@
       saveUninitialized: false,
       store: new MongoStore({mongooseConnection:mongoose.connection})
   }));
+  // Initialize a PassportJs session
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(express.static(path.join(__dirname, 'public')));
@@ -64,7 +65,7 @@
   passport.serializeUser(User.serializeUser());
   passport.deserializeUser(User.deserializeUser());
 
-  // data routes
+  // Data routes for the website
   app.use('/galleryImages', galleryImageRoute);
   app.use('/events', eventlistRoute);
   app.use('/user', routes);
@@ -74,6 +75,7 @@
   app.use('/blog', blogRoute);
   app.use('/donors', router);
 
+  // Define the initial file to be rendered
   app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname, './client', 'index.html'));
   });
