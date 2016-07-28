@@ -1,6 +1,7 @@
 # Heroes on the Water ~ Bothell's Finest
 
 ## Introduction
+------
 Welcome to Bothell's Finest's repository for the Heroes on the Water website
 
 Technologies we used:
@@ -12,6 +13,7 @@ Technologies we used:
 
 
 ## Setup
+------
 The setup for our website is simple and straightforward
 
 If you already have Node.js, MongoDB, and Git installed, jump down to step 4 to clone the repository. If you already have the repository cloned as well, follow step 5 to start up the web application!
@@ -42,18 +44,20 @@ If you already have Node.js, MongoDB, and Git installed, jump down to step 4 to 
 	3. In a seperate terminal run `mongod` to start the MongoDB database service
 	4. Return back to the original terminal and call `npm start` to start up the web application
 	5. Navigate your browser to http://localhost:3000/
-	6. Enjoy the website! :+1:
+	6. Enjoy the website!
 
 
 ## Contributors
+------
 This was an awesome team effort! Created by (in order of last name, alphabetically):
+
 * Kyle Albany
 * Waylon Huang
 * Adilene Pulgarin
 * Jeff Zhong
 
 ## References
-
+------
  * [Installing Node.js](https://docs.npmjs.com/getting-started/installing-node) for details about installing Node.js
  * [Intalling MongoDB](https://docs.mongodb.com/manual/installation/) for details about installing MongoDB
  * [Installing Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) for details about installing Git
