@@ -34,59 +34,64 @@
 
     // Navigation bar controller
     appModule.controller('NavbarCtrl', function($log, $location, $scope, mailService, AuthService) {
-        $scope.user = {};
-        $scope.notLoggedIn = true;
-        $scope.isAdmin = false;
-        $scope.unreadMail = false;
+      // Initialize $scope variables
+      $scope.user = {};
+      $scope.notLoggedIn = true;
+      $scope.isAdmin = false;
+      $scope.unreadMail = false;
 
-        // Set listeners for user login, logout, and load
-        $scope.$on("user_login", setLogin);
-        $scope.$on("user_logout", setLogout);
-        $scope.$on("user_loaded", getUserInfo);
+      // Set listeners for user login, logout, and load
+      $scope.$on("user_login", setLogin);
+      $scope.$on("user_logout", setLogout);
+      $scope.$on("user_loaded", getUserInfo);
 
+      // Check for new, incoming mail
+      function checkMail() {
+          mailService.mail = [];
+          for (var i = 0; i < $scope.user.mail.length; i++) {
+              var id = $scope.user.mail[i];
+              mailService.getMailById(id).then(function(response) {
+                  if (!response.data.read) {
+                      $scope.unreadMail = true;
+                  }
+              });
+          }
+      }
 
+      // Login detected, get user details
+      function setLogin() {
+          $scope.notLoggedIn = false;
+          // Get user details after login
+          AuthService.hello($scope.user);
+      }
 
-        function checkMail() {
-            mailService.mail = [];
-            for (var i = 0; i < $scope.user.mail.length; i++) {
-                var id = $scope.user.mail[i];
-                mailService.getMailById(id).then(function(response) {
-                    if (!response.data.read) {
-                        $scope.unreadMail = true;
-                    }
-                });
-            }
-        }
+      // Logout detected, update variables
+      function setLogout() {
+          $scope.notLoggedIn = true;
+      }
 
-        function setLogin() {
-            $scope.notLoggedIn = false;
-            // Get user details after login
-            AuthService.hello($scope.user);
-        }
+      // Checks the user's information
+      function getUserInfo() {
+        // Check the user's permission level
+          if ($scope.user.account && ($scope.user.account == "Administrator" ||
+                                      $scope.user.account == "Region Leader" ||
+                                      $scope.user.account == "Chapter Leader")) {
+              $scope.isAdmin = true;
+          } else {
+              $scope.isAdmin = false;
+          }
+      }
 
-        function setLogout() {
-            $scope.notLoggedIn = true;
-        }
+      // Logout user and redirect to homepage
+      $scope.logoutUser = function() {
+          AuthService.logout().then(function() {
+              $location.path('/');
+          });
+      }
 
-        // Checks the user's information
-        function getUserInfo() {
-            if ($scope.user.account && ($scope.user.account == "Administrator" ||
-                    $scope.user.account == "Region Leader" ||
-                    $scope.user.account == "Chapter Leader")) {
-                $scope.isAdmin = true;
-            } else {
-                $scope.isAdmin = false;
-            }
-        }
-
-        $scope.logoutUser = function() {
-            AuthService.logout().then(function() {
-                $location.path('/');
-            });
-        }
-
-        this.isActive = function(viewLocation) {
-            return viewLocation === $location.path();
-        };
+      // Retrieve current, active path
+      this.isActive = function(viewLocation) {
+          return viewLocation === $location.path();
+      };
     });
 })();

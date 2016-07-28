@@ -66,6 +66,5 @@
           scope.allItems = response.data;
         });
       }
-
   }]);
 })();
