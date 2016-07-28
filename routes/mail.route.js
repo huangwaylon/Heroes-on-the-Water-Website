@@ -49,6 +49,7 @@
             recipient: currMail.recipient,
             subject: currMail.subject,
             body: currMail.body,
+            date: currMail.date,
             read: currMail.read
         }, function(err, numberAffected, rawResponse) {
             console.log(rawResponse);

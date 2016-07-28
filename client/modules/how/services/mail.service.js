@@ -77,6 +77,7 @@
                         recipient: recipients[i],
                         subject: mail.subject,
                         body: mail.body,
+                        date: mail.date,
                         read: false
                     };
                     this.postMail(mailArray[i]);

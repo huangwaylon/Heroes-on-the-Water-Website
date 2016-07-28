@@ -32,6 +32,7 @@
                   recipient: $scope.mailResults[index].recipient,
                   subject: $scope.mailResults[index].subject,
                   body: $scope.mailResults[index].body,
+                  date: $scope.mailResults[index].date,
                   read: true
                 };
                 mailService.updateMail(mail);
@@ -79,6 +80,7 @@
                     recipient: $scope.recipient,
                     subject: $scope.subject,
                     body: $scope.body,
+                    date: new Date(),
                     read: false
                 };
                 mailService.sendMail(message);

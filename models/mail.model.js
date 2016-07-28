@@ -6,6 +6,7 @@
         recipient: String,
         subject: String,
         body: String,
+        date: Date,
         read: Boolean
     });
 
