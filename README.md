@@ -16,7 +16,8 @@ Technologies we used:
 
 The setup for our website is simple and straightforward
 
-If you already have Node.js, MongoDB, and Git installed, jump down to step 4 to clone the repository. If you already have the repository cloned as well, follow step 5 to start up the web application!
+If you already have Node.js, MongoDB, and Git installed, jump down to step 4 to clone the repository.
+If you already have the repository cloned as well, follow step 5 to start up the web application!
 
 1. Install Node.js
 	1. Navigate to https://nodejs.org/en/download/
