@@ -11,6 +11,18 @@
   right: 20px;
 }
 
+/* Make the badge float in the top right corner of the button */
+.button_badge {
+  background-color: #fa3e3e;
+  border-radius: 4px;
+  color: white;
+  padding: 1px 3px;
+  font-size: 10px;
+
+  position: absolute; /* Position the badge within the relatively positioned button */
+  top: 0;
+  right: 0;
+}
 
 body {
   padding-top: 70px;

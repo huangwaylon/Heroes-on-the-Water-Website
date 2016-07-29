@@ -1,8 +1,6 @@
 (function() {
   angular.module('app.how').controller('evlistRouteCtrl',
       function($log, $scope, eventlistService) {
-        //$log.debug('Initializing evlistRouteCtrl');
-
         var self = this;
 
         $scope.$watch(function() {

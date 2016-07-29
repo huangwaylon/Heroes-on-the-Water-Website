@@ -1,8 +1,6 @@
 (function() {
   angular.module('app.how').controller('mediaRouteCtrl',
       function($log, galleryImageService, $scope) {
-        $log.debug('Initializing mediaRouteCtrl');
-
         var self = this;
 
         galleryImageService.imagelist = "";

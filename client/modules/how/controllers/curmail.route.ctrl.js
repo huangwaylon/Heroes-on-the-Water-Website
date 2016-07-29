@@ -1,8 +1,6 @@
 (function() {
   angular.module('app.how').controller('curmailRouteCtrl',
       function($log, $scope, mailService) {
-        //$log.debug('Initializing evlistRouteCtrl');
-
         var self = this;
 
         //Watch function for directive
