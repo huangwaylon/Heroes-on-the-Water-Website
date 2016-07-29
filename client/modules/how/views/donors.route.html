@@ -1,16 +1,18 @@
 <div class="container">
-	<center><h1>Donors to Heroes on the Water</h1></center>
-	<!-- Display the information of each donor -->
-	<ul ng-repeat="donor in allDonors" style="list-style: none">
-		<li><h3>Donation by: {{donor.firstname}} {{donor.lastname}}</h3></li>
-		<!-- Begin listing all of the information below the donor's name -->
-		<ul class="list-group-item" style="list-style: none">
-			<li><h4><b>Donation amount: {{donor.donation | currency:"USD$"}}</b></h4></li>
-			<li><p><b>Email:</b> {{donor.email}}</p></li>
-			<li><p><b>Phone Number:</b> {{donor.phone}}</p></li>
-			<li><p><b>Address:</b> {{donor.address}} {{donor.city}} {{donor.zip}}, {{donor.state}} {{donor.country}}</p></li>
-			<li><p><b>Comment:</b> {{donor.comment}}</p></li>
-		</ul>
+	<div class="row">
+    <div ng-show="error" class="alert alert-danger animated fadeIn">{{errorMessage}}</div>
+  </div>
+
+	<h2 ng-show="success">Donors to Heroes on the Water</h2>
+	<ul ng-show="success" ng-repeat="donor in allDonors">
+		<div>
+			<h3>Donation by: {{donor.firstname}} {{donor.lastname}}</h3>
+			<h4><b>Donation amount: {{donor.donation | currency:"USD$"}}</b></h4>
+			<p><b>Email:</b> {{donor.email}}</p>
+			<p><b>Phone Number:</b> {{donor.phone}}</p>
+			<p><b>Address:</b> {{donor.address}} {{donor.city}} {{donor.zip}}, {{donor.state}} {{donor.country}}</p>
+			<p><b>Comment:</b> {{donor.comment}}</p>
+		</div>
 		<hr/>
 	</ul>
 </div>
