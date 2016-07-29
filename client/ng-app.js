@@ -50,6 +50,7 @@
         var amount = 0;
         var localUnread = 0;
 
+        // Check the mail after resetting mail variables
         function resetMail() {
           $scope.checkedMail = false;
           checkMail();
@@ -57,6 +58,7 @@
 
         // Check for unread mail to toggle the mailbox icon
         function checkMail() {
+            // Check the mail only if it hasn't been checked yet
             if (!$scope.checkedMail) {
                 $scope.checkedMail = true;
                 mailService.mail = [];
@@ -75,11 +77,16 @@
             }
         }
 
+        // Finished checking gets called multiple times after each mail item is loaded
         function finishedChecking() {
+          // Only perform updating of variables if total amount checked is the same
+          // as user mail list length
           if (amount == $scope.user.mail.length) {
+            // Set the scope variable to proper value
             $scope.totalUnread = localUnread;
-            console.log(amount + ", " +  $scope.user.mail.length);
+            // If there's no new mail
             if (localUnread == 0) {
+              // Set unread mail to false
               $scope.unreadMail = false;
             } else {
               $scope.unreadMail = true;
