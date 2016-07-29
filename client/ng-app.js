@@ -103,8 +103,13 @@
 
         // Logout detected, update variables
         function setLogout() {
-            $scope.notLoggedIn = true;
             clearTimeout(mailCheckTimer);
+            // Clear all variables
+            $scope.user = {};
+            $scope.notLoggedIn = true;
+            $scope.isAdmin = false;
+            $scope.unreadMail = false;
+            $scope.checkedMail = false;
         }
 
         // Checks the user's information
