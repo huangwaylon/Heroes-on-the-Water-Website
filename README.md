@@ -20,7 +20,7 @@ We believe that our site fully utilizes the technologies mentioned above and sho
 The setup for our website is simple and straightforward
 
 If you already have Node.js, MongoDB, and Git installed, jump down to step 4 to clone the repository.
-If you already have the repository cloned as well, follow step 5 to start up the web application!
+If you already have the repository cloned as well, follow step 5 to import data and then start up the web application!
 
 1. Install Node.js
 	1. Navigate to https://nodejs.org/en/download/
@@ -42,7 +42,12 @@ If you already have the repository cloned as well, follow step 5 to start up the
 	1. Now that Node.js and MongoDB have been setup, it is time to download the repository
 	2. Clone the repository with git by running `git clone https://wh186y@codecloud.web.att.com/scm/st_how2016/bothells_finest_how.git` in a terminal
 	3. After the repository has been successfully cloned, run `cd bothells_finest_how` to navigate into the directory
-4. Running the code
+5. Import Chapter and Media data into the database
+	1. Now we need to import some existing data regarding Chapter information and Media images into the MongoDB database
+	2. In the existing terminal run `mongoimport --db blackwater --collection chapters --type json --file chapterLocations.json --jsonArray` to import data about Chapter locations, websites, and names
+	3. Next, after the previous import succeeded, run `mongoimport --db blackwater --collection galleryimages --type json --file images.json` to import Heroes on the Water media images
+	4. At this point, we have all the necessary preexisting data that we need loaded into the MongoDB database
+6. Running the code
 	1. In the terminal, run `npm install` to install all necessary dependencies
 	2. Run `grunt` to copy all the necessary code into the public directory (Grunt will contine to run indefinitely as it is waiting for further code changes. Once you see it "Waiting" run `ctrl + c` to terminate the grunt process)
 	3. In a seperate terminal run `mongod` to start the MongoDB database service
