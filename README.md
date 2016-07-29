@@ -44,8 +44,7 @@ If you already have the repository cloned as well, follow step 5 to import data 
 	3. After the repository has been successfully cloned, run `cd bothells_finest_how` to navigate into the directory
 5. Import Chapter and Media data into the database
   1. Now we need to import some existing data regarding Chapter information and Media images into the MongoDB database
-  2. In the existing terminal run `mongoimport --db blackwater --collection chapters --type json --file chapterLocations.json
---jsonArray` to import data about Chapter locations, websites, and names
+  2. In the existing terminal run `mongoimport --db blackwater --collection chapters --type json --file chapterLocations.json --jsonArray` to import data about Chapter locations, websites, and names
   3. Next, after the previous import succeeded, run `mongoimport --db blackwater --collection galleryimages --type json --file images.json`
   4. At this point, we have all the necessary preexisting data that we need loaded into the MongoDB database
 6. Running the code
