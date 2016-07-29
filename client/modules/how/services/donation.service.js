@@ -56,6 +56,7 @@
                 });
             }
 
+            // Send broadcast to notify that all donors have been returned
             function broadcast() {
                 $rootScope.$broadcast("donors_loaded");
             }

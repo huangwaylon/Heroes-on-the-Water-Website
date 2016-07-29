@@ -63,9 +63,7 @@
 
           // Add the new donor to the array
           $scope.allDonors.push(currDonor);
-          console.log(currDonor);
           donationService.addDonor(currDonor);
-          console.log("Updated array " + $scope.allDonors.toString());
         };
       });
 })();
