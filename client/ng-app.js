@@ -117,7 +117,7 @@
             if($scope.user.account){
                 checkMail();
                 // Check for new mail every X number of milliseconds
-                mailCheckTimer = setInterval(resetMail, 60000); // 60 seconds
+                mailCheckTimer = setInterval(resetMail, 10000); // 10 seconds
             }
 
             // Check the user's permission level
