@@ -116,8 +116,8 @@
         function getUserInfo() {
             if($scope.user.account){
                 checkMail();
-                // Check for new mail every second
-                mailCheckTimer = setInterval(resetMail, 3000);
+                // Check for new mail every X number of milliseconds
+                mailCheckTimer = setInterval(resetMail, 10000);
             }
 
             // Check the user's permission level

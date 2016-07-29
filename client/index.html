@@ -53,7 +53,7 @@
 
           <ul class="nav navbar-nav navbar-right" ng-show="!notLoggedIn" >
           <li class="nav navbar-nav navbar-left" ng-show="!notLoggedIn">
-          <a href="/#/mailbox"><img class="img-responsive" style="max-height:40px; padding-right: 0px; margin-top:-10px; margin-bottom: -10px" alt="Mailbox" src="images/unread-mail.png"/><span ng-show="unreadMail" class="button_badge">{{totalUnread}}</span></a>
+          <a href="/#/mailbox"><i class="fa fa-envelope-o fa-2x" aria-hidden="true" style="max-height:40px; margin-top: -7px; margin-bottom: -15px"><span ng-show="unreadMail" class="button_badge">{{totalUnread}}</span></i></a>
           </li>
             <li class="dropdown">
               <a href="http://getbootstrap.com/examples/sticky-footer-navbar/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.firstname}} {{user.lastname}}<span class="caret"></span></a>
