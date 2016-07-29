@@ -63,6 +63,7 @@
 
           // Add the new donor to the array
           $scope.allDonors.push(currDonor);
+          // Send the donor info to service
           donationService.addDonor(currDonor);
         };
       });
