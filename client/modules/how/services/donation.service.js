@@ -46,6 +46,8 @@
                 return deferred.promise;
             }
 
+
+            // Return all of the information of those who have donated
             function all(scope) {
                 return $http.get('/donors/all').then(function(response) {
                     scope.allDonors = response.data;
@@ -54,6 +56,7 @@
                 });
             }
 
+            // Send broadcast to notify that all donors have been returned
             function broadcast() {
                 $rootScope.$broadcast("donors_loaded");
             }
