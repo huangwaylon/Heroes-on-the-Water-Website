@@ -1,9 +1,38 @@
 (function() {
   angular.module('app.how').controller('donationRouteCtrl',
-      function($log, $scope, donationService) {
+      function($log, $scope, donationService, AuthService, $location) {
         // Array to store all the donors
         $scope.allDonors = [];
         donationService.all($scope);
+
+        $scope.success = false;
+        $scope.error = false;
+        $scope.errorMessage = "";
+        $scope.user = {};
+
+        // Check that the user is logged in
+        if (AuthService.isLoggedIn()) {
+            AuthService.hello($scope.user);
+        } else {
+          $scope.success = false;
+          $scope.error = true;
+          $scope.errorMessage = "Not an Administrator!";
+        }
+
+        $scope.$on("user_loaded", checkUserPermissions);
+        function checkUserPermissions() {
+          if ($scope.user.account && ($scope.user.account == "Administrator" ||
+                                      $scope.user.account == "Region Leader" ||
+                                      $scope.user.account == "Chapter Leader")) {
+            $scope.success = true;
+            $scope.error = false;
+          } else {
+            $scope.success = false;
+            $scope.error = true;
+            $scope.errorMessage = "Not an Administrator!";
+          }
+        }
+
 
         // Function to add the new donor
         $scope.addDonor = function() {

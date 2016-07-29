@@ -1,6 +1,10 @@
 <div class="container">
-	<h2>Donors to Heroes on the Water</h2>
-	<ul ng-repeat="donor in allDonors">
+	<div class="row">
+    <div ng-show="error" class="alert alert-danger animated fadeIn">{{errorMessage}}</div>
+  </div>
+
+	<h2 ng-show="success">Donors to Heroes on the Water</h2>
+	<ul ng-show="success" ng-repeat="donor in allDonors">
 		<div>
 			<h3>Donation by: {{donor.firstname}} {{donor.lastname}}</h3>
 			<h4><b>Donation amount: {{donor.donation | currency:"USD$"}}</b></h4>
