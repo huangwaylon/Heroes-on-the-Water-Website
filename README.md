@@ -26,7 +26,7 @@ If you already have the repository cloned as well, follow step 5 to import data 
 	1. Navigate to https://nodejs.org/en/download/
 	2. Download the latest version for your system
 	3. After installation run `node -v` in a terminal to check that the operation was successful (currently 4.4.7 as of time of writing)
-	4. Update npm with `npm install npm -g` (npm, the package manager for Node.js, is included with Node.js but is updated more frequently and you'll want the latest version)
+	4. Update npm with `npm install npm -g` (npm, the package manager for Node.js, is included with Node.js but is updated more frequently and you'll want the latest version) (Refer to Note if you have issues with npm)
 2. Install MongoDB
 	1. Navigate to https://docs.mongodb.com/manual/installation/
 	2. Select the link for installation instructions for your specific operating system
@@ -38,7 +38,7 @@ If you already have the repository cloned as well, follow step 5 to import data 
 	1. Navigate to https://git-scm.com/downloads
 	2. Simply download the executable binary for your operating system and install the program
 	3. Refer to https://git-scm.com/book/en/v2/Getting-Started-Installing-Git for detailed setup instructions
-4. Clone the repository
+4. Clone the repository (Refer to Note if you have issues cloning)
 	1. Now that Node.js and MongoDB have been setup, it is time to download the repository
 	2. Clone the repository with git by running `git clone https://wh186y@codecloud.web.att.com/scm/st_how2016/bothells_finest_how.git` in a terminal
 	3. After the repository has been successfully cloned, run `cd bothells_finest_how` to navigate into the directory
@@ -55,6 +55,12 @@ If you already have the repository cloned as well, follow step 5 to import data 
 	5. Navigate your browser to http://localhost:3000/
 	6. Enjoy the website!
 
+Note - If you are working on the AT&T network, you may need to configure some proxy variables:
+
+Run the following two commands in any terminal window:
+
+`git config --global http.proxy http://one.proxy.att.com:8080`
+`git config --global https.proxy http://one.proxy.att.com:8080`
 
 ## Contributors
 
