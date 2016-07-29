@@ -46,6 +46,8 @@
                 return deferred.promise;
             }
 
+
+            // Return all of the information of those who have donated
             function all(scope) {
                 return $http.get('/donors/all').then(function(response) {
                     scope.allDonors = response.data;

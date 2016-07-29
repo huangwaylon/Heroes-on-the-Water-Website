@@ -1,3 +1,4 @@
+// Donation information model
 (function() {
     var mongoose = require('mongoose');
 
