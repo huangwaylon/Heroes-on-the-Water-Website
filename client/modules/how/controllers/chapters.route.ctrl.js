@@ -1,8 +1,6 @@
 (function() {
     angular.module('app.how').controller('chaptersRouteCtrl',
         function($log, $scope, chapterService) {
-            $log.debug('Initializing chaptersRouteCtrl');
-
             var self = this;
             $('#tabs a').click(function (e) {
               e.preventDefault()

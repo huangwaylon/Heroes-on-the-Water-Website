@@ -73,9 +73,8 @@
                     }
                 }
             }
-
+            // Set listener for mail loaded
             $scope.$on("mail_loaded", unreadCountTotal);
-
 
             $scope.submitLookup = function() {
                 AuthService.findUserByUsername($scope.username, $scope.userResult).then(function(result) {

@@ -5,11 +5,9 @@
 
         this.mail = [];
         this.currentmail = {};
-        
+
 
         this.getMailById = function(mailId) {
-            //$log.debug('Entering mailService.getMailById');
-            //$log.log('Getting mail with Id: ', mailId);
             var defer = $q.defer();
 
             $http({
@@ -18,17 +16,14 @@
                 params: { mailId: mailId }
             }).then(
                 function(response) {
-                    //$log.debug('getMail resolve', response);
                     self.mail.push(response.data);
                     defer.resolve(response);
                     $rootScope.$broadcast("mail_loaded");
                 },
                 function(error, status) {
-                    //$log.log('getMail reject', error, status);
                     defer.reject(error, status);
                 },
                 function(progress) {
-                    //  $log.debug('postMail notify', progress);
                     defer.notify(progress);
                 });
 
@@ -37,14 +32,11 @@
 
         //Sends mail to backend
         this.postMail = function(mail) {
-            //$log.debug('Entering mailService.postMail', mail);
-
             var defer = $q.defer();
             var userObject = {};
 
             $http.post('/mail', mail).then(
                 function(response) {
-                    $log.debug('postMail resolve: ', response);
                     defer.resolve(response);
                     AuthService.findUserByUsername(mail.recipient, userObject).then(function(result) {
                         userObject.mail.push(response.data._id);

@@ -113,7 +113,6 @@
         this.addEvent = function() {
           eventlistService.postEvent(self.newEvent).then(
               function(response) {
-                //$log.debug('addEvent resolve', response);
                 $scope.errorbanner = false;
                 $scope.success = true;
                 self.newEvent = {};
@@ -122,10 +121,8 @@
                   $scope.success = false; $location.path('/events'); }, 2500);
               }, function(error, status) {
                 $scope.errorbanner = true;
-                //$log.log('addEvent reject', error, status);
 
               }, function(progress) {
-              //  $log.debug('addEvent notify', progress);
               });
 
         };

@@ -1,8 +1,6 @@
 (function() {
   angular.module('app.how').controller('galleryImageCtrl',
       function($log, $scope, galleryImageService) {
-        $log.debug('Initializing galleryImageCtrl');
-
         var self = this;
 
         $scope.$watch(function() {

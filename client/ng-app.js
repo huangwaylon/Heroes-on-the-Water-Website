@@ -46,21 +46,45 @@
         $scope.$on("user_logout", setLogout);
         $scope.$on("user_loaded", getUserInfo);
 
+        var mailCheckTimer;
+        var amount = 0;
+        var localUnread = 0;
+
+        function resetMail() {
+          $scope.checkedMail = false;
+          checkMail();
+        }
+
         // Check for unread mail to toggle the mailbox icon
         function checkMail() {
-            if (!$scope.checkedMail && ($location.path()!=
-              "/mailbox")) {
-              $scope.checkedMail = true;
+            if (!$scope.checkedMail) {
+                $scope.checkedMail = true;
                 mailService.mail = [];
+                amount = 0;
+                localUnread = 0;
                 for (var i = 0; i < $scope.user.mail.length; i++) {
                     var id = $scope.user.mail[i];
                     mailService.getMailById(id).then(function(response) {
+                        amount++;
                         if (!response.data.read) {
-                            $scope.unreadMail = true;
+                          localUnread++;
                         }
+                        finishedChecking();
                     });
                 }
             }
+        }
+
+        function finishedChecking() {
+          if (amount == $scope.user.mail.length) {
+            $scope.totalUnread = localUnread;
+            console.log(amount + ", " +  $scope.user.mail.length);
+            if (localUnread == 0) {
+              $scope.unreadMail = false;
+            } else {
+              $scope.unreadMail = true;
+            }
+          }
         }
 
         // Login detected, get user details
@@ -73,14 +97,17 @@
         // Logout detected, update variables
         function setLogout() {
             $scope.notLoggedIn = true;
+            clearTimeout(mailCheckTimer);
         }
 
         // Checks the user's information
         function getUserInfo() {
             if($scope.user.account){
                 checkMail();
+                // Check for new mail every second
+                mailCheckTimer = setInterval(resetMail, 3000);
             }
-          
+
             // Check the user's permission level
             if ($scope.user.account && ($scope.user.account == "Administrator" ||
                     $scope.user.account == "Region Leader" ||
