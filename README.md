@@ -65,6 +65,8 @@ This was an awesome team effort! Created by (in order of last name, alphabetical
 * Adilene Pulgarin
 * Jeff Zhong
 
+Creation time period: 1 July 2016 to 29 July 2016
+
 ## Questions and Comments
 
 If you have any questions or comments, please feel free to reach out to us for help or information.
