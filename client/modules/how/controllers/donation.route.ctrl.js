@@ -5,6 +5,7 @@
         $scope.allDonors = [];
         donationService.all($scope);
 
+        // Initialize scope variables
         $scope.success = false;
         $scope.error = false;
         $scope.errorMessage = "";
@@ -19,7 +20,11 @@
           $scope.errorMessage = "Not an Administrator!";
         }
 
+        // Set listeners
         $scope.$on("user_loaded", checkUserPermissions);
+        $scope.$on("user_login", setLogin);
+
+        // Check user permissions
         function checkUserPermissions() {
           if ($scope.user.account && ($scope.user.account == "Administrator" ||
                                       $scope.user.account == "Region Leader" ||
@@ -32,7 +37,11 @@
             $scope.errorMessage = "Not an Administrator!";
           }
         }
-
+        // After login, get user info again - happens on refresh
+        function setLogin() {
+          // Get user details after login
+          AuthService.hello($scope.user);
+        }
 
         // Function to add the new donor
         $scope.addDonor = function() {
@@ -60,5 +69,3 @@
         };
       });
 })();
-
-//Mandatory. Include additional functionality here.
